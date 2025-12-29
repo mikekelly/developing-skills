@@ -87,19 +87,54 @@ Factors favoring router pattern:
 
 See references/recommended-structure.md for templates.
 
-## Step 4: Create Directory
+## Step 4: Detect Skill Location
 
+**Check if user is in a standalone repo context:**
+
+Signs of standalone repo intent:
+- Working directory is a git repo (has `.git/`)
+- Repo is empty or near-empty (just README, LICENSE, .gitignore)
+- User is NOT already in `~/.claude/skills/`
+- User mentioned "distributable", "shareable", "GitHub", or "standalone"
+
+If standalone repo detected, ask using AskUserQuestion:
+"I notice you're in an empty repository. Are you creating:"
+
+Options:
+1. **A standalone skill (Recommended)** - Distributable via GitHub. I'll create SKILL.md here in this repo.
+2. **A personal skill** - For your use only. I'll create it in ~/.claude/skills/{name} instead.
+
+**For standalone skills, also create:**
+- README.md with installation instructions (how to add to ~/.claude/skills/ or use skill-manager)
+- Appropriate directory structure in current repo
+
+**For personal skills:**
+- Use ~/.claude/skills/{skill-name}/ path
+
+## Step 5: Create Directory
+
+**Personal skill:**
 ```bash
 mkdir -p ~/.claude/skills/{skill-name}
 # If complex:
 mkdir -p ~/.claude/skills/{skill-name}/workflows
 mkdir -p ~/.claude/skills/{skill-name}/references
 # If needed:
-mkdir -p ~/.claude/skills/{skill-name}/templates  # for output structures
-mkdir -p ~/.claude/skills/{skill-name}/scripts    # for reusable code
+mkdir -p ~/.claude/skills/{skill-name}/templates
+mkdir -p ~/.claude/skills/{skill-name}/scripts
 ```
 
-## Step 5: Write SKILL.md
+**Standalone skill (in current repo):**
+```bash
+# If complex:
+mkdir -p workflows
+mkdir -p references
+# If needed:
+mkdir -p templates
+mkdir -p scripts
+```
+
+## Step 6: Write SKILL.md
 
 **Simple skill:** Write complete skill file with:
 - YAML frontmatter (name, description)
@@ -115,7 +150,7 @@ mkdir -p ~/.claude/skills/{skill-name}/scripts    # for reusable code
 - `<routing>` (maps answers to workflows)
 - `<reference_index>` and `<workflows_index>`
 
-## Step 6: Write Workflows (if complex)
+## Step 7: Write Workflows (if complex)
 
 For each workflow:
 ```xml
@@ -132,14 +167,14 @@ How to know this workflow is done
 </success_criteria>
 ```
 
-## Step 7: Write References (if needed)
+## Step 8: Write References (if needed)
 
 Domain knowledge that:
 - Multiple workflows might need
 - Doesn't change based on workflow
 - Contains patterns, examples, technical details
 
-## Step 8: Validate Structure
+## Step 9: Validate Structure
 
 Check:
 - [ ] YAML frontmatter valid
@@ -151,7 +186,7 @@ Check:
 - [ ] SKILL.md under 500 lines
 - [ ] XML tags properly closed
 
-## Step 9: Create Slash Command
+## Step 10: Create Slash Command (personal skills only)
 
 ```bash
 cat > ~/.claude/commands/{skill-name}.md << 'EOF'
@@ -165,7 +200,7 @@ Invoke the {skill-name} skill for: $ARGUMENTS
 EOF
 ```
 
-## Step 10: Test
+## Step 11: Test
 
 Invoke the skill and observe:
 - Does it ask the right intake question?

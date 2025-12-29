@@ -1,26 +1,19 @@
 ---
-name: develop-agent-skill
-description: Use PROACTIVELY when creating, reviewing, or updating Claude Code Skills. MUST be invoked before writing any new SKILL.md file. Provides structure, workflows, and validation for skill development.
+name: developing-skills
+description: Use PROACTIVELY when creating, reviewing, or updating Claude Code Skills. MUST be invoked before writing any new SKILL.md file. Provides structure, workflows, and validation for skill development. Supports both personal skills (~/.claude/skills/) and standalone distributable skills (GitHub repos).
 ---
 
 <essential_principles>
-## How Skills Work
+Skills are modular, filesystem-based capabilities that provide domain expertise on demand.
 
-Skills are modular, filesystem-based capabilities that provide domain expertise on demand. This skill teaches how to create effective skills.
+**1. Skills Are Prompts** — All prompting best practices apply. Be clear, be direct, use XML structure. Assume Claude is smart - only add context Claude doesn't have.
 
-### 1. Skills Are Prompts
-
-All prompting best practices apply. Be clear, be direct, use XML structure. Assume Claude is smart - only add context Claude doesn't have.
-
-### 2. SKILL.md Is Always Loaded
-
-When a skill is invoked, Claude reads SKILL.md. Use this guarantee:
+**2. SKILL.md Is Always Loaded** — When invoked, Claude reads SKILL.md. Use this guarantee:
 - Essential principles go in SKILL.md (can't be skipped)
 - Workflow-specific content goes in workflows/
 - Reusable knowledge goes in references/
 
-### 3. Router Pattern for Complex Skills
-
+**3. Router Pattern for Complex Skills**
 ```
 skill-name/
 ├── SKILL.md              # Router + principles
@@ -29,29 +22,15 @@ skill-name/
 ├── templates/            # Output structures (COPY + FILL)
 └── scripts/              # Reusable code (EXECUTE)
 ```
+SKILL.md routes to workflow → workflow specifies which references to read.
 
-SKILL.md asks "what do you want to do?" → routes to workflow → workflow specifies which references to read.
+**4. Pure XML Structure** — No markdown headings (#, ##, ###) in skill body. Use semantic XML tags (`<objective>`, `<process>`, `<success_criteria>`). Keep markdown formatting within content.
 
-**When to use each folder:**
-- **workflows/** - Multi-step procedures Claude follows
-- **references/** - Domain knowledge Claude reads for context
-- **templates/** - Consistent output structures Claude copies and fills (plans, specs, configs)
-- **scripts/** - Executable code Claude runs as-is (deploy, setup, API calls)
+**5. Progressive Disclosure** — SKILL.md under 500 lines. Split detailed content into reference files. Load only what's needed.
 
-### 4. Pure XML Structure
+**6. Challenge Every Token** — Context window is shared. Before adding content, ask: "Does Claude already know this?" If in doubt, leave it out.
 
-No markdown headings (#, ##, ###) in skill body. Use semantic XML tags:
-```xml
-<objective>...</objective>
-<process>...</process>
-<success_criteria>...</success_criteria>
-```
-
-Keep markdown formatting within content (bold, lists, code blocks).
-
-### 5. Progressive Disclosure
-
-SKILL.md under 500 lines. Split detailed content into reference files. Load only what's needed for the current workflow.
+**7. Skills Can Be Standalone Repos** — Skills can live in `~/.claude/skills/` (personal) or as standalone GitHub repos (distributable). Detect context and confirm intent.
 </essential_principles>
 
 <intake>
@@ -95,8 +74,6 @@ What would you like to do?
 </routing>
 
 <quick_reference>
-## Skill Structure Quick Reference
-
 **Simple skill (single file):**
 ```yaml
 ---
@@ -136,20 +113,17 @@ scripts/:
 </quick_reference>
 
 <reference_index>
-## Domain Knowledge
-
 All in `references/`:
 
 **Structure:** recommended-structure.md, skill-structure.md
 **Principles:** core-principles.md, be-clear-and-direct.md, use-xml-tags.md
 **Patterns:** common-patterns.md, workflows-and-validation.md
 **Assets:** using-templates.md, using-scripts.md
+**Quality:** skill-checklist.md, evaluation-driven-development.md
 **Advanced:** executable-code.md, api-security.md, iteration-and-testing.md
 </reference_index>
 
 <workflows_index>
-## Workflows
-
 All in `workflows/`:
 
 | Workflow | Purpose |
@@ -167,8 +141,6 @@ All in `workflows/`:
 </workflows_index>
 
 <yaml_requirements>
-## YAML Frontmatter
-
 Required fields:
 ```yaml
 ---
@@ -177,7 +149,10 @@ description: ...          # What it does AND when to use it (third person)
 ---
 ```
 
-Name conventions: `develop-*`, `generate-*`, `manage-*`, `setup-*`, `process-*`
+**Naming conventions (gerund form preferred):**
+- `developing-*`, `processing-*`, `managing-*`, `analyzing-*`, `testing-*`
+- Alternatives: `develop-*`, `process-*` (action verbs acceptable)
+- Avoid: vague names (`helper`, `utils`), reserved words (`anthropic-*`, `claude-*`)
 </yaml_requirements>
 
 <success_criteria>
