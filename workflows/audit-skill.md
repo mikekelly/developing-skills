@@ -5,6 +5,7 @@
 1. references/recommended-structure.md
 2. references/skill-structure.md
 3. references/use-xml-tags.md
+4. references/be-clear-and-direct.md
 </required_reading>
 
 <process>
@@ -45,19 +46,23 @@ ls {skills-directory}/{skill-name}/references/ 2>/dev/null
 
 Evaluate against each criterion:
 
-### YAML Frontmatter
-- [ ] Has `name:` field (lowercase-with-hyphens)
-- [ ] Name matches directory name
-- [ ] Has `description:` field
+### YAML Frontmatter (Critical - #1 cause of skill failure)
+- [ ] Has `name:` field (lowercase-with-hyphens, gerund form preferred)
+- [ ] Name matches directory name exactly
+- [ ] Has `description:` field (max 1024 chars)
 - [ ] Description says what it does AND when to use it
-- [ ] Description is third person ("Use when...")
+- [ ] Description is third person (not "I can help" or "You can use")
+- [ ] Description covers ALL activities the skill handles (create/build, review/assess/check, audit/evaluate, update/modify/improve)
+- [ ] Description uses proactive language if skill should auto-invoke ("MUST be loaded before...", "Use PROACTIVELY...")
+- [ ] Description avoids passive/advisory language ("Expert guidance for..." sounds optional)
+- [ ] Description includes synonyms users might use for the same request
 
 ### Structure
 - [ ] SKILL.md under 500 lines
 - [ ] Pure XML structure (no markdown headings # in body)
 - [ ] All XML tags properly closed
-- [ ] Has required tags: objective OR essential_principles
-- [ ] Has success_criteria
+- [ ] Has required tags: objective (or essential_principles for router), quick_start (or intake for router), success_criteria
+- [ ] References are one level deep (no chains: SKILL.md → ref.md → detail.md)
 
 ### Router Pattern (if complex skill)
 - [ ] Essential principles inline in SKILL.md (not in separate file)
@@ -73,10 +78,14 @@ Evaluate against each criterion:
 - [ ] Required reading references exist
 
 ### Content Quality
-- [ ] Principles are actionable (not vague platitudes)
-- [ ] Steps are specific (not "do the thing")
-- [ ] Success criteria are verifiable
+- [ ] Principles are actionable (not vague platitudes like "be careful" or "handle appropriately")
+- [ ] Steps are specific with concrete actions (not "process the data" → "extract email from column B, validate format, save to JSON")
+- [ ] Success criteria are verifiable and testable (not "user is satisfied" → "output file exists and passes validation")
 - [ ] No redundant content across files
+- [ ] Edge cases defined (what happens when input is empty, malformed, missing?)
+- [ ] Ambiguous language avoided (no "try to", "should probably", "generally" without explicit exceptions)
+- [ ] Examples shown, not just described (especially for output formats)
+- [ ] Decision criteria provided when Claude must make choices
 
 ## Step 4: Generate Report
 

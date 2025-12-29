@@ -1,6 +1,6 @@
 ---
 name: developing-skills
-description: MUST be loaded before working with any Skill. Covers creating, reviewing, auditing, updating, and modifying skills. Invoke PROACTIVELY before writing or changing any SKILL.md file. Provides structure, workflows, and validation for skill development. Supports both personal skills and standalone distributable skills (GitHub repos).
+description: MUST be loaded before working with any Skill. Covers creating, building, reviewing, assessing, checking, auditing, evaluating, updating, modifying, and improving skills. Invoke PROACTIVELY before writing or changing any SKILL.md file. Provides structure, workflows, and validation for skill development. Supports both personal skills and standalone distributable skills (GitHub repos). (user)
 ---
 
 <essential_principles>
