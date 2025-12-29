@@ -1,19 +1,21 @@
 ---
 name: developing-skills
-description: Use PROACTIVELY when creating, reviewing, or updating Claude Code Skills. MUST be invoked before writing any new SKILL.md file. Provides structure, workflows, and validation for skill development. Supports both personal skills (~/.claude/skills/) and standalone distributable skills (GitHub repos).
+description: Use PROACTIVELY when creating, assessing, or updating Skills. MUST be invoked before writing any new SKILL.md file. Provides structure, workflows, and validation for skill development. Supports both personal skills and standalone distributable skills (GitHub repos).
 ---
 
 <essential_principles>
 Skills are modular, filesystem-based capabilities that provide domain expertise on demand.
 
-**1. Skills Are Prompts** — All prompting best practices apply. Be clear, be direct, use XML structure. Assume Claude is smart - only add context Claude doesn't have.
+**1. Name and Description Are CRITICAL** — The name and description are the ONLY way agents discover and decide to use a skill. If these are wrong, the skill will never be invoked. Treat them as the most important lines in the entire skill. See references/skill-structure.md for detailed guidance.
 
-**2. SKILL.md Is Always Loaded** — When invoked, Claude reads SKILL.md. Use this guarantee:
+**2. Skills Are Prompts** — All prompting best practices apply. Be clear, be direct, use XML structure. Assume Claude is smart - only add context Claude doesn't have.
+
+**3. SKILL.md Is Always Loaded** — When invoked, the agent reads SKILL.md. Use this guarantee:
 - Essential principles go in SKILL.md (can't be skipped)
 - Workflow-specific content goes in workflows/
 - Reusable knowledge goes in references/
 
-**3. Router Pattern for Complex Skills**
+**4. Router Pattern for Complex Skills**
 ```
 skill-name/
 ├── SKILL.md              # Router + principles
@@ -24,13 +26,13 @@ skill-name/
 ```
 SKILL.md routes to workflow → workflow specifies which references to read.
 
-**4. Pure XML Structure** — No markdown headings (#, ##, ###) in skill body. Use semantic XML tags (`<objective>`, `<process>`, `<success_criteria>`). Keep markdown formatting within content.
+**5. Pure XML Structure** — No markdown headings (#, ##, ###) for top-level sections in skill body. Use semantic XML tags (`<objective>`, `<process>`, `<success_criteria>`) instead. Markdown formatting (including headings) within XML tag content is fine.
 
-**5. Progressive Disclosure** — SKILL.md under 500 lines. Split detailed content into reference files. Load only what's needed.
+**6. Progressive Disclosure** — SKILL.md under 500 lines. Split detailed content into reference files. Load only what's needed.
 
-**6. Challenge Every Token** — Context window is shared. Before adding content, ask: "Does Claude already know this?" If in doubt, leave it out.
+**7. Challenge Every Token** — Context window is shared. Before adding content, ask: "Does the agent already know this?" If in doubt, leave it out.
 
-**7. Skills Can Be Standalone Repos** — Skills can live in `~/.claude/skills/` (personal) or as standalone GitHub repos (distributable). Detect context and confirm intent.
+**8. Skills Can Be Standalone Repos** — Skills can live in personal skills directories or as standalone GitHub repos (distributable). Detect context and confirm intent.
 </essential_principles>
 
 <intake>
@@ -141,13 +143,23 @@ All in `workflows/`:
 </workflows_index>
 
 <yaml_requirements>
-Required fields:
+**⚠️ THE MOST IMPORTANT PART OF ANY SKILL ⚠️**
+
+The name and description determine whether an agent will EVER use your skill. Get these wrong and the skill is useless — it will sit unused while the agent struggles without it.
+
 ```yaml
 ---
 name: skill-name          # lowercase-with-hyphens, matches directory
 description: ...          # What it does AND when to use it (third person)
 ---
 ```
+
+**Description MUST include:**
+1. What the skill does (capabilities)
+2. When to use it (trigger conditions)
+3. Action words like "Use PROACTIVELY when..." for skills that should auto-invoke
+
+**Read references/skill-structure.md for comprehensive guidance on getting this right.**
 
 **Naming conventions (gerund form preferred):**
 - `developing-*`, `processing-*`, `managing-*`, `analyzing-*`, `testing-*`

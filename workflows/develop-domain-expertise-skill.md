@@ -52,7 +52,7 @@ Get specific: "Python games" or "Python games with Pygame specifically"?
 
 Explain:
 ```
-Domain expertise skills go in: ~/.claude/skills/expertise/{domain-name}/
+Domain expertise skills go in: {skills-directory}/expertise/{domain-name}/
 
 These are comprehensive BUILD skills that:
 - Execute tasks (build, debug, optimize, ship)
@@ -61,7 +61,7 @@ These are comprehensive BUILD skills that:
 - Can be loaded by other skills for domain knowledge
 
 Name suggestion: {suggested-name}
-Location: ~/.claude/skills/expertise/{suggested-name}/
+Location: {skills-directory}/expertise/{suggested-name}/
 ```
 
 Confirm or adjust name.
@@ -499,21 +499,21 @@ Test both use cases:
 
 ```bash
 # Create structure
-mkdir -p ~/.claude/skills/expertise/{domain-name}
-mkdir -p ~/.claude/skills/expertise/{domain-name}/workflows
-mkdir -p ~/.claude/skills/expertise/{domain-name}/references
+mkdir -p {skills-directory}/expertise/{domain-name}
+mkdir -p {skills-directory}/expertise/{domain-name}/workflows
+mkdir -p {skills-directory}/expertise/{domain-name}/references
 
 # Write SKILL.md
 # Write all workflow files
 # Write all reference files
 
 # Verify structure
-ls -R ~/.claude/skills/expertise/{domain-name}
+ls -R {skills-directory}/expertise/{domain-name}
 ```
 
-## Step 11: Document in develop-plan
+## Step 11: Document in develop-plan (if applicable)
 
-Update `~/.claude/skills/develop-plan/SKILL.md` to reference this new domain:
+Update the develop-plan skill to reference this new domain (if you have one):
 
 Add to the domain inference table:
 ```markdown
@@ -573,7 +573,7 @@ Domain expertise skill is complete when:
 - [ ] Anti-patterns documented throughout
 - [ ] Full lifecycle covered (build → debug → test → optimize → ship)
 - [ ] Platform-specific considerations included
-- [ ] Located in ~/.claude/skills/expertise/{domain-name}/
+- [ ] Located in {skills-directory}/expertise/{domain-name}/
 - [ ] Referenced in develop-plan domain inference table
 - [ ] Passes dual-purpose test: Can be invoked directly AND loaded for knowledge
 - [ ] User can build something professional from scratch through shipping

@@ -94,7 +94,7 @@ See references/recommended-structure.md for templates.
 Signs of standalone repo intent:
 - Working directory is a git repo (has `.git/`)
 - Repo is empty or near-empty (just README, LICENSE, .gitignore)
-- User is NOT already in `~/.claude/skills/`
+- User is NOT already in a personal skills directory
 - User mentioned "distributable", "shareable", "GitHub", or "standalone"
 
 If standalone repo detected, ask using AskUserQuestion:
@@ -102,26 +102,26 @@ If standalone repo detected, ask using AskUserQuestion:
 
 Options:
 1. **A standalone skill (Recommended)** - Distributable via GitHub. I'll create SKILL.md here in this repo.
-2. **A personal skill** - For your use only. I'll create it in ~/.claude/skills/{name} instead.
+2. **A personal skill** - For your use only. I'll create it in the personal skills directory instead.
 
 **For standalone skills, also create:**
-- README.md with installation instructions (how to add to ~/.claude/skills/ or use skill-manager)
+- README.md with installation instructions
 - Appropriate directory structure in current repo
 
 **For personal skills:**
-- Use ~/.claude/skills/{skill-name}/ path
+- Use the personal skills directory path
 
 ## Step 5: Create Directory
 
 **Personal skill:**
 ```bash
-mkdir -p ~/.claude/skills/{skill-name}
+mkdir -p {skills-directory}/{skill-name}
 # If complex:
-mkdir -p ~/.claude/skills/{skill-name}/workflows
-mkdir -p ~/.claude/skills/{skill-name}/references
+mkdir -p {skills-directory}/{skill-name}/workflows
+mkdir -p {skills-directory}/{skill-name}/references
 # If needed:
-mkdir -p ~/.claude/skills/{skill-name}/templates
-mkdir -p ~/.claude/skills/{skill-name}/scripts
+mkdir -p {skills-directory}/{skill-name}/templates
+mkdir -p {skills-directory}/{skill-name}/scripts
 ```
 
 **Standalone skill (in current repo):**
@@ -134,23 +134,50 @@ mkdir -p templates
 mkdir -p scripts
 ```
 
-## Step 6: Write SKILL.md
+## Step 6: Craft Name and Description (CRITICAL)
 
-**Simple skill:** Write complete skill file with:
-- YAML frontmatter (name, description)
+**⚠️ This is the most important step. If the name and description are wrong, the skill will never be used.**
+
+Before writing any content, draft the YAML frontmatter:
+
+```yaml
+---
+name: {skill-name}
+description: {description}
+---
+```
+
+**Name requirements:**
+- Lowercase with hyphens (e.g., `process-pdfs`, `manage-stripe`)
+- Use verb-noun pattern (`develop-*`, `manage-*`, `process-*`, `setup-*`)
+- Must match directory name exactly
+
+**Description requirements (ALL THREE are mandatory):**
+1. **What it does** — Specific capabilities, not vague ("processes PDFs" not "helps with documents")
+2. **When to use it** — Trigger conditions ("Use when working with PDF files")
+3. **Proactive signal** (if needed) — "Use PROACTIVELY when..." for auto-invoke skills
+
+**Test the description:** Ask "If a user said [typical request], would an agent choose this skill based on the description?" If not, revise.
+
+**Read references/skill-structure.md for comprehensive guidance.**
+
+## Step 7: Write SKILL.md
+
+**Simple skill:** Use `templates/simple-skill.md` as starting point. Write complete skill file with:
+- YAML frontmatter (name, description) — **from Step 6**
 - `<objective>`
 - `<quick_start>`
 - Content sections with pure XML
 - `<success_criteria>`
 
-**Complex skill:** Write router with:
-- YAML frontmatter
+**Complex skill:** Use `templates/router-skill.md` as starting point. Write router with:
+- YAML frontmatter — **from Step 6**
 - `<essential_principles>` (inline, unavoidable)
 - `<intake>` (question to ask user)
 - `<routing>` (maps answers to workflows)
 - `<reference_index>` and `<workflows_index>`
 
-## Step 7: Write Workflows (if complex)
+## Step 8: Write Workflows (if complex)
 
 For each workflow:
 ```xml
@@ -167,14 +194,14 @@ How to know this workflow is done
 </success_criteria>
 ```
 
-## Step 8: Write References (if needed)
+## Step 9: Write References (if needed)
 
 Domain knowledge that:
 - Multiple workflows might need
 - Doesn't change based on workflow
 - Contains patterns, examples, technical details
 
-## Step 9: Validate Structure
+## Step 10: Validate Structure
 
 Check:
 - [ ] YAML frontmatter valid
@@ -186,21 +213,11 @@ Check:
 - [ ] SKILL.md under 500 lines
 - [ ] XML tags properly closed
 
-## Step 10: Create Slash Command (personal skills only)
+## Step 11: Create Command Shortcut (if supported by agent harness)
 
-```bash
-cat > ~/.claude/commands/{skill-name}.md << 'EOF'
----
-description: {Brief description}
-argument-hint: [{argument hint}]
-allowed-tools: Skill({skill-name})
----
+Create a command shortcut if your agent harness supports them. The shortcut should invoke the skill with appropriate arguments.
 
-Invoke the {skill-name} skill for: $ARGUMENTS
-EOF
-```
-
-## Step 11: Test
+## Step 12: Test
 
 Invoke the skill and observe:
 - Does it ask the right intake question?
@@ -216,11 +233,13 @@ Skill is complete when:
 - [ ] Requirements gathered with appropriate questions
 - [ ] API research done if external service involved
 - [ ] Directory structure correct
+- [ ] **Name and description are optimized for agent discovery** (CRITICAL)
+- [ ] Description includes: what it does + when to use it + proactive trigger (if needed)
 - [ ] SKILL.md has valid frontmatter
 - [ ] Essential principles inline (if complex skill)
 - [ ] Intake question routes to correct workflow
 - [ ] All workflows have required_reading + process + success_criteria
 - [ ] References contain reusable domain knowledge
-- [ ] Slash command exists and works
-- [ ] Tested with real invocation
+- [ ] Command shortcut exists and works (if supported)
+- [ ] Tested with real invocation — agent invokes skill for intended use cases
 </success_criteria>

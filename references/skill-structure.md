@@ -2,6 +2,22 @@
 Skills have three structural components: YAML frontmatter (metadata), pure XML body structure (content organization), and progressive disclosure (file organization). This reference defines requirements and best practices for each component.
 </overview>
 
+<critical_warning>
+## ⚠️ NAME AND DESCRIPTION ARE THE #1 CAUSE OF SKILL FAILURE ⚠️
+
+**If an agent never invokes your skill, nothing else matters.**
+
+The name and description are how agents discover skills. When a user asks for help, the agent scans available skills and decides which (if any) to use based SOLELY on names and descriptions.
+
+**Common failure modes:**
+- Skill exists but agent doesn't use it → description doesn't match how users phrase requests
+- Agent uses wrong skill → names are too similar or descriptions overlap
+- Agent uses skill too late → description lacks "PROACTIVELY" trigger language
+- Agent never considers skill → description is vague ("helps with X")
+
+**Your skill's name and description are prompt engineering.** Apply the same rigor you would to any critical prompt. Test with real requests. Iterate until the agent reliably invokes the skill for all intended use cases.
+</critical_warning>
+
 <xml_structure_requirements>
 <critical_rule>
 **Remove ALL markdown headings (#, ##, ###) from skill body content.** Replace with semantic XML tags. Keep markdown formatting WITHIN content (bold, italic, lists, code blocks, links).
@@ -78,24 +94,27 @@ Be consistent within your skill. If you use `<workflow>`, don't also use `<proce
 
 <yaml_requirements>
 <invocation_optimization>
-**Name and description are discovery mechanisms**
+**Name and description are the ONLY discovery mechanisms**
 
-The name and description are not just metadata — they are the PRIMARY mechanism by which Claude decides whether to use a skill. When a user makes a request, Claude scans available skills and matches against their names and descriptions.
+The name and description are not just metadata — they are the PRIMARY and ONLY mechanism by which agents decide whether to use a skill. When a user makes a request, the agent scans available skills and matches against their names and descriptions. **If your name and description don't match how users phrase their requests, the skill will never be used.**
 
-**Goal**: Maximize the probability Claude will invoke the skill for every relevant task.
+**Goal**: Maximize the probability the agent will invoke the skill for EVERY relevant task.
 
 This means optimizing for:
-1. **Recognition** — Claude must recognize that the skill applies to the current task
-2. **Confidence** — Claude must feel confident the skill is the right tool (not just possibly relevant)
-3. **Timing** — Claude must invoke the skill at the right moment (before starting, not mid-task)
+1. **Recognition** — The agent must recognize that the skill applies to the current task
+2. **Confidence** — The agent must feel confident the skill is the right tool (not just possibly relevant)
+3. **Timing** — The agent must invoke the skill at the right moment (before starting, not mid-task)
 
-**Common failure modes:**
-- Vague descriptions → Claude doesn't recognize relevance
-- Passive/advisory language → Claude treats skill as optional reference
-- Wrong verb scope → Claude doesn't invoke for review/update tasks if name says "create"
-- No trigger signals → Claude waits for explicit user request instead of invoking proactively
+**Common failure modes (in order of frequency):**
+1. **Vague descriptions** → Agent doesn't recognize relevance ("helps with documents" - which documents? when?)
+2. **Missing trigger words** → Agent doesn't know WHEN to use it (missing "Use when..." or "Use PROACTIVELY...")
+3. **Passive/advisory language** → Agent treats skill as optional reference, not required tool
+4. **Wrong verb scope** → Agent doesn't invoke for review/update tasks if name only says "create"
+5. **Missing synonyms** → User says "spreadsheet" but description only says "Excel"
 
-**Think of it as prompt engineering for skill selection.** The name and description are a prompt that must convince Claude to use the skill. Apply the same rigor you would to any critical prompt.
+**Think of it as prompt engineering for skill selection.** The name and description are a prompt that must convince the agent to use the skill. Apply the same rigor you would to any critical prompt.
+
+**Test your descriptions:** Ask yourself "If a user said [X], would the agent choose this skill?" Test with multiple phrasings of the same request.
 </invocation_optimization>
 
 <required_fields>
@@ -163,20 +182,20 @@ description: Processes data
 <proactive_invocation>
 **Proactive vs Reactive Descriptions**
 
-Descriptions control when Claude invokes a skill. Match your description to intended usage:
+Descriptions control when an agent invokes a skill. Match your description to intended usage:
 
 **Reactive (wait for explicit request or mid-task):**
 ```yaml
 description: Expert guidance for X. Use when working with X files.
 ```
-- Claude waits for user to mention skill or already be working on X
+- Agent waits for user to mention skill or already be working on X
 - Appropriate for reference/consultation skills
 
 **Proactive (invoke before starting work):**
 ```yaml
 description: Use PROACTIVELY when creating X. MUST be invoked before writing any new X.
 ```
-- Claude invokes the skill automatically when task matches
+- Agent invokes the skill automatically when task matches
 - Appropriate for skills that should guide the process from the start
 
 **Key elements for proactive descriptions:**
@@ -329,7 +348,7 @@ with pdfplumber.open("file.pdf") as pdf:
 </advanced_features>
 ```
 
-Claude loads forms.md or reference.md only when needed.
+The agent loads forms.md or reference.md only when needed.
 </pattern>
 
 <pattern name="domain_organization">
@@ -345,7 +364,7 @@ bigquery-skill/
     └── marketing.md (campaigns, attribution)
 ```
 
-When user asks about revenue, Claude reads only finance.md. Other files stay on filesystem consuming zero tokens.
+When user asks about revenue, the agent reads only finance.md. Other files stay on filesystem consuming zero tokens.
 </pattern>
 
 <pattern name="conditional_details">
@@ -370,11 +389,11 @@ For simple edits, modify XML directly.
 </quick_start>
 ```
 
-Claude reads redlining.md or ooxml.md only when the user needs those features.
+The agent reads redlining.md or ooxml.md only when the user needs those features.
 </pattern>
 
 <critical_rules>
-**Keep references one level deep**: All reference files should link directly from SKILL.md. Avoid nested references (SKILL.md → advanced.md → details.md) as Claude may only partially read deeply nested files.
+**Keep references one level deep**: All reference files should link directly from SKILL.md. Avoid nested references (SKILL.md → advanced.md → details.md) as agents may only partially read deeply nested files.
 
 **Add table of contents to long files**: For reference files over 100 lines, include a table of contents at the top.
 
@@ -384,7 +403,7 @@ Claude reads redlining.md or ooxml.md only when the user needs those features.
 
 <file_organization>
 <filesystem_navigation>
-Claude navigates your skill directory using bash commands:
+Agents navigate your skill directory using bash commands:
 
 - Use forward slashes: `reference/guide.md` (not `reference\guide.md`)
 - Name files descriptively: `form_validation_rules.md` (not `doc2.md`)
