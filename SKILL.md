@@ -1,6 +1,6 @@
 ---
 name: developing-skills
-description: Use PROACTIVELY when creating, assessing, or updating Skills. MUST be invoked before writing any new SKILL.md file. Provides structure, workflows, and validation for skill development. Supports both personal skills and standalone distributable skills (GitHub repos).
+description: MUST be loaded before working with any Skill. Covers creating, reviewing, auditing, updating, and modifying skills. Invoke PROACTIVELY before writing or changing any SKILL.md file. Provides structure, workflows, and validation for skill development. Supports both personal skills and standalone distributable skills (GitHub repos).
 ---
 
 <essential_principles>
@@ -156,8 +156,11 @@ description: ...          # What it does AND when to use it (third person)
 
 **Description MUST include:**
 1. What the skill does (capabilities)
-2. When to use it (trigger conditions)
-3. Action words like "Use PROACTIVELY when..." for skills that should auto-invoke
+2. **ALL activities covered** — If the skill handles creating, reviewing, updating, and auditing, say so explicitly. Users phrase requests differently ("assess", "check", "audit", "review", "modify", "update", "create", "build"). If any should trigger your skill, include them.
+3. When to use it (trigger conditions)
+4. Action words like "MUST be loaded before..." or "Use PROACTIVELY when..." for skills that should auto-invoke
+
+**Critical insight:** If an agent doesn't invoke your skill, it's almost always because the description didn't match how the user phrased their request. Test against multiple phrasings.
 
 **Read references/skill-structure.md for comprehensive guidance on getting this right.**
 

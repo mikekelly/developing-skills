@@ -106,11 +106,12 @@ This means optimizing for:
 3. **Timing** — The agent must invoke the skill at the right moment (before starting, not mid-task)
 
 **Common failure modes (in order of frequency):**
-1. **Vague descriptions** → Agent doesn't recognize relevance ("helps with documents" - which documents? when?)
-2. **Missing trigger words** → Agent doesn't know WHEN to use it (missing "Use when..." or "Use PROACTIVELY...")
-3. **Passive/advisory language** → Agent treats skill as optional reference, not required tool
-4. **Wrong verb scope** → Agent doesn't invoke for review/update tasks if name only says "create"
-5. **Missing synonyms** → User says "spreadsheet" but description only says "Excel"
+1. **Missing activity coverage** → Description says "creating" but user asks to "assess" or "review" — skill never invoked
+2. **Vague descriptions** → Agent doesn't recognize relevance ("helps with documents" - which documents? when?)
+3. **Missing trigger words** → Agent doesn't know WHEN to use it (missing "Use when..." or "MUST be loaded...")
+4. **Passive/advisory language** → Agent treats skill as optional reference, not required tool ("Expert guidance for..." sounds optional)
+5. **Wrong verb scope** → Agent doesn't invoke for review/update tasks if description only mentions "create"
+6. **Missing synonyms** → User says "assess" but description only says "review", or "spreadsheet" vs "Excel"
 
 **Think of it as prompt engineering for skill selection.** The name and description are a prompt that must convince the agent to use the skill. Apply the same rigor you would to any critical prompt.
 
@@ -193,20 +194,30 @@ description: Expert guidance for X. Use when working with X files.
 
 **Proactive (invoke before starting work):**
 ```yaml
-description: Use PROACTIVELY when creating X. MUST be invoked before writing any new X.
+description: MUST be loaded before working with X. Covers creating, reviewing, and updating X.
 ```
 - Agent invokes the skill automatically when task matches
 - Appropriate for skills that should guide the process from the start
 
 **Key elements for proactive descriptions:**
+- Lead with "MUST be loaded before..." to indicate this is required, not optional
+- **List ALL activities covered** — "creating, reviewing, auditing, updating, modifying"
 - Use "PROACTIVELY" or "MUST BE USED" explicitly
 - Specify trigger point: "before writing", "when starting to", "before beginning"
-- Lead with action verb: "Use...", "Invoke..."
 - Avoid passive/advisory language: "Expert guidance for..." sounds optional
+
+**Critical: Cover all activity synonyms**
+
+Users phrase requests in many ways. If your skill handles any of these, include them:
+- Creating: "create", "build", "make", "develop", "write", "new"
+- Reviewing: "review", "assess", "check", "audit", "evaluate", "analyze"
+- Updating: "update", "modify", "change", "edit", "fix", "improve"
+
+If you only say "creating" but the user asks to "assess", the agent won't invoke your skill.
 
 **Examples:**
 - ❌ "Expert guidance for creating skills. Use when working with SKILL.md files."
-- ✅ "Use PROACTIVELY when creating, reviewing, or updating Skills. MUST be invoked before writing any new skill."
+- ✅ "MUST be loaded before working with any Skill. Covers creating, reviewing, auditing, updating, and modifying skills."
 
 - ❌ "Helps with commit messages. Use when committing code."
 - ✅ "Use PROACTIVELY to generate commit messages. Invoke before running git commit."
