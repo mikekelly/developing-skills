@@ -1,4 +1,4 @@
-# Workflow: Create a New Skill
+# Workflow: Develop a New Skill
 
 <required_reading>
 **Read these reference files NOW:**

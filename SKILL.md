@@ -1,6 +1,6 @@
 ---
-name: create-agent-skills
-description: Expert guidance for creating, writing, building, and refining Claude Code Skills. Use when working with SKILL.md files, authoring new skills, improving existing skills, or understanding skill structure and best practices.
+name: develop-agent-skill
+description: Use PROACTIVELY when creating, reviewing, or updating Claude Code Skills. MUST be invoked before writing any new SKILL.md file. Provides structure, workflows, and validation for skill development.
 ---
 
 <essential_principles>
@@ -68,14 +68,14 @@ What would you like to do?
 <routing>
 | Response | Next Action | Workflow |
 |----------|-------------|----------|
-| 1, "create", "new", "build" | Ask: "Task-execution skill or domain expertise skill?" | Route to appropriate create workflow |
+| 1, "create", "new", "build", "develop" | Ask: "Task-execution skill or domain expertise skill?" | Route to appropriate develop workflow |
 | 2, "audit", "modify", "existing" | Ask: "Path to skill?" | Route to appropriate workflow |
 | 3, "add", "component" | Ask: "Add what? (workflow/reference/template/script)" | workflows/add-{type}.md |
 | 4, "guidance", "help" | General guidance | workflows/get-guidance.md |
 
-**Progressive disclosure for option 1 (create):**
-- If user selects "Task-execution skill" → workflows/create-new-skill.md
-- If user selects "Domain expertise skill" → workflows/create-domain-expertise-skill.md
+**Progressive disclosure for option 1 (develop):**
+- If user selects "Task-execution skill" → workflows/develop-new-skill.md
+- If user selects "Domain expertise skill" → workflows/develop-domain-expertise-skill.md
 
 **Progressive disclosure for option 3 (add component):**
 - If user specifies workflow → workflows/add-workflow.md
@@ -86,8 +86,8 @@ What would you like to do?
 **Intent-based routing (if user provides clear intent without selecting menu):**
 - "audit this skill", "check skill", "review" → workflows/audit-skill.md
 - "verify content", "check if current" → workflows/verify-skill.md
-- "create domain expertise", "exhaustive knowledge base" → workflows/create-domain-expertise-skill.md
-- "create skill for X", "build new skill" → workflows/create-new-skill.md
+- "develop domain expertise", "exhaustive knowledge base" → workflows/develop-domain-expertise-skill.md
+- "develop skill for X", "build new skill", "create skill" → workflows/develop-new-skill.md
 - "add workflow", "add reference", etc. → workflows/add-{type}.md
 - "upgrade to router" → workflows/upgrade-to-router.md
 
@@ -154,8 +154,8 @@ All in `workflows/`:
 
 | Workflow | Purpose |
 |----------|---------|
-| create-new-skill.md | Build a skill from scratch |
-| create-domain-expertise-skill.md | Build exhaustive domain knowledge base for build/ |
+| develop-new-skill.md | Build a skill from scratch |
+| develop-domain-expertise-skill.md | Build exhaustive domain knowledge base for build/ |
 | audit-skill.md | Analyze skill against best practices |
 | verify-skill.md | Check if content is still accurate |
 | add-workflow.md | Add a workflow to existing skill |
@@ -177,7 +177,7 @@ description: ...          # What it does AND when to use it (third person)
 ---
 ```
 
-Name conventions: `create-*`, `manage-*`, `setup-*`, `generate-*`, `build-*`
+Name conventions: `develop-*`, `generate-*`, `manage-*`, `setup-*`, `process-*`
 </yaml_requirements>
 
 <success_criteria>

@@ -77,6 +77,27 @@ Be consistent within your skill. If you use `<workflow>`, don't also use `<proce
 </xml_structure_requirements>
 
 <yaml_requirements>
+<invocation_optimization>
+**Name and description are discovery mechanisms**
+
+The name and description are not just metadata — they are the PRIMARY mechanism by which Claude decides whether to use a skill. When a user makes a request, Claude scans available skills and matches against their names and descriptions.
+
+**Goal**: Maximize the probability Claude will invoke the skill for every relevant task.
+
+This means optimizing for:
+1. **Recognition** — Claude must recognize that the skill applies to the current task
+2. **Confidence** — Claude must feel confident the skill is the right tool (not just possibly relevant)
+3. **Timing** — Claude must invoke the skill at the right moment (before starting, not mid-task)
+
+**Common failure modes:**
+- Vague descriptions → Claude doesn't recognize relevance
+- Passive/advisory language → Claude treats skill as optional reference
+- Wrong verb scope → Claude doesn't invoke for review/update tasks if name says "create"
+- No trigger signals → Claude waits for explicit user request instead of invoking proactively
+
+**Think of it as prompt engineering for skill selection.** The name and description are a prompt that must convince Claude to use the skill. Apply the same rigor you would to any critical prompt.
+</invocation_optimization>
+
 <required_fields>
 ```yaml
 ---
@@ -138,17 +159,47 @@ description: Helps with documents
 ```yaml
 description: Processes data
 ```
+
+<proactive_invocation>
+**Proactive vs Reactive Descriptions**
+
+Descriptions control when Claude invokes a skill. Match your description to intended usage:
+
+**Reactive (wait for explicit request or mid-task):**
+```yaml
+description: Expert guidance for X. Use when working with X files.
+```
+- Claude waits for user to mention skill or already be working on X
+- Appropriate for reference/consultation skills
+
+**Proactive (invoke before starting work):**
+```yaml
+description: Use PROACTIVELY when creating X. MUST be invoked before writing any new X.
+```
+- Claude invokes the skill automatically when task matches
+- Appropriate for skills that should guide the process from the start
+
+**Key elements for proactive descriptions:**
+- Use "PROACTIVELY" or "MUST BE USED" explicitly
+- Specify trigger point: "before writing", "when starting to", "before beginning"
+- Lead with action verb: "Use...", "Invoke..."
+- Avoid passive/advisory language: "Expert guidance for..." sounds optional
+
+**Examples:**
+- ❌ "Expert guidance for creating skills. Use when working with SKILL.md files."
+- ✅ "Use PROACTIVELY when creating, reviewing, or updating Skills. MUST be invoked before writing any new skill."
+
+- ❌ "Helps with commit messages. Use when committing code."
+- ✅ "Use PROACTIVELY to generate commit messages. Invoke before running git commit."
+
+- ❌ "Code review assistance for pull requests."
+- ✅ "Use PROACTIVELY after writing code. MUST be invoked to review changes before committing."
+</proactive_invocation>
 </description_field>
 </yaml_requirements>
 
 <naming_conventions>
 Use **verb-noun convention** for skill names:
-
-<pattern name="create">
-Building/authoring tools
-
-Examples: `create-agent-skills`, `create-hooks`, `create-landing-pages`
-</pattern>
 
 <pattern name="manage">
 Managing external services or resources
@@ -168,12 +219,73 @@ Generation tasks
 Examples: `generate-ai-images`
 </pattern>
 
+<pattern name="develop">
+Full lifecycle development (create + review + update + iterate)
+
+Examples: `develop-agent-skill`, `develop-mcp-server`, `develop-hook`
+
+Use for any skill that builds artifacts that may need revision or iteration.
+</pattern>
+
+<pattern name="process">
+Transformation and data processing
+
+Examples: `process-pdf`, `process-images`, `process-csv`
+</pattern>
+
 <avoid_patterns>
 - Vague: `helper`, `utils`, `tools`
 - Generic: `documents`, `data`, `files`
 - Reserved words: `anthropic-helper`, `claude-tools`
 - Inconsistent: Directory `facebook-ads` but name `facebook-ads-manager`
 </avoid_patterns>
+
+<verb_selection>
+**Choosing the Right Verb**
+
+The verb should match the skill's actual scope:
+
+| Verb | Scope | Use When |
+|------|-------|----------|
+| `develop-*` | Full lifecycle | Builds artifacts that may need revision (create + review + update) |
+| `generate-*` | One-shot output | Produces output from input, no iteration expected |
+| `manage-*` | CRUD + ongoing | External resources, services, ongoing operations |
+| `setup-*` | One-time config | Initial setup, integration, configuration |
+| `process-*` | Transformation | Converting, extracting, transforming data |
+
+**Key distinction**: Use `generate-*` for one-shot outputs (images, commit messages). Use `develop-*` when the artifact may need iteration (skills, hooks, servers).
+
+**Examples:**
+- Skill builds hooks that may need debugging → `develop-hook`
+- Skill produces images from prompts → `generate-image`
+- Skill sets up Stripe integration once → `setup-stripe`
+- Skill manages ongoing Stripe operations → `manage-stripe`
+</verb_selection>
+
+<singular_vs_plural>
+**Singular vs Plural Nouns**
+
+Match the noun to the operational unit:
+
+**Use singular when:**
+- Skill operates on one item at a time
+- Skill represents expertise in a domain concept
+- Example: `develop-agent-skill` — you develop one skill at a time
+
+**Use plural when:**
+- Skill operates on collections or batches
+- Skill manages multiple instances simultaneously
+- Example: `manage-facebook-ads` — you manage multiple ads
+
+**Test**: Ask "what does one invocation operate on?" If the answer is "one skill" or "one hook", use singular.
+
+**Examples:**
+- ✅ `develop-agent-skill` — each invocation develops one skill
+- ✅ `manage-facebook-ads` — each invocation can manage multiple ads
+- ✅ `process-images` — batch processing multiple images
+- ✅ `generate-commit-message` — generates one message at a time
+- ❌ `develop-hooks` when it develops one hook at a time → use `develop-hook`
+</singular_vs_plural>
 </naming_conventions>
 
 <progressive_disclosure>

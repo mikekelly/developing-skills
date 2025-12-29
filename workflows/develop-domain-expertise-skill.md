@@ -1,7 +1,7 @@
-# Workflow: Create Exhaustive Domain Expertise Skill
+# Workflow: Develop Exhaustive Domain Expertise Skill
 
 <objective>
-Build a comprehensive execution skill that does real work in a specific domain. Domain expertise skills are full-featured build skills with exhaustive domain knowledge in references, complete workflows for the full lifecycle (build → debug → optimize → ship), and can be both invoked directly by users AND loaded by other skills (like create-plans) for domain knowledge.
+Build a comprehensive execution skill that does real work in a specific domain. Domain expertise skills are full-featured build skills with exhaustive domain knowledge in references, complete workflows for the full lifecycle (build → debug → optimize → ship), and can be both invoked directly by users AND loaded by other skills (like develop-plan) for domain knowledge.
 </objective>
 
 <critical_distinction>
@@ -18,7 +18,7 @@ Domain expertise skills:
 - ✅ Execute tasks (build, debug, optimize, ship)
 - ✅ Have comprehensive domain knowledge in references
 - ✅ Are invoked directly by users ("build a macOS app")
-- ✅ Can be loaded by other skills (create-plans reads references for planning)
+- ✅ Can be loaded by other skills (develop-plan reads references for planning)
 - ✅ Cover the FULL lifecycle, not just getting started
 </critical_distinction>
 
@@ -489,7 +489,7 @@ Test both use cases:
 - Workflow provides implementation steps
 - Success criteria are clear
 
-**Knowledge reference:** "Can create-plans load references to plan a project?"
+**Knowledge reference:** "Can develop-plan load references to plan a project?"
 - References contain decision guidance
 - All options compared
 - Complete lifecycle covered
@@ -511,16 +511,16 @@ mkdir -p ~/.claude/skills/expertise/{domain-name}/references
 ls -R ~/.claude/skills/expertise/{domain-name}
 ```
 
-## Step 11: Document in create-plans
+## Step 11: Document in develop-plan
 
-Update `~/.claude/skills/create-plans/SKILL.md` to reference this new domain:
+Update `~/.claude/skills/develop-plan/SKILL.md` to reference this new domain:
 
 Add to the domain inference table:
 ```markdown
 | "{keyword}", "{domain term}" | expertise/{domain-name} |
 ```
 
-So create-plans can auto-detect and offer to load it.
+So develop-plan can auto-detect and offer to load it.
 
 ## Step 12: Final Quality Check
 
@@ -556,7 +556,7 @@ Review entire skill:
 - [ ] Full lifecycle covered
 - [ ] Passes the "build from scratch through shipping" test
 - [ ] Can be invoked directly by users
-- [ ] Can be loaded by create-plans for knowledge
+- [ ] Can be loaded by develop-plan for knowledge
 
 </process>
 
@@ -574,7 +574,7 @@ Domain expertise skill is complete when:
 - [ ] Full lifecycle covered (build → debug → test → optimize → ship)
 - [ ] Platform-specific considerations included
 - [ ] Located in ~/.claude/skills/expertise/{domain-name}/
-- [ ] Referenced in create-plans domain inference table
+- [ ] Referenced in develop-plan domain inference table
 - [ ] Passes dual-purpose test: Can be invoked directly AND loaded for knowledge
 - [ ] User can build something professional from scratch through shipping
 </success_criteria>
