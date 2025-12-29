@@ -164,9 +164,9 @@ description: ...          # What it does AND when to use it (third person)
 
 **Read references/skill-structure.md for comprehensive guidance on getting this right.**
 
-**Naming conventions (gerund form preferred):**
-- `developing-*`, `processing-*`, `managing-*`, `analyzing-*`, `testing-*`
-- Alternatives: `develop-*`, `process-*` (action verbs acceptable)
+**Naming conventions (gerund form required):**
+- Use gerund (verb ending in -ing): `developing-*`, `processing-*`, `managing-*`, `setting-up-*`
+- Use plural nouns: `developing-skills`, `processing-images`, `managing-ads`
 - Avoid: vague names (`helper`, `utils`), reserved words (`anthropic-*`, `claude-*`)
 </yaml_requirements>
 

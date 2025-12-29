@@ -33,11 +33,11 @@ Categorize by primary dependency type:
 
 | Type | Examples | Verification Method |
 |------|----------|---------------------|
-| **API/Service** | manage-stripe, manage-gohighlevel | Context7 + WebSearch |
-| **CLI Tools** | build-macos-apps (xcodebuild, swift) | Run commands |
-| **Framework** | build-iphone-apps (SwiftUI, UIKit) | Context7 for docs |
-| **Integration** | setup-stripe-payments | WebFetch + Context7 |
-| **Pure Process** | develop-agent-skill | No external deps |
+| **API/Service** | managing-stripe, managing-gohighlevel | Context7 + WebSearch |
+| **CLI Tools** | building-macos-apps (xcodebuild, swift) | Run commands |
+| **Framework** | building-iphone-apps (SwiftUI, UIKit) | Context7 for docs |
+| **Integration** | setting-up-stripe-payments | WebFetch + Context7 |
+| **Pure Process** | developing-agent-skill | No external deps |
 
 Report: "This skill is primarily [type]-based. I'll verify using [method]."
 

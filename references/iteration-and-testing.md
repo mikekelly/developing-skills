@@ -32,7 +32,7 @@ Create evaluations BEFORE writing extensive documentation. This ensures your ski
 <evaluation_structure>
 ```json
 {
-  "skills": ["pdf-processing"],
+  "skills": ["processing-pdfs"],
   "query": "Extract all text from this PDF file and save it to output.txt",
   "files": ["test-files/document.pdf"],
   "expected_behavior": [

@@ -136,9 +136,9 @@ description: What it does and when to use it (third person, specific triggers)
 - Must match directory name exactly
 
 **Examples**:
-- ✅ `process-pdfs`
-- ✅ `manage-facebook-ads`
-- ✅ `setup-stripe-payments`
+- ✅ `processing-pdfs`
+- ✅ `managing-facebook-ads`
+- ✅ `setting-up-stripe-payments`
 - ❌ `PDF_Processor` (uppercase)
 - ❌ `helper` (vague)
 - ❌ `claude-helper` (reserved word)
@@ -229,67 +229,67 @@ If you only say "creating" but the user asks to "assess", the agent won't invoke
 </yaml_requirements>
 
 <naming_conventions>
-Use **verb-noun convention** for skill names:
+Use **gerund-noun convention** for skill names (verb in -ing form):
 
-<pattern name="manage">
+<pattern name="managing">
 Managing external services or resources
 
-Examples: `manage-facebook-ads`, `manage-zoom`, `manage-stripe`, `manage-supabase`
+Examples: `managing-facebook-ads`, `managing-zoom`, `managing-stripe`, `managing-supabase`
 </pattern>
 
-<pattern name="setup">
+<pattern name="setting-up">
 Configuration/integration tasks
 
-Examples: `setup-stripe-payments`, `setup-meta-tracking`
+Examples: `setting-up-stripe-payments`, `setting-up-meta-tracking`
 </pattern>
 
-<pattern name="generate">
+<pattern name="generating">
 Generation tasks
 
-Examples: `generate-ai-images`
+Examples: `generating-ai-images`
 </pattern>
 
-<pattern name="develop">
+<pattern name="developing">
 Full lifecycle development (create + review + update + iterate)
 
-Examples: `develop-agent-skill`, `develop-mcp-server`, `develop-hook`
+Examples: `developing-agent-skill`, `developing-mcp-server`, `developing-hook`
 
 Use for any skill that builds artifacts that may need revision or iteration.
 </pattern>
 
-<pattern name="process">
+<pattern name="processing">
 Transformation and data processing
 
-Examples: `process-pdf`, `process-images`, `process-csv`
+Examples: `processing-pdf`, `processing-images`, `processing-csv`
 </pattern>
 
 <avoid_patterns>
 - Vague: `helper`, `utils`, `tools`
 - Generic: `documents`, `data`, `files`
 - Reserved words: `anthropic-helper`, `claude-tools`
-- Inconsistent: Directory `facebook-ads` but name `facebook-ads-manager`
+- Inconsistent: Directory `facebook-ads` but name `managing-facebook-ads`
 </avoid_patterns>
 
 <verb_selection>
-**Choosing the Right Verb**
+**Choosing the Right Verb (Gerund Form)**
 
 The verb should match the skill's actual scope:
 
-| Verb | Scope | Use When |
-|------|-------|----------|
-| `develop-*` | Full lifecycle | Builds artifacts that may need revision (create + review + update) |
-| `generate-*` | One-shot output | Produces output from input, no iteration expected |
-| `manage-*` | CRUD + ongoing | External resources, services, ongoing operations |
-| `setup-*` | One-time config | Initial setup, integration, configuration |
-| `process-*` | Transformation | Converting, extracting, transforming data |
+| Pattern | Scope | Use When |
+|---------|-------|----------|
+| `developing-*` | Full lifecycle | Builds artifacts that may need revision (create + review + update) |
+| `generating-*` | One-shot output | Produces output from input, no iteration expected |
+| `managing-*` | CRUD + ongoing | External resources, services, ongoing operations |
+| `setting-up-*` | One-time config | Initial setup, integration, configuration |
+| `processing-*` | Transformation | Converting, extracting, transforming data |
 
-**Key distinction**: Use `generate-*` for one-shot outputs (images, commit messages). Use `develop-*` when the artifact may need iteration (skills, hooks, servers).
+**Key distinction**: Use `generating-*` for one-shot outputs (images, commit messages). Use `developing-*` when the artifact may need iteration (skills, hooks, servers).
 
 **Examples:**
-- Skill builds hooks that may need debugging → `develop-hook`
-- Skill produces images from prompts → `generate-image`
-- Skill sets up Stripe integration once → `setup-stripe`
-- Skill manages ongoing Stripe operations → `manage-stripe`
+- Skill builds hooks that may need debugging → `developing-hook`
+- Skill produces images from prompts → `generating-image`
+- Skill sets up Stripe integration once → `setting-up-stripe`
+- Skill manages ongoing Stripe operations → `managing-stripe`
 </verb_selection>
 
 <singular_vs_plural>
@@ -300,21 +300,21 @@ Match the noun to the operational unit:
 **Use singular when:**
 - Skill operates on one item at a time
 - Skill represents expertise in a domain concept
-- Example: `develop-agent-skill` — you develop one skill at a time
+- Example: `developing-agent-skill` — you develop one skill at a time
 
 **Use plural when:**
 - Skill operates on collections or batches
 - Skill manages multiple instances simultaneously
-- Example: `manage-facebook-ads` — you manage multiple ads
+- Example: `managing-facebook-ads` — you manage multiple ads
 
 **Test**: Ask "what does one invocation operate on?" If the answer is "one skill" or "one hook", use singular.
 
 **Examples:**
-- ✅ `develop-agent-skill` — each invocation develops one skill
-- ✅ `manage-facebook-ads` — each invocation can manage multiple ads
-- ✅ `process-images` — batch processing multiple images
-- ✅ `generate-commit-message` — generates one message at a time
-- ❌ `develop-hooks` when it develops one hook at a time → use `develop-hook`
+- ✅ `developing-agent-skill` — each invocation develops one skill
+- ✅ `managing-facebook-ads` — each invocation can manage multiple ads
+- ✅ `processing-images` — batch processing multiple images
+- ✅ `generating-commit-message` — generates one message at a time
+- ❌ `developing-hooks` when it develops one hook at a time → use `developing-hook`
 </singular_vs_plural>
 </naming_conventions>
 
@@ -335,7 +335,7 @@ Quick start in SKILL.md, details in reference files:
 
 ```markdown
 ---
-name: pdf-processing
+name: processing-pdfs
 description: Extracts text and tables from PDF files, fills forms, and merges documents. Use when working with PDF files or when the user mentions PDFs, forms, or document extraction.
 ---
 
@@ -481,9 +481,9 @@ Form filling...
 
 <pitfall name="wrong_naming_convention">
 - ❌ Directory: `facebook-ads`, Name: `facebook-ads-manager`
-- ✅ Directory: `manage-facebook-ads`, Name: `manage-facebook-ads`
+- ✅ Directory: `managing-facebook-ads`, Name: `managing-facebook-ads`
 - ❌ Directory: `stripe-integration`, Name: `stripe`
-- ✅ Directory: `setup-stripe-payments`, Name: `setup-stripe-payments`
+- ✅ Directory: `setting-up-stripe-payments`, Name: `setting-up-stripe-payments`
 </pitfall>
 
 <pitfall name="deeply_nested_references">

@@ -280,15 +280,15 @@ description: Processes Excel files and generates reports. Use when analyzing spr
 </pitfall>
 
 <pitfall name="wrong_naming_convention">
-❌ **BAD**: Directory name doesn't match skill name or verb-noun convention:
+❌ **BAD**: Directory name doesn't match skill name or gerund-noun convention:
 - Directory: `facebook-ads`, Name: `facebook-ads-manager`
 - Directory: `stripe-integration`, Name: `stripe`
 - Directory: `helper-scripts`, Name: `helper`
 
-✅ **GOOD**: Consistent verb-noun convention:
-- Directory: `manage-facebook-ads`, Name: `manage-facebook-ads`
-- Directory: `setup-stripe-payments`, Name: `setup-stripe-payments`
-- Directory: `process-pdfs`, Name: `process-pdfs`
+✅ **GOOD**: Consistent gerund-noun convention:
+- Directory: `managing-facebook-ads`, Name: `managing-facebook-ads`
+- Directory: `setting-up-stripe-payments`, Name: `setting-up-stripe-payments`
+- Directory: `processing-pdfs`, Name: `processing-pdfs`
 
 **Why it matters**: Consistency in naming makes skills discoverable and predictable.
 </pitfall>

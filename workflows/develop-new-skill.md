@@ -148,8 +148,8 @@ description: {description}
 ```
 
 **Name requirements:**
-- Lowercase with hyphens (e.g., `process-pdfs`, `manage-stripe`)
-- Use verb-noun pattern (`develop-*`, `manage-*`, `process-*`, `setup-*`)
+- Lowercase with hyphens (e.g., `processing-pdfs`, `managing-stripe`)
+- Use gerund-noun pattern (`developing-*`, `managing-*`, `processing-*`, `setting-up-*`)
 - Must match directory name exactly
 
 **Description requirements (ALL THREE are mandatory):**
