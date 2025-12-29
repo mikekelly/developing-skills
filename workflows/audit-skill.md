@@ -21,7 +21,7 @@ ls {skills-directory}/
 Present as:
 ```
 Available skills:
-1. developing-agent-skill
+1. developing-agent-skills
 2. building-macos-apps
 3. managing-stripe
 ...

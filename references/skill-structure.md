@@ -252,7 +252,7 @@ Examples: `generating-ai-images`
 <pattern name="developing">
 Full lifecycle development (create + review + update + iterate)
 
-Examples: `developing-agent-skill`, `developing-mcp-server`, `developing-hook`
+Examples: `developing-agent-skills`, `developing-mcp-servers`, `developing-hooks`
 
 Use for any skill that builds artifacts that may need revision or iteration.
 </pattern>
@@ -286,8 +286,8 @@ The verb should match the skill's actual scope:
 **Key distinction**: Use `generating-*` for one-shot outputs (images, commit messages). Use `developing-*` when the artifact may need iteration (skills, hooks, servers).
 
 **Examples:**
-- Skill builds hooks that may need debugging → `developing-hook`
-- Skill produces images from prompts → `generating-image`
+- Skill builds hooks that may need debugging → `developing-hooks`
+- Skill produces images from prompts → `generating-images`
 - Skill sets up Stripe integration once → `setting-up-stripe`
 - Skill manages ongoing Stripe operations → `managing-stripe`
 </verb_selection>
@@ -297,24 +297,14 @@ The verb should match the skill's actual scope:
 
 Match the noun to the operational unit:
 
-**Use singular when:**
-- Skill operates on one item at a time
-- Skill represents expertise in a domain concept
-- Example: `developing-agent-skill` — you develop one skill at a time
-
-**Use plural when:**
-- Skill operates on collections or batches
-- Skill manages multiple instances simultaneously
-- Example: `managing-facebook-ads` — you manage multiple ads
-
-**Test**: Ask "what does one invocation operate on?" If the answer is "one skill" or "one hook", use singular.
+**Use plural nouns by default.** This matches how users think about skill categories.
 
 **Examples:**
-- ✅ `developing-agent-skill` — each invocation develops one skill
-- ✅ `managing-facebook-ads` — each invocation can manage multiple ads
-- ✅ `processing-images` — batch processing multiple images
-- ✅ `generating-commit-message` — generates one message at a time
-- ❌ `developing-hooks` when it develops one hook at a time → use `developing-hook`
+- ✅ `developing-skills` — skill for developing skills
+- ✅ `managing-facebook-ads` — skill for managing ads
+- ✅ `processing-images` — skill for processing images
+- ✅ `generating-commit-messages` — skill for generating commit messages
+- ✅ `developing-hooks` — skill for developing hooks
 </singular_vs_plural>
 </naming_conventions>
 

@@ -37,7 +37,7 @@ Categorize by primary dependency type:
 | **CLI Tools** | building-macos-apps (xcodebuild, swift) | Run commands |
 | **Framework** | building-iphone-apps (SwiftUI, UIKit) | Context7 for docs |
 | **Integration** | setting-up-stripe-payments | WebFetch + Context7 |
-| **Pure Process** | developing-agent-skill | No external deps |
+| **Pure Process** | developing-agent-skills | No external deps |
 
 Report: "This skill is primarily [type]-based. I'll verify using [method]."
 
