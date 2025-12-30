@@ -43,7 +43,7 @@ A "build" task loads debugging references. A "debug" task loads build references
 ```markdown
 ---
 name: skill-name
-description: What it does and when to use it.
+description: "What it does and when to use it."
 ---
 
 <essential_principles>

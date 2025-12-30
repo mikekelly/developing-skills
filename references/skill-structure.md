@@ -122,9 +122,11 @@ This means optimizing for:
 ```yaml
 ---
 name: skill-name-here
-description: What it does and when to use it (third person, specific triggers)
+description: "What it does and when to use it (third person, specific triggers)"
 ---
 ```
+
+**Critical**: Always wrap the description value in double quotes to avoid YAML parsing errors. Descriptions often contain colons, special characters, or line breaks that break YAML parsing without quotes.
 </required_fields>
 
 <name_field>
@@ -160,24 +162,24 @@ description: What it does and when to use it (third person, specific triggers)
 
 **Effective examples**:
 ```yaml
-description: Extract text and tables from PDF files, fill forms, merge documents. Use when working with PDF files or when the user mentions PDFs, forms, or document extraction.
+description: "Extract text and tables from PDF files, fill forms, merge documents. Use when working with PDF files or when the user mentions PDFs, forms, or document extraction."
 ```
 
 ```yaml
-description: Analyze Excel spreadsheets, create pivot tables, generate charts. Use when analyzing Excel files, spreadsheets, tabular data, or .xlsx files.
+description: "Analyze Excel spreadsheets, create pivot tables, generate charts. Use when analyzing Excel files, spreadsheets, tabular data, or .xlsx files."
 ```
 
 ```yaml
-description: Generate descriptive commit messages by analyzing git diffs. Use when the user asks for help writing commit messages or reviewing staged changes.
+description: "Generate descriptive commit messages by analyzing git diffs. Use when the user asks for help writing commit messages or reviewing staged changes."
 ```
 
-**Avoid**:
+**Avoid** (content is too vague, but note descriptions are still quoted):
 ```yaml
-description: Helps with documents
+description: "Helps with documents"
 ```
 
 ```yaml
-description: Processes data
+description: "Processes data"
 ```
 
 <proactive_invocation>
@@ -187,14 +189,14 @@ Descriptions control when an agent invokes a skill. Match your description to in
 
 **Reactive (wait for explicit request or mid-task):**
 ```yaml
-description: Expert guidance for X. Use when working with X files.
+description: "Expert guidance for X. Use when working with X files."
 ```
 - Agent waits for user to mention skill or already be working on X
 - Appropriate for reference/consultation skills
 
 **Proactive (invoke before starting work):**
 ```yaml
-description: MUST be loaded before working with X. Covers creating, reviewing, and updating X.
+description: "MUST be loaded before working with X. Covers creating, reviewing, and updating X."
 ```
 - Agent invokes the skill automatically when task matches
 - Appropriate for skills that should guide the process from the start
@@ -215,15 +217,15 @@ Users phrase requests in many ways. If your skill handles any of these, include 
 
 If you only say "creating" but the user asks to "assess", the agent won't invoke your skill.
 
-**Examples:**
-- ❌ "Expert guidance for creating skills. Use when working with SKILL.md files."
-- ✅ "MUST be loaded before working with any Skill. Covers creating, reviewing, auditing, updating, and modifying skills."
+**Examples (note: all descriptions must be wrapped in quotes in actual YAML):**
+- ❌ `"Expert guidance for creating skills. Use when working with SKILL.md files."`
+- ✅ `"MUST be loaded before working with any Skill. Covers creating, reviewing, auditing, updating, and modifying skills."`
 
-- ❌ "Helps with commit messages. Use when committing code."
-- ✅ "Use PROACTIVELY to generate commit messages. Invoke before running git commit."
+- ❌ `"Helps with commit messages. Use when committing code."`
+- ✅ `"Use PROACTIVELY to generate commit messages. Invoke before running git commit."`
 
-- ❌ "Code review assistance for pull requests."
-- ✅ "Use PROACTIVELY after writing code. MUST be invoked to review changes before committing."
+- ❌ `"Code review assistance for pull requests."`
+- ✅ `"Use PROACTIVELY after writing code. MUST be invoked to review changes before committing."`
 </proactive_invocation>
 </description_field>
 </yaml_requirements>
@@ -326,7 +328,7 @@ Quick start in SKILL.md, details in reference files:
 ```markdown
 ---
 name: processing-pdfs
-description: Extracts text and tables from PDF files, fills forms, and merges documents. Use when working with PDF files or when the user mentions PDFs, forms, or document extraction.
+description: "Extracts text and tables from PDF files, fills forms, and merges documents. Use when working with PDF files or when the user mentions PDFs, forms, or document extraction."
 ---
 
 <objective>

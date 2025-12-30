@@ -202,7 +202,7 @@ Domain expertise skills use router pattern with essential principles:
 ```yaml
 ---
 name: build-{domain-name}
-description: Build {domain things} from scratch through shipping. Full lifecycle - build, debug, test, optimize, ship. {Any specific constraints like "CLI-only, no IDE"}.
+description: "Build {domain things} from scratch through shipping. Full lifecycle - build, debug, test, optimize, ship. {Any specific constraints like 'CLI-only, no IDE'}."
 ---
 
 <essential_principles>

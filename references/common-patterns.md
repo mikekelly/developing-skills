@@ -254,12 +254,12 @@ Form filling requires additional setup...
 <pitfall name="vague_descriptions">
 ❌ **BAD**:
 ```yaml
-description: Helps with documents
+description: "Helps with documents"
 ```
 
 ✅ **GOOD**:
 ```yaml
-description: Extract text and tables from PDF files, fill forms, merge documents. Use when working with PDF files or when the user mentions PDFs, forms, or document extraction.
+description: "Extract text and tables from PDF files, fill forms, merge documents. Use when working with PDF files or when the user mentions PDFs, forms, or document extraction."
 ```
 
 **Why it matters**: Vague descriptions prevent Claude from discovering and using the skill appropriately.
@@ -268,12 +268,12 @@ description: Extract text and tables from PDF files, fill forms, merge documents
 <pitfall name="inconsistent_pov">
 ❌ **BAD**:
 ```yaml
-description: I can help you process Excel files and generate reports
+description: "I can help you process Excel files and generate reports"
 ```
 
 ✅ **GOOD**:
 ```yaml
-description: Processes Excel files and generates reports. Use when analyzing spreadsheets or .xlsx files.
+description: "Processes Excel files and generates reports. Use when analyzing spreadsheets or .xlsx files."
 ```
 
 **Why it matters**: Skills must use third person. First/second person breaks the skill metadata pattern.

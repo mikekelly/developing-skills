@@ -1,6 +1,6 @@
 ---
 name: developing-skills
-description: MUST be loaded before working with any Skill. Covers creating, building, reviewing, assessing, checking, auditing, evaluating, updating, modifying, and improving skills. Invoke PROACTIVELY before writing or changing any SKILL.md file. Provides structure, workflows, and validation for skill development. Supports both personal skills and standalone distributable skills (GitHub repos). (user)
+description: "MUST be loaded before working with any Skill. Covers creating, building, reviewing, assessing, checking, auditing, evaluating, updating, modifying, and improving skills. Invoke PROACTIVELY before writing or changing any SKILL.md file. Provides structure, workflows, and validation for skill development. Supports both personal skills and standalone distributable skills (GitHub repos). (user)"
 ---
 
 <essential_principles>
@@ -80,7 +80,7 @@ What would you like to do?
 ```yaml
 ---
 name: skill-name
-description: What it does and when to use it.
+description: "What it does and when to use it."
 ---
 
 <objective>What this skill does</objective>
@@ -150,7 +150,7 @@ The name and description determine whether an agent will EVER use your skill. Ge
 ```yaml
 ---
 name: skill-name          # lowercase-with-hyphens, matches directory
-description: ...          # What it does AND when to use it (third person)
+description: "..."        # What it does AND when to use it (third person) - MUST be quoted
 ---
 ```
 

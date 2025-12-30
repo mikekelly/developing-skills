@@ -93,7 +93,7 @@ Replace SKILL.md with router structure:
 ```markdown
 ---
 name: {skill-name}
-description: {existing description}
+description: "{existing description}"
 ---
 
 <essential_principles>
