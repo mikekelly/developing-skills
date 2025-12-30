@@ -1,6 +1,6 @@
 ---
 name: {{SKILL_NAME}}
-description: {{What it does}} Use when {{trigger conditions}}.
+description: "{{What it does}} Use when {{trigger conditions}}."
 ---
 
 <essential_principles>

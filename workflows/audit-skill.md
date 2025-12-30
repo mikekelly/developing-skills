@@ -50,6 +50,7 @@ Evaluate against each criterion:
 - [ ] Has `name:` field (lowercase-with-hyphens, gerund form preferred)
 - [ ] Name matches directory name exactly
 - [ ] Has `description:` field (max 1024 chars)
+- [ ] Description is wrapped in double quotes (prevents YAML parsing errors from colons/special chars)
 - [ ] Description says what it does AND when to use it
 - [ ] Description is third person (not "I can help" or "You can use")
 - [ ] Description covers ALL activities the skill handles (create/build, review/assess/check, audit/evaluate, update/modify/improve)

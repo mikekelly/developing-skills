@@ -143,7 +143,7 @@ Before writing any content, draft the YAML frontmatter:
 ```yaml
 ---
 name: {skill-name}
-description: {description}
+description: "{description}"
 ---
 ```
 
