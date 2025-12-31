@@ -75,6 +75,15 @@ What would you like to do?
 **After reading the workflow, follow it exactly.**
 </routing>
 
+<escalation_triggers>
+Stop and ask the user when:
+- Skill scope is unclear after initial questions (don't guess at requirements)
+- Multiple valid architectural approaches exist (simple vs. router pattern)
+- External API is involved but documentation is outdated or conflicting
+- Existing skill has unusual structure that may be intentional
+- Changes would affect more than 10 files in an existing skill
+</escalation_triggers>
+
 <quick_reference>
 **Simple skill (single file):**
 ```yaml

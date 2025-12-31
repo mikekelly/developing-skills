@@ -410,6 +410,71 @@ See [workflows-and-validation.md](workflows-and-validation.md) for validation pa
 </characteristics>
 </validation_principle>
 
+<escalation_principle>
+<description>
+Define when agents should stop and ask for help instead of guessing. Without escalation triggers, agents either guess wrong or ask too many questions.
+</description>
+
+<why_it_matters>
+Common failure modes:
+- Agent guesses and makes wrong architectural choice → wasted work
+- Agent proceeds with incomplete understanding → bugs, rework
+- Agent asks about every small decision → slow, annoying
+- Agent hits error and retries forever → stuck
+
+Explicit thresholds tell the agent exactly when stopping is appropriate.
+</why_it_matters>
+
+<pattern>
+Every workflow should include escalation triggers:
+
+```xml
+<escalation_triggers>
+Stop and ask the user when:
+- Scope exceeds expectations (>10 files, >1000 lines changed)
+- Multiple valid approaches exist and choice significantly affects outcome
+- Error could be configuration vs. code issue (ask which to investigate)
+- Confidence in approach drops below 50%
+- Same error occurs 3 times despite different attempts
+</escalation_triggers>
+```
+</pattern>
+
+<calibration>
+**Too few triggers** → Agent guesses, makes bad decisions
+**Too many triggers** → Agent asks about everything, slow and annoying
+**Right balance** → Agent handles routine work, escalates genuine ambiguity
+
+Good triggers are:
+- Specific (not "when unsure")
+- Measurable (">10 files", "3 attempts")
+- Actionable (user can actually help with this)
+</calibration>
+
+<examples>
+**Audit workflow:**
+```xml
+<escalation_triggers>
+Stop and ask when:
+- Skill has more than 20 files (review scope too large)
+- YAML frontmatter cannot be parsed (may be intentional)
+- Unsure if something is an issue vs. style preference
+</escalation_triggers>
+```
+
+**Build workflow:**
+```xml
+<escalation_triggers>
+Stop and ask when:
+- Multiple architecture patterns could work (user should choose)
+- External API credentials needed
+- Change would affect more than 5 existing files
+- Tests fail and cause is unclear after 2 attempts
+</escalation_triggers>
+```
+</examples>
+</escalation_principle>
+
 <principle_summary>
 <xml_structure>
 Use pure XML structure for consistency, parseability, and Claude performance. Required tags: objective, quick_start, success_criteria.
@@ -434,4 +499,8 @@ Keep SKILL.md concise. Split details into reference files. Load reference files 
 <validation>
 Make validation scripts verbose and specific. Catch errors early with actionable feedback.
 </validation>
+
+<escalation>
+Define explicit thresholds for when to stop and ask. Make triggers specific, measurable, and actionable.
+</escalation>
 </principle_summary>
