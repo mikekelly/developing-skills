@@ -8,6 +8,14 @@
 4. references/be-clear-and-direct.md
 </required_reading>
 
+<escalation_triggers>
+Stop and ask when:
+- Skill has more than 20 files (scope too large for single audit)
+- YAML frontmatter cannot be parsed (may be intentional format)
+- Unsure if something is an issue vs. intentional style choice
+- Skill uses patterns not covered in reference materials
+</escalation_triggers>
+
 <process>
 ## Step 1: List Available Skills
 

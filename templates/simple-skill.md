@@ -31,3 +31,10 @@ description: "{{What it does}} Use when {{trigger conditions}}."
 - [ ] {{Second success criterion}}
 - [ ] {{Third success criterion}}
 </success_criteria>
+
+<escalation_triggers>
+Stop and ask the user when:
+- {{Scope threshold, e.g., "More than X files affected"}}
+- {{Ambiguity condition, e.g., "Multiple valid approaches exist"}}
+- {{Error condition, e.g., "Same error after 2 attempts"}}
+</escalation_triggers>

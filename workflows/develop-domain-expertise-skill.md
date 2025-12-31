@@ -29,6 +29,15 @@ Domain expertise skills:
 3. references/use-xml-tags.md
 </required_reading>
 
+<escalation_triggers>
+Stop and ask when:
+- Domain scope is too broad (e.g., "all of web development")
+- Research reveals conflicting best practices with no clear winner
+- Key libraries/frameworks have been deprecated since last major update
+- Domain requires credentials or paid services to research properly
+- User might benefit from narrower scope (e.g., "Python games" vs "all games")
+</escalation_triggers>
+
 <process>
 ## Step 1: Identify Domain
 

@@ -8,6 +8,15 @@
 4. references/use-xml-tags.md
 </required_reading>
 
+<escalation_triggers>
+Stop and ask when:
+- Requirements remain unclear after 2 rounds of questions
+- Multiple valid architectural patterns exist (let user choose)
+- External API documentation is conflicting or outdated
+- Skill would duplicate existing skill functionality
+- User's phrasing suggests they may want domain expertise skill instead
+</escalation_triggers>
+
 <process>
 ## Step 1: Adaptive Requirements Gathering
 

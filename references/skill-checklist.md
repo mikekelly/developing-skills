@@ -50,6 +50,19 @@ Use this checklist before sharing or publishing a skill.
 - [ ] **Observed Claude's navigation** - Checked how it actually uses the skill
 </testing>
 
+<agent_prompting>
+## Agent Prompting
+
+These elements ensure reliable autonomous behavior:
+
+- [ ] **Classification before action** - `<intake>` forces categorization before proceeding
+- [ ] **Phase gates with exit criteria** - Each phase has clear completion conditions
+- [ ] **Concrete first action** - Step 1 is a specific command/action, not "analyze" or "consider"
+- [ ] **Output format required** - Structure is mandatory, not suggested
+- [ ] **Anti-patterns documented** - Common failure modes explicitly closed off (NEVER DO section)
+- [ ] **Escalation triggers defined** - Explicit thresholds for when to stop and ask
+</agent_prompting>
+
 <standalone_skills>
 ## Standalone Skills (GitHub repos)
 

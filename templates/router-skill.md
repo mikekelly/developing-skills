@@ -39,6 +39,14 @@ What would you like to do?
 **After reading the workflow, follow it exactly.**
 </routing>
 
+<escalation_triggers>
+Stop and ask the user when:
+- {{Scope threshold, e.g., "Task would affect more than X files"}}
+- {{Ambiguity condition, e.g., "Multiple valid approaches and choice matters"}}
+- {{Error condition, e.g., "Same error after 2 attempts"}}
+- {{Uncertainty condition, e.g., "Confidence below 50%"}}
+</escalation_triggers>
+
 <quick_reference>
 ## {{Skill Name}} Quick Reference
 
