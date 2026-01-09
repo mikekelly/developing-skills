@@ -25,6 +25,7 @@ Use this checklist before sharing or publishing a skill.
 - [ ] **Progressive disclosure used** - Details in separate files when appropriate
 - [ ] **Workflows have clear steps** - Sequential, actionable
 - [ ] **Concise** - Every token justifies its cost
+- [ ] **No accumulated emphasis** - Holistic review done, duplicates removed, intent balanced
 </content_quality>
 
 <code_and_scripts>

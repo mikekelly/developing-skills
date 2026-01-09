@@ -95,6 +95,7 @@ Evaluate against each criterion:
 - [ ] Ambiguous language avoided (no "try to", "should probably", "generally" without explicit exceptions)
 - [ ] Examples shown, not just described (especially for output formats)
 - [ ] Decision criteria provided when Claude must make choices
+- [ ] No accumulated emphasis (multiple IMPORTANT/CRITICAL/MUST markers suggest iterative "prompting harder" instead of holistic design)
 
 ## Step 4: Generate Report
 
@@ -144,6 +145,7 @@ If fixing:
 **Missing routing**: Complex skill without intake/routing
 **Broken references**: Files mentioned but don't exist
 **Redundant content**: Same information in multiple places
+**Accumulated emphasis**: Multiple IMPORTANT/CRITICAL markers competing for attention—sign of iterative "prompting harder" instead of holistic review
 </audit_anti_patterns>
 
 <success_criteria>

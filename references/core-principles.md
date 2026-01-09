@@ -475,6 +475,57 @@ Stop and ask when:
 </examples>
 </escalation_principle>
 
+<prompt_hygiene_principle>
+<description>
+Skills edited by multiple people or iterated over time accumulate cruft. Each contributor adds emphasis for their concern, implicitly diluting everything else. The result is bloated skills that follow instructions worse, not better.
+</description>
+
+<the_accumulation_pattern>
+A common failure mode:
+1. Engineer A notices X underperforming → adds "IMPORTANT: always do X"
+2. This implicitly dilutes Y → Y starts failing
+3. Engineer B adds "CRITICAL: never skip Y"
+4. Cycle continues until everything is "critical" and nothing is prioritized
+
+Model attention is zero-sum. When everything is emphasized, nothing is.
+</the_accumulation_pattern>
+
+<symptoms>
+Signs a skill has accumulated cruft:
+- Multiple emphatic markers (IMPORTANT, CRITICAL, MUST, NEVER)
+- Same instruction stated multiple ways
+- Verbose formulations that could be tightened
+- Competing priorities without clear hierarchy
+- Instructions that were once necessary but no longer apply
+</symptoms>
+
+<the_fix>
+Before adding content to fix underperformance:
+1. Review the full skill holistically (not just the failing part)
+2. Remove duplicates and tighten existing language
+3. Ask: "What am I de-emphasizing by emphasizing this?"
+4. Consider if the real problem is ambiguity, not emphasis
+5. Rebalance intent across the whole skill
+
+Often the fix is removing tokens, not adding them.
+</the_fix>
+
+<periodic_review>
+Schedule periodic holistic reviews of active skills:
+- Remove duplicate instructions
+- Tighten verbose formulations
+- Check for conflicting emphasis
+- Verify intent balance
+- Ask "What would I remove?" before "What should I add?"
+
+A holistic view beats "prompting harder."
+</periodic_review>
+
+<insight source="Lovable engineering">
+"I removed duplicates, tightened language, and kept roughly the same intent balance." — This approach improved instruction-following and reduced costs at scale.
+</insight>
+</prompt_hygiene_principle>
+
 <principle_summary>
 <xml_structure>
 Use pure XML structure for consistency, parseability, and Claude performance. Required tags: objective, quick_start, success_criteria.
@@ -503,4 +554,8 @@ Make validation scripts verbose and specific. Catch errors early with actionable
 <escalation>
 Define explicit thresholds for when to stop and ask. Make triggers specific, measurable, and actionable.
 </escalation>
+
+<prompt_hygiene>
+Review skills holistically over time. Remove duplicates, tighten language, rebalance intent. Adding emphasis dilutes everything else.
+</prompt_hygiene>
 </principle_summary>
