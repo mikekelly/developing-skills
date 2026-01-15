@@ -122,7 +122,7 @@ This means optimizing for:
 ```yaml
 ---
 name: skill-name-here
-description: "What it does and when to use it (third person, specific triggers)"
+description: "What it does and when to use it (address the agent as 'you')"
 ---
 ```
 
@@ -150,27 +150,28 @@ description: "What it does and when to use it (third person, specific triggers)"
 **Validation rules**:
 - Non-empty, maximum 1024 characters
 - No XML tags
-- Third person (never first or second person)
+- Address the agent directly as "you" (the agent reads the description to decide whether to invoke)
 - Include what it does AND when to use it
 
-**Critical rule**: Always write in third person.
-- ✅ "Processes Excel files and generates reports"
-- ❌ "I can help you process Excel files"
-- ❌ "You can use this to process Excel files"
+**Critical rule**: Address the agent as "you" - the description is a prompt to the agent.
+- ✅ "Processes Excel files. Use when you need to analyze spreadsheets or generate reports."
+- ✅ "MUST be used when you need to browse the web."
+- ❌ "I can help you process Excel files" (first person "I" is wrong)
+- ❌ "Processes Excel files when the user mentions spreadsheets" (indirect - doesn't address the agent)
 
 **Structure**: Include both capabilities and triggers.
 
 **Effective examples**:
 ```yaml
-description: "Extract text and tables from PDF files, fill forms, merge documents. Use when working with PDF files or when the user mentions PDFs, forms, or document extraction."
+description: "Extracts text and tables from PDF files, fills forms, merges documents. Use when you need to work with PDF files, extract content, or fill forms."
 ```
 
 ```yaml
-description: "Analyze Excel spreadsheets, create pivot tables, generate charts. Use when analyzing Excel files, spreadsheets, tabular data, or .xlsx files."
+description: "Analyzes Excel spreadsheets, creates pivot tables, generates charts. Use when you need to analyze Excel files, spreadsheets, or tabular data."
 ```
 
 ```yaml
-description: "Generate descriptive commit messages by analyzing git diffs. Use when the user asks for help writing commit messages or reviewing staged changes."
+description: "Generates descriptive commit messages by analyzing git diffs. Use when you need help writing commit messages or reviewing staged changes."
 ```
 
 **Avoid** (content is too vague, but note descriptions are still quoted):
@@ -463,12 +464,13 @@ Form filling...
 
 <pitfall name="vague_descriptions">
 - ❌ "Helps with documents"
-- ✅ "Extract text and tables from PDF files, fill forms, merge documents. Use when working with PDF files or when the user mentions PDFs, forms, or document extraction."
+- ✅ "Extracts text and tables from PDF files, fills forms, merges documents. Use when you need to work with PDF files, extract content, or fill forms."
 </pitfall>
 
 <pitfall name="inconsistent_pov">
-- ❌ "I can help you process Excel files"
-- ✅ "Processes Excel files and generates reports"
+- ❌ "I can help you process Excel files" (first person "I" is wrong)
+- ❌ "Processes Excel files when the user mentions spreadsheets" (indirect - doesn't address the agent)
+- ✅ "Processes Excel files and generates reports. Use when you need to analyze spreadsheets."
 </pitfall>
 
 <pitfall name="wrong_naming_convention">
@@ -494,7 +496,7 @@ Every skill must have: `<objective>`, `<quick_start>`, and `<success_criteria>` 
 <validation_checklist>
 Before finalizing a skill, verify:
 
-- ✅ YAML frontmatter valid (name matches directory, description in third person)
+- ✅ YAML frontmatter valid (name matches directory, description addresses agent as "you")
 - ✅ No markdown headings in body (pure XML structure)
 - ✅ Required tags present: objective, quick_start, success_criteria
 - ✅ Conditional tags appropriate for complexity level

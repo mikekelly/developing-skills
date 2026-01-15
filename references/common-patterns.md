@@ -273,10 +273,10 @@ description: "I can help you process Excel files and generate reports"
 
 ✅ **GOOD**:
 ```yaml
-description: "Processes Excel files and generates reports. Use when analyzing spreadsheets or .xlsx files."
+description: "Processes Excel files and generates reports. Use when you need to analyze spreadsheets or .xlsx files."
 ```
 
-**Why it matters**: Skills must use third person. First/second person breaks the skill metadata pattern.
+**Why it matters**: Address the agent as "you" - the description is a prompt to the agent deciding whether to invoke the skill. Avoid first person ("I can help").
 </pitfall>
 
 <pitfall name="wrong_naming_convention">
