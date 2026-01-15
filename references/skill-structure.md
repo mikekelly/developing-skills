@@ -150,10 +150,10 @@ description: "What it does and when to use it (address the agent as 'you')"
 **Validation rules**:
 - Non-empty, maximum 1024 characters
 - No XML tags
-- Address the agent directly as "you" (the agent reads the description to decide whether to invoke)
+- Address the agent directly as you (the agent reads the description to decide whether to invoke)
 - Include what it does AND when to use it
 
-**Critical rule**: Address the agent as "you" - the description is a prompt to the agent.
+**Critical rule**: Address the agent as you - the description is a prompt to the agent.
 - ✅ "Processes Excel files. Use when you need to analyze spreadsheets or generate reports."
 - ✅ "MUST be used when you need to browse the web."
 - ❌ "I can help you process Excel files" (first person "I" is wrong)
@@ -496,7 +496,7 @@ Every skill must have: `<objective>`, `<quick_start>`, and `<success_criteria>` 
 <validation_checklist>
 Before finalizing a skill, verify:
 
-- ✅ YAML frontmatter valid (name matches directory, description addresses agent as "you")
+- ✅ YAML frontmatter valid (name matches directory, description addresses agent as you)
 - ✅ No markdown headings in body (pure XML structure)
 - ✅ Required tags present: objective, quick_start, success_criteria
 - ✅ Conditional tags appropriate for complexity level

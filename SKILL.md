@@ -159,7 +159,7 @@ The name and description determine whether an agent will EVER use your skill. Ge
 ```yaml
 ---
 name: skill-name          # lowercase-with-hyphens, matches directory
-description: "..."        # What it does AND when to use it (address agent as "you") - MUST be quoted
+description: "..."        # What it does AND when to use it (address agent as you) - MUST be quoted
 ---
 ```
 

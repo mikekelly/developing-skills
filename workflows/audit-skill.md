@@ -60,7 +60,7 @@ Evaluate against each criterion:
 - [ ] Has `description:` field (max 1024 chars)
 - [ ] Description is wrapped in double quotes (prevents YAML parsing errors from colons/special chars)
 - [ ] Description says what it does AND when to use it
-- [ ] Description addresses agent as "you" (not "I can help" - avoid first person)
+- [ ] Description addresses agent as you (not "I can help" - avoid first person)
 - [ ] Description covers ALL activities the skill handles (create/build, review/assess/check, audit/evaluate, update/modify/improve)
 - [ ] Description uses proactive language if skill should auto-invoke ("MUST be loaded before...", "Use PROACTIVELY...")
 - [ ] Description avoids passive/advisory language ("Expert guidance for..." sounds optional)

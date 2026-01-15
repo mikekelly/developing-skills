@@ -276,7 +276,7 @@ description: "I can help you process Excel files and generate reports"
 description: "Processes Excel files and generates reports. Use when you need to analyze spreadsheets or .xlsx files."
 ```
 
-**Why it matters**: Address the agent as "you" - the description is a prompt to the agent deciding whether to invoke the skill. Avoid first person ("I can help").
+**Why it matters**: Address the agent as you - the description is a prompt to the agent deciding whether to invoke the skill. Avoid first person ("I can help").
 </pitfall>
 
 <pitfall name="wrong_naming_convention">

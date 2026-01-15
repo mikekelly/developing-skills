@@ -7,7 +7,7 @@ Use this checklist before sharing or publishing a skill.
 
 - [ ] **Valid YAML frontmatter** - name and description fields present
 - [ ] **Name matches directory** - lowercase-with-hyphens, gerund form preferred
-- [ ] **Description is specific** - Says what it does AND when to use it (addresses agent as "you")
+- [ ] **Description is specific** - Says what it does AND when to use it (addresses agent as you)
 - [ ] **SKILL.md under 500 lines** - Split into references if longer
 - [ ] **Pure XML structure** - No markdown headings (#) in body
 - [ ] **Required tags present** - objective, quick_start/intake, success_criteria

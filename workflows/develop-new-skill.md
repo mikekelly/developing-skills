@@ -215,7 +215,7 @@ Domain knowledge that:
 Check:
 - [ ] YAML frontmatter valid
 - [ ] Name matches directory (lowercase-with-hyphens)
-- [ ] Description says what it does AND when to use it (addresses agent as "you")
+- [ ] Description says what it does AND when to use it (addresses agent as you)
 - [ ] No markdown headings (#) in body - use XML tags
 - [ ] Required tags present: objective, quick_start, success_criteria
 - [ ] All referenced files exist
