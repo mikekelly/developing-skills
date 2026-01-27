@@ -26,9 +26,7 @@ skill-name/
 ```
 SKILL.md routes to workflow → workflow specifies which references to read.
 
-**5. Pure XML Structure** — No markdown headings (#, ##, ###) for top-level sections in skill body. Use semantic XML tags (`<objective>`, `<process>`, `<success_criteria>`) instead. Markdown formatting (including headings) within XML tag content is fine.
-
-**6. Progressive Disclosure** — SKILL.md under 500 lines. Split detailed content into reference files. Load only what's needed.
+**6. Progressive Disclosure** — SKILL.md under 500 lines. Split detailed content into reference files. Load only what's essential make common activities fast and detailed aspects of the skill discoverable.
 
 **7. Challenge Every Token** — Context window is shared. Before adding content, ask: "Does the agent already know this?" If in doubt, leave it out.
 
@@ -43,7 +41,7 @@ What would you like to do?
 3. Add component (workflow/reference/template/script)
 4. Get guidance
 
-**Wait for response before proceeding.**
+**Ensure this is clear before proceeding.**
 </intake>
 
 <routing>
@@ -187,5 +185,4 @@ A well-structured skill:
 - Routes directly to appropriate workflows based on user intent
 - Keeps SKILL.md under 500 lines
 - Asks minimal clarifying questions only when truly needed
-- Has been tested with real usage
 </success_criteria>
