@@ -167,6 +167,11 @@ description: "..."        # What it does AND when to use it (address agent as yo
 3. When to use it (trigger conditions)
 4. Action words like "MUST be loaded before..." or "Use PROACTIVELY when..." for skills that should auto-invoke
 
+**Description MUST NOT include:**
+- Implementation details (file structure, tools used, architectural patterns, internal mechanisms)
+- How the skill works internally — the description is for matching user intent, not explaining internals
+- The description is a **matching surface**, not documentation. Every word should help the agent decide "does this skill apply to what the user asked?" If a word doesn't help with that decision, remove it.
+
 **Critical insight:** If an agent doesn't invoke your skill, it's almost always because the description didn't match how the user phrased their request. Test against multiple phrasings.
 
 **Read references/skill-structure.md for comprehensive guidance on getting this right.**

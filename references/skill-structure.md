@@ -161,6 +161,12 @@ description: "What it does and when to use it (address the agent as 'you')"
 
 **Structure**: Include both capabilities and triggers.
 
+**MUST NOT include implementation details.** The description is a matching surface for user intent — not documentation. Every word must help the agent answer "does this skill apply to what the user asked?" Avoid mentioning file structures, tools, libraries, architectural patterns, or internal mechanisms. These details belong inside the skill, not in the description.
+
+- ❌ `"Processes PDFs using pdfplumber and poppler. Implements a pipeline pattern with validation."` (implementation details)
+- ❌ `"Router-pattern skill with workflows/ and references/ directories for skill development."` (internal structure)
+- ✅ `"Extracts text and tables from PDF files, fills forms, merges documents. Use when you need to work with PDF files."` (activities only)
+
 **Effective examples**:
 ```yaml
 description: "Extracts text and tables from PDF files, fills forms, merges documents. Use when you need to work with PDF files, extract content, or fill forms."
