@@ -50,16 +50,16 @@ Stop and ask the user when:
 <quick_reference>
 ## {{Skill Name}} Quick Reference
 
-{{Brief reference information always useful to have visible}}
+{{Brief information always useful to have visible}}
 </quick_reference>
 
-<reference_index>
-## Domain Knowledge
+<knowledge_index>
+## Compiled Knowledge
 
-All in `references/`:
-- {{reference-1.md}} - {{purpose}}
-- {{reference-2.md}} - {{purpose}}
-</reference_index>
+All in `knowledge/`:
+- {{topic-1.md}} - {{purpose}}
+- {{topic-2.md}} - {{purpose}}
+</knowledge_index>
 
 <workflows_index>
 ## Workflows

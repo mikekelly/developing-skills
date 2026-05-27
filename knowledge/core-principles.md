@@ -369,28 +369,33 @@ Don't optimize for one model. Find the balance that works across your target mod
 
 <progressive_disclosure_principle>
 <description>
-SKILL.md serves as an overview. Reference files contain details. Claude loads reference files only when needed.
+SKILL.md serves as an overview. Knowledge files contain details. Claude loads knowledge files only when needed.
 </description>
 
 <token_efficiency>
 Progressive disclosure keeps token usage proportional to task complexity:
 
 - Simple task: Load SKILL.md only (~500 tokens)
-- Medium task: Load SKILL.md + one reference (~1000 tokens)
-- Complex task: Load SKILL.md + multiple references (~2000 tokens)
+- Medium task: Load SKILL.md + one knowledge file (~1000 tokens)
+- Complex task: Load SKILL.md + multiple knowledge files (~2000 tokens)
 
 Without progressive disclosure, every task loads all content regardless of need.
 </token_efficiency>
 
 <implementation>
 - Keep SKILL.md under 500 lines
-- Split detailed content into reference files
-- Keep references one level deep from SKILL.md
-- Link to references from relevant sections
-- Use descriptive reference file names
+- Split detailed content into knowledge files
+- Keep knowledge files one level deep from SKILL.md
+- Link to knowledge files from relevant sections
+- Use descriptive knowledge file names
+- Treat `knowledge/` as compiled LLM Wiki content: synthesized, traversable, maintained, and source-first
 
 See [skill-structure.md](skill-structure.md) for progressive disclosure patterns.
 </implementation>
+
+<llm_wiki_alignment>
+Progressive disclosure decides what to load; LLM Wiki discipline decides what belongs in the files. Knowledge files should be durable synthesis, not raw context. Add or revise them when repeated answers, new sources, or changed best practices should compound into future skill use.
+</llm_wiki_alignment>
 </progressive_disclosure_principle>
 
 <validation_principle>
@@ -544,7 +549,7 @@ Test with all target models. Balance detail level to work across Haiku, Sonnet, 
 </model_testing>
 
 <progressive_disclosure>
-Keep SKILL.md concise. Split details into reference files. Load reference files only when needed.
+Keep SKILL.md concise. Split details into knowledge files. Load knowledge files only when needed.
 </progressive_disclosure>
 
 <validation>

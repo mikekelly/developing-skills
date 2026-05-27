@@ -1,11 +1,12 @@
 # Workflow: Develop a New Skill
 
 <required_reading>
-**Read these reference files NOW:**
-1. references/recommended-structure.md
-2. references/skill-structure.md
-3. references/core-principles.md
-4. references/use-xml-tags.md
+**Read these knowledge files NOW:**
+1. knowledge/recommended-structure.md
+2. knowledge/skill-structure.md
+3. knowledge/core-principles.md
+4. knowledge/use-xml-tags.md
+5. knowledge/llm-wiki-principles.md
 </required_reading>
 
 <escalation_triggers>
@@ -75,7 +76,7 @@ If research requested:
 skill-name/
 ├── SKILL.md (router + principles)
 ├── workflows/ (procedures - FOLLOW)
-├── references/ (knowledge - READ)
+├── knowledge/ (compiled knowledge - READ)
 ├── templates/ (output structures - COPY + FILL)
 └── scripts/ (reusable code - EXECUTE)
 ```
@@ -94,7 +95,7 @@ Factors favoring router pattern:
 - Same code runs across invocations (deploy, setup, API calls)
 - Operations are error-prone when rewritten each time
 
-See references/recommended-structure.md for templates.
+See knowledge/recommended-structure.md for templates.
 
 ## Step 4: Detect Skill Location
 
@@ -127,7 +128,7 @@ Options:
 mkdir -p {skills-directory}/{skill-name}
 # If complex:
 mkdir -p {skills-directory}/{skill-name}/workflows
-mkdir -p {skills-directory}/{skill-name}/references
+mkdir -p {skills-directory}/{skill-name}/knowledge
 # If needed:
 mkdir -p {skills-directory}/{skill-name}/templates
 mkdir -p {skills-directory}/{skill-name}/scripts
@@ -137,7 +138,7 @@ mkdir -p {skills-directory}/{skill-name}/scripts
 ```bash
 # If complex:
 mkdir -p workflows
-mkdir -p references
+mkdir -p knowledge
 # If needed:
 mkdir -p templates
 mkdir -p scripts
@@ -168,7 +169,7 @@ description: "{description}"
 
 **Test the description:** Ask "If a user said [typical request], would an agent choose this skill based on the description?" If not, revise.
 
-**Read references/skill-structure.md for comprehensive guidance.**
+**Read knowledge/skill-structure.md for comprehensive guidance.**
 
 ## Step 7: Write SKILL.md
 
@@ -184,14 +185,14 @@ description: "{description}"
 - `<essential_principles>` (inline, unavoidable)
 - `<intake>` (question to ask user)
 - `<routing>` (maps answers to workflows)
-- `<reference_index>` and `<workflows_index>`
+- `<knowledge_index>` and `<workflows_index>`
 
 ## Step 8: Write Workflows (if complex)
 
 For each workflow:
 ```xml
 <required_reading>
-Which references to load for this workflow
+Which knowledge files to load for this workflow
 </required_reading>
 
 <process>
@@ -203,12 +204,13 @@ How to know this workflow is done
 </success_criteria>
 ```
 
-## Step 9: Write References (if needed)
+## Step 9: Write Knowledge Files (if needed)
 
 Domain knowledge that:
 - Multiple workflows might need
 - Doesn't change based on workflow
 - Contains patterns, examples, technical details
+- Follows LLM Wiki principles: synthesized, traversable, maintained, and source-first
 
 ## Step 10: Validate Structure
 
@@ -231,7 +233,7 @@ Create a command shortcut if your agent harness supports them. The shortcut shou
 Invoke the skill and observe:
 - Does it ask the right intake question?
 - Does it load the right workflow?
-- Does the workflow load the right references?
+- Does the workflow load the right knowledge files?
 - Does output match expectations?
 
 Iterate based on real usage, not assumptions.
@@ -248,7 +250,8 @@ Skill is complete when:
 - [ ] Essential principles inline (if complex skill)
 - [ ] Intake question routes to correct workflow
 - [ ] All workflows have required_reading + process + success_criteria
-- [ ] References contain reusable domain knowledge
+- [ ] Knowledge files contain reusable domain knowledge
+- [ ] Knowledge corpus has top-level entry points and traversable links
 - [ ] Command shortcut exists and works (if supported)
 - [ ] Tested with real invocation — agent invokes skill for intended use cases
 </success_criteria>

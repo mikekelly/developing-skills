@@ -1,9 +1,10 @@
 # Workflow: Get Guidance on Skill Design
 
 <required_reading>
-**Read these reference files NOW:**
-1. references/core-principles.md
-2. references/recommended-structure.md
+**Read these knowledge files NOW:**
+1. knowledge/core-principles.md
+2. knowledge/recommended-structure.md
+3. knowledge/llm-wiki-principles.md
 </required_reading>
 
 <process>
@@ -46,7 +47,7 @@ Each distinct workflow = potential workflow file.
 
 Ask: "What knowledge is needed regardless of which workflow?"
 
-This becomes references:
+This becomes knowledge files:
 - API patterns
 - Best practices
 - Common examples
@@ -69,7 +70,7 @@ skill-name/
 ├── workflows/
 │   ├── workflow-a.md
 │   └── workflow-b.md
-└── references/
+└── knowledge/
     └── shared-knowledge.md
 ```
 
@@ -89,7 +90,7 @@ Examples:
 Summarize:
 - Recommended structure (simple vs router pattern)
 - List of workflows
-- List of references
+- List of knowledge files
 - Essential principles
 
 Ask: "Does this structure make sense? Ready to build it?"
@@ -105,7 +106,7 @@ If no → clarify and iterate
 |-----------|----------------|
 | Single task, repeat often | Simple skill |
 | Multiple related tasks | Router + workflows |
-| Complex domain, many patterns | Router + workflows + references |
+| Complex domain, many patterns | Router + workflows + knowledge |
 | User-triggered, fresh context | Slash command, not skill |
 | One-off task | No skill needed |
 </decision_framework>
@@ -115,7 +116,7 @@ Guidance is complete when:
 - [ ] User understands if they need a skill
 - [ ] Structure is recommended and explained
 - [ ] Workflows are identified
-- [ ] References are identified
+- [ ] Knowledge files are identified
 - [ ] Essential principles are identified
 - [ ] User is ready to build (or decided not to)
 </success_criteria>

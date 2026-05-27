@@ -1,11 +1,12 @@
 # Workflow: Audit a Skill
 
 <required_reading>
-**Read these reference files NOW:**
-1. references/recommended-structure.md
-2. references/skill-structure.md
-3. references/use-xml-tags.md
-4. references/be-clear-and-direct.md
+**Read these knowledge files NOW:**
+1. knowledge/recommended-structure.md
+2. knowledge/skill-structure.md
+3. knowledge/use-xml-tags.md
+4. knowledge/be-clear-and-direct.md
+5. knowledge/llm-wiki-principles.md
 </required_reading>
 
 <escalation_triggers>
@@ -13,7 +14,7 @@ Stop and ask when:
 - Skill has more than 20 files (scope too large for single audit)
 - YAML frontmatter cannot be parsed (may be intentional format)
 - Unsure if something is an issue vs. intentional style choice
-- Skill uses patterns not covered in reference materials
+- Skill uses patterns not covered in knowledge materials
 </escalation_triggers>
 
 <process>
@@ -44,10 +45,10 @@ After user selects, read the full skill structure:
 # Read main file
 cat {skills-directory}/{skill-name}/SKILL.md
 
-# Check for workflows and references
+# Check for workflows and knowledge
 ls {skills-directory}/{skill-name}/
 ls {skills-directory}/{skill-name}/workflows/ 2>/dev/null
-ls {skills-directory}/{skill-name}/references/ 2>/dev/null
+ls {skills-directory}/{skill-name}/knowledge/ 2>/dev/null
 ```
 
 ## Step 3: Run Audit Checklist
@@ -71,26 +72,28 @@ Evaluate against each criterion:
 - [ ] Pure XML structure (no markdown headings # in body)
 - [ ] All XML tags properly closed
 - [ ] Has required tags: objective (or essential_principles for router), quick_start (or intake for router), success_criteria
-- [ ] References are one level deep (no chains: SKILL.md → ref.md → detail.md)
+- [ ] Knowledge files are one level deep (no chains: SKILL.md → ref.md → detail.md)
+- [ ] `knowledge/` has top-level entry points and is used as compiled knowledge, not raw source storage
 
 ### Router Pattern (if complex skill)
 - [ ] Essential principles inline in SKILL.md (not in separate file)
 - [ ] Has intake question
 - [ ] Has routing table
 - [ ] All referenced workflow files exist
-- [ ] All referenced reference files exist
+- [ ] All referenced knowledge files exist
 
 ### Workflows (if present)
 - [ ] Each has required_reading section
 - [ ] Each has process section
 - [ ] Each has success_criteria section
-- [ ] Required reading references exist
+- [ ] Required reading knowledge files exist
 
 ### Content Quality
 - [ ] Principles are actionable (not vague platitudes like "be careful" or "handle appropriately")
 - [ ] Steps are specific with concrete actions (not "process the data" → "extract email from column B, validate format, save to JSON")
 - [ ] Success criteria are verifiable and testable (not "user is satisfied" → "output file exists and passes validation")
 - [ ] No redundant content across files
+- [ ] Knowledge files are maintained for contradictions, stale claims, and unreachable topic clusters
 - [ ] Edge cases defined (what happens when input is empty, malformed, missing?)
 - [ ] Ambiguous language avoided (no "try to", "should probably", "generally" without explicit exceptions)
 - [ ] Examples shown, not just described (especially for output formats)
@@ -143,7 +146,7 @@ If fixing:
 **Untestable criteria**: "User is satisfied"
 **Markdown headings in body**: Using # instead of XML tags
 **Missing routing**: Complex skill without intake/routing
-**Broken references**: Files mentioned but don't exist
+**Broken links**: Files mentioned but don't exist
 **Redundant content**: Same information in multiple places
 **Accumulated emphasis**: Multiple IMPORTANT/CRITICAL markers competing for attention—sign of iterative "prompting harder" instead of holistic review
 </audit_anti_patterns>

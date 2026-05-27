@@ -1,7 +1,7 @@
 # Workflow: Develop Exhaustive Domain Expertise Skill
 
 <objective>
-Build a comprehensive execution skill that does real work in a specific domain. Domain expertise skills are full-featured build skills with exhaustive domain knowledge in references, complete workflows for the full lifecycle (build → debug → optimize → ship), and can be both invoked directly by users AND loaded by other skills (like develop-plan) for domain knowledge.
+Build a comprehensive execution skill that does real work in a specific domain. Domain expertise skills are full-featured build skills with exhaustive domain knowledge in knowledge/, complete workflows for the full lifecycle (build → debug → optimize → ship), and can be both invoked directly by users AND loaded by other skills (like develop-plan) for domain knowledge.
 </objective>
 
 <critical_distinction>
@@ -16,17 +16,18 @@ Examples:
 
 Domain expertise skills:
 - ✅ Execute tasks (build, debug, optimize, ship)
-- ✅ Have comprehensive domain knowledge in references
+- ✅ Have comprehensive domain knowledge in knowledge/
 - ✅ Are invoked directly by users ("build a macOS app")
-- ✅ Can be loaded by other skills (develop-plan reads references for planning)
+- ✅ Can be loaded by other skills (develop-plan reads knowledge files for planning)
 - ✅ Cover the FULL lifecycle, not just getting started
 </critical_distinction>
 
 <required_reading>
-**Read these reference files NOW:**
-1. references/recommended-structure.md
-2. references/core-principles.md
-3. references/use-xml-tags.md
+**Read these knowledge files NOW:**
+1. knowledge/recommended-structure.md
+2. knowledge/core-principles.md
+3. knowledge/use-xml-tags.md
+4. knowledge/llm-wiki-principles.md
 </required_reading>
 
 <escalation_triggers>
@@ -153,11 +154,11 @@ Focus on official docs, not tutorials.
 
 ## Step 5: Organize Knowledge Into Domain Areas
 
-Structure references by domain concerns, NOT by arbitrary categories.
+Structure knowledge files by domain concerns, NOT by arbitrary categories.
 
 **For game development example:**
 ```
-references/
+knowledge/
 ├── architecture.md         # ECS, component-based, state machines
 ├── libraries.md           # Pygame, Arcade, Panda3D (when to use each)
 ├── graphics-rendering.md  # 2D/3D rendering, sprites, shaders
@@ -178,7 +179,7 @@ references/
 
 **For macOS app development example:**
 ```
-references/
+knowledge/
 ├── app-architecture.md     # State management, dependency injection
 ├── swiftui-patterns.md     # Declarative UI patterns
 ├── appkit-integration.md   # Using AppKit with SwiftUI
@@ -195,8 +196,9 @@ references/
 └── project-scaffolding.md  # CLI-based setup
 ```
 
-**For each reference file:**
+**For each knowledge file:**
 - Pure XML structure
+- LLM Wiki discipline: compiled synthesis, not raw source dumps
 - Decision trees: "If X, use Y. If Z, use A instead."
 - Comparison tables: Library vs Library (speed, features, learning curve)
 - Code examples showing patterns
@@ -253,7 +255,7 @@ What would you like to do?
 | 4, "test", "tests", "TDD", "coverage" | `workflows/write-tests.md` |
 | 5, "slow", "optimize", "performance", "fast" | `workflows/optimize-performance.md` |
 | 6, "ship", "release", "deploy", "publish" | `workflows/ship-{thing}.md` |
-| 7, other | Clarify, then select workflow or references |
+| 7, other | Clarify, then select workflow or knowledge files |
 </routing>
 
 <verification_loop>
@@ -279,17 +281,17 @@ Report to the user:
 - "Ready for you to check [specific thing]"
 </verification_loop>
 
-<reference_index>
+<knowledge_index>
 ## Domain Knowledge
 
-All in `references/`:
+All in `knowledge/`:
 
 **Architecture:** {list files}
 **{Domain Area}:** {list files}
 **{Domain Area}:** {list files}
 **Development:** {list files}
 **Shipping:** {list files}
-</reference_index>
+</knowledge_index>
 
 <workflows_index>
 ## Workflows
@@ -317,10 +319,10 @@ For EACH workflow identified in Step 3:
 # Workflow: {Workflow Name}
 
 <required_reading>
-**Read these reference files NOW before {doing the task}:**
-1. references/{relevant-file}.md
-2. references/{another-relevant-file}.md
-3. references/{third-relevant-file}.md
+**Read these knowledge files NOW before {doing the task}:**
+1. knowledge/{relevant-file}.md
+2. knowledge/{another-relevant-file}.md
+3. knowledge/{third-relevant-file}.md
 </required_reading>
 
 <process>
@@ -364,15 +366,15 @@ A well-{completed task}:
 ```
 
 **Key workflow characteristics:**
-- Starts with required_reading (which references to load)
-- Contains actual implementation steps (not just "read references")
+- Starts with required_reading (which knowledge files to load)
+- Contains actual implementation steps (not just "read knowledge files")
 - Includes verification steps
 - Has success criteria
 - Documents anti-patterns
 
-## Step 8: Write Comprehensive References
+## Step 8: Write Comprehensive Knowledge Files
 
-For EACH reference file identified in Step 5:
+For EACH knowledge file identified in Step 5:
 
 ### Structure Template
 
@@ -443,15 +445,16 @@ Brief introduction to this domain area
 
 ### Quality Standards
 
-Each reference must include:
+Each knowledge file must include:
 - **Current information** (verify dates)
 - **Multiple options** (not just one library)
 - **Decision guidance** (when to use each)
 - **Real examples** (working code, not pseudocode)
 - **Trade-offs** (no silver bullets)
 - **Anti-patterns** (what NOT to do)
+- **Source-first synthesis** (summarize durable guidance; keep raw material outside `knowledge/`)
 
-### Common Reference Files
+### Common Knowledge Files
 
 Most domains need:
 - **architecture.md** - How to structure projects
@@ -476,8 +479,8 @@ Ask: "Could a user build a professional {domain thing} from scratch through ship
 - [ ] "When to use X vs Y" guidance provided?
 - [ ] Common pitfalls documented?
 - [ ] Current as of 2024-2025?
-- [ ] Workflows actually execute tasks (not just reference knowledge)?
-- [ ] Each workflow specifies which references to read?
+- [ ] Workflows actually execute tasks (not just knowledge files)?
+- [ ] Each workflow specifies which knowledge files to read?
 
 **Specific gaps to check:**
 - [ ] Testing strategy covered?
@@ -494,12 +497,12 @@ Test both use cases:
 
 **Direct invocation:** "Can a user invoke this skill and build something?"
 - Intake routes to appropriate workflow
-- Workflow loads relevant references
+- Workflow loads relevant knowledge files
 - Workflow provides implementation steps
 - Success criteria are clear
 
-**Knowledge reference:** "Can develop-plan load references to plan a project?"
-- References contain decision guidance
+**Knowledge-file use case:** "Can develop-plan load knowledge files to plan a project?"
+- Knowledge files contain decision guidance
 - All options compared
 - Complete lifecycle covered
 - Architecture patterns documented
@@ -510,11 +513,11 @@ Test both use cases:
 # Create structure
 mkdir -p {skills-directory}/expertise/{domain-name}
 mkdir -p {skills-directory}/expertise/{domain-name}/workflows
-mkdir -p {skills-directory}/expertise/{domain-name}/references
+mkdir -p {skills-directory}/expertise/{domain-name}/knowledge
 
 # Write SKILL.md
 # Write all workflow files
-# Write all reference files
+# Write all knowledge files
 
 # Verify structure
 ls -R {skills-directory}/expertise/{domain-name}
@@ -541,7 +544,7 @@ Review entire skill:
 - [ ] Essential principles inline (always loaded)
 - [ ] Intake asks what user wants to do
 - [ ] Routing maps to workflows
-- [ ] Reference index complete and organized
+- [ ] Knowledge entry-point map complete and organized
 - [ ] Workflows index complete
 
 **Workflows:**
@@ -551,7 +554,7 @@ Review entire skill:
 - [ ] Each workflow has success criteria
 - [ ] Workflows cover full lifecycle (build, debug, test, optimize, ship)
 
-**References:**
+**Knowledge files:**
 - [ ] Pure XML structure (no markdown headings)
 - [ ] Decision guidance in every file
 - [ ] Current versions verified
@@ -578,7 +581,8 @@ Domain expertise skill is complete when:
 - [ ] Essential principles in SKILL.md (always loaded)
 - [ ] Intake routes to appropriate workflows
 - [ ] Each workflow has required_reading + implementation steps + verification
-- [ ] Each reference has decision trees and comparisons
+- [ ] Each knowledge file has decision trees and comparisons
+- [ ] Knowledge follows LLM Wiki principles: top-level entry points, traversable links, source-first synthesis, and maintenance
 - [ ] Anti-patterns documented throughout
 - [ ] Full lifecycle covered (build → debug → test → optimize → ship)
 - [ ] Platform-specific considerations included
@@ -599,7 +603,7 @@ Domain expertise skill is complete when:
 - Skip verification steps in workflows
 - Include outdated content from old blog posts
 - Skip decision trees and comparisons
-- Create workflows that just say "read the references"
+- Create workflows that just say "read the knowledge files"
 
 **DO:**
 - Verify everything is current
@@ -610,5 +614,5 @@ Domain expertise skill is complete when:
 - Start workflows with required_reading
 - Include verification in every workflow
 - Make it exhaustive, not minimal
-- Test both direct invocation and knowledge reference use cases
+- Test both direct invocation and knowledge file use cases
 </anti_patterns>

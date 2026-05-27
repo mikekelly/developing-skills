@@ -26,7 +26,7 @@ Templates live in `templates/` within the skill directory:
 skill-name/
 ├── SKILL.md
 ├── workflows/
-├── references/
+├── knowledge/
 └── templates/
     ├── plan-template.md
     ├── spec-template.md

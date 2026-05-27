@@ -1,5 +1,5 @@
 <overview>
-This reference documents common patterns for skill authoring, including templates, examples, terminology consistency, and anti-patterns. All patterns use pure XML structure.
+This knowledge file documents common patterns for skill authoring, including templates, examples, terminology consistency, and anti-patterns. All patterns use pure XML structure.
 </overview>
 
 <template_pattern>
@@ -158,7 +158,7 @@ Claude must now interpret: Are "API routes" and "URLs" the same? Are "fields", "
 1. Choose terminology early in skill development
 2. Document key terms in `<objective>` or `<context>`
 3. Use find/replace to enforce consistency
-4. Review reference files for consistent usage
+4. Review knowledge files for consistent usage
 </implementation>
 </consistent_terminology>
 
@@ -317,20 +317,20 @@ For scanned PDFs requiring OCR, use pdf2image with pytesseract instead.
 **Why it matters**: Decision paralysis. Provide one default approach with escape hatch for special cases.
 </pitfall>
 
-<pitfall name="deeply_nested_references">
-❌ **BAD**: References nested multiple levels:
+<pitfall name="deeply_nested_knowledge">
+❌ **BAD**: Knowledge files nested multiple levels:
 ```
 SKILL.md → advanced.md → details.md → examples.md
 ```
 
-✅ **GOOD**: References one level deep from SKILL.md:
+✅ **GOOD**: Knowledge files one level deep from SKILL.md:
 ```
 SKILL.md → advanced.md
 SKILL.md → details.md
 SKILL.md → examples.md
 ```
 
-**Why it matters**: Claude may only partially read deeply nested files. Keep references one level deep from SKILL.md.
+**Why it matters**: Claude may only partially read deeply nested files. Keep knowledge files one level deep from SKILL.md.
 </pitfall>
 
 <pitfall name="windows_paths">
@@ -468,7 +468,7 @@ Use pdfplumber...
 
 <progressive_disclosure_pattern>
 <description>
-Keep SKILL.md concise by linking to detailed reference files. Claude loads reference files only when needed.
+Keep SKILL.md concise by linking to detailed knowledge files. Claude loads knowledge files only when needed.
 </description>
 
 <implementation>
@@ -493,7 +493,7 @@ See [basic-operations.md](basic-operations.md) for campaign creation and managem
 
 **Benefits**:
 - SKILL.md stays under 500 lines
-- Claude only reads relevant reference files
+- Claude only reads relevant knowledge files
 - Token usage scales with task complexity
 - Easier to maintain and update
 </implementation>

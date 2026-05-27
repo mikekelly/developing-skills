@@ -1,8 +1,9 @@
 # Workflow: Verify Skill Content Accuracy
 
 <required_reading>
-**Read these reference files NOW:**
-1. references/skill-structure.md
+**Read these knowledge files NOW:**
+1. knowledge/skill-structure.md
+2. knowledge/llm-wiki-principles.md
 </required_reading>
 
 <purpose>
@@ -22,11 +23,11 @@ Present numbered list, ask: "Which skill should I verify for accuracy?"
 
 ## Step 2: Read and Categorize
 
-Read the entire skill (SKILL.md + workflows/ + references/):
+Read the entire skill (SKILL.md + workflows/ + knowledge/):
 ```bash
 cat {skills-directory}/{skill-name}/SKILL.md
 cat {skills-directory}/{skill-name}/workflows/*.md 2>/dev/null
-cat {skills-directory}/{skill-name}/references/*.md 2>/dev/null
+cat {skills-directory}/{skill-name}/knowledge/*.md 2>/dev/null
 ```
 
 Categorize by primary dependency type:
@@ -64,6 +65,12 @@ Scan skill content and extract:
 **File Paths/Structures:**
 - Expected project structures
 - Config file locations
+
+**Knowledge maintenance:**
+- Stale claims inside `knowledge/`
+- Contradictions between knowledge files
+- Raw dumps that should be compiled into durable guidance
+- Unreachable knowledge pages not connected through entry-point pages, workflow required_reading, or links from related pages
 
 Present: "Found X verifiable claims to check."
 
@@ -157,6 +164,7 @@ If issues found:
 If updating:
 - Make changes based on verified current information
 - Add verification date comment if appropriate
+- Update `knowledge_index`, workflow required_reading, or related knowledge links if the correction changes how the compiled knowledge layer is traversed
 - Report what was updated
 
 ## Step 7: Suggest Verification Schedule

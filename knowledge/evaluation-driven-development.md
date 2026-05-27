@@ -93,7 +93,7 @@ What works perfectly for Opus might need more detail for Haiku.
 ## What to Observe During Testing
 
 - **Unexpected exploration paths** - Does Claude read files in an order you didn't anticipate?
-- **Missed connections** - Does Claude fail to follow references to important files?
+- **Missed connections** - Does Claude fail to follow links to important files?
 - **Overreliance on sections** - Does Claude repeatedly read the same file?
 - **Ignored content** - Does Claude never access a bundled file?
 

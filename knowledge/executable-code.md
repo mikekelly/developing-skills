@@ -32,7 +32,7 @@ skill-name/
 │   ├── main_utility.py
 │   ├── helper_script.py
 │   └── validator.py
-└── references/
+└── knowledge/
     └── api-docs.md
 ```
 

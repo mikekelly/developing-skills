@@ -1,5 +1,5 @@
 <overview>
-Skills improve through iteration and testing. This reference covers evaluation-driven development, Claude A/B testing patterns, and XML structure validation during testing.
+Skills improve through iteration and testing. This knowledge file covers evaluation-driven development, Claude A/B testing patterns, and XML structure validation during testing.
 </overview>
 
 <evaluation_driven_development>
@@ -220,11 +220,11 @@ After updating a skill, verify:
 - ✅ No over-engineering or under-specifying
 </conditional_tags_appropriate>
 
-<reference_files_check>
-- ✅ Reference files also use pure XML structure
-- ✅ Links to reference files are correct
-- ✅ References are one level deep from SKILL.md
-</reference_files_check>
+<knowledge_files_check>
+- ✅ Knowledge files also use pure XML structure
+- ✅ Links to knowledge files are correct
+- ✅ Knowledge files are one level deep from SKILL.md
+</knowledge_files_check>
 </validation_checklist>
 
 <testing_xml_during_iteration>
@@ -303,7 +303,7 @@ Skip initially:
 - Extensive examples
 - Edge case documentation
 - Advanced features
-- Detailed reference files
+- Detailed knowledge files
 </initial_version>
 
 <iteration_additions>
@@ -311,7 +311,7 @@ Add through iteration:
 - Examples when patterns aren't clear from description
 - Edge cases when observed in real usage
 - Advanced features when users need them
-- Reference files when SKILL.md approaches 500 lines
+- Knowledge files when SKILL.md approaches 500 lines
 - Validation scripts when errors are common
 </iteration_additions>
 
@@ -359,7 +359,7 @@ The description is Claude's primary discovery mechanism.
 - Remove obvious explanations
 - Assume Claude knows common concepts
 - Use examples instead of lengthy descriptions
-- Move advanced content to reference files
+- Move advanced content to knowledge files
 </pattern>
 
 <pattern name="too_minimal">

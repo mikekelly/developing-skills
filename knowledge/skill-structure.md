@@ -1,5 +1,5 @@
 <overview>
-Skills have three structural components: YAML frontmatter (metadata), pure XML body structure (content organization), and progressive disclosure (file organization). This reference defines requirements and best practices for each component.
+Skills have three structural components: YAML frontmatter (metadata), pure XML body structure (content organization), and progressive disclosure (file organization). This knowledge file defines requirements and best practices for each component.
 </overview>
 
 <critical_warning>
@@ -43,7 +43,7 @@ Add based on skill complexity and domain requirements:
 - **`<security_checklist>`** - Non-negotiable security patterns
 - **`<testing>`** - Testing workflows
 - **`<common_patterns>`** - Code examples and recipes
-- **`<reference_guides>` or `<detailed_references>`** - Links to reference files
+- **`<reference_guides>` or `<detailed_references>`** - Links to knowledge files
 
 See [use-xml-tags.md](use-xml-tags.md) for detailed guidance on each tag.
 </conditional_tags>
@@ -164,7 +164,7 @@ description: "What it does and when to use it (address the agent as 'you')"
 **MUST NOT include implementation details.** The description is a matching surface for user intent — not documentation. Every word must help the agent answer "does this skill apply to what the user asked?" Avoid mentioning file structures, tools, libraries, architectural patterns, or internal mechanisms. These details belong inside the skill, not in the description.
 
 - ❌ `"Processes PDFs using pdfplumber and poppler. Implements a pipeline pattern with validation."` (implementation details)
-- ❌ `"Router-pattern skill with workflows/ and references/ directories for skill development."` (internal structure)
+- ❌ `"Router-pattern skill with workflows/ and knowledge/ directories for skill development."` (internal structure)
 - ✅ `"Extracts text and tables from PDF files, fills forms, merges documents. Use when you need to work with PDF files."` (activities only)
 
 **Effective examples**:
@@ -199,7 +199,7 @@ Descriptions control when an agent invokes a skill. Match your description to in
 description: "Expert guidance for X. Use when working with X files."
 ```
 - Agent waits for user to mention skill or already be working on X
-- Appropriate for reference/consultation skills
+- Appropriate for knowledge/consultation skills
 
 **Proactive (invoke before starting work):**
 ```yaml
@@ -319,18 +319,19 @@ Match the noun to the operational unit:
 
 <progressive_disclosure>
 <principle>
-SKILL.md serves as an overview that points to detailed materials as needed. This keeps context window usage efficient.
+SKILL.md serves as an overview that points to detailed materials as needed. This keeps context window usage efficient and gives the skill a stable schema for its LLM Wiki-style knowledge layer.
 </principle>
 
 <practical_guidance>
 - Keep SKILL.md body under 500 lines
 - Split content into separate files when approaching this limit
-- Keep references one level deep from SKILL.md
-- Add table of contents to reference files over 100 lines
+- Keep knowledge files one level deep from SKILL.md
+- Add table of contents to knowledge files over 100 lines
+- Keep `knowledge/` as compiled, maintained guidance rather than raw source storage
 </practical_guidance>
 
 <pattern name="high_level_guide">
-Quick start in SKILL.md, details in reference files:
+Quick start in SKILL.md, details in knowledge files:
 
 ```markdown
 ---
@@ -367,7 +368,7 @@ For skills with multiple domains, organize by domain to avoid loading irrelevant
 ```
 bigquery-skill/
 ├── SKILL.md (overview and navigation)
-└── reference/
+└── knowledge/
     ├── finance.md (revenue, billing metrics)
     ├── sales.md (opportunities, pipeline)
     ├── product.md (API usage, features)
@@ -378,7 +379,7 @@ When user asks about revenue, the agent reads only finance.md. Other files stay 
 </pattern>
 
 <pattern name="conditional_details">
-Show basic content in SKILL.md, link to advanced in reference files:
+Show basic content in SKILL.md, link to advanced in knowledge files:
 
 ```xml
 <objective>
@@ -403,11 +404,13 @@ The agent reads redlining.md or ooxml.md only when the user needs those features
 </pattern>
 
 <critical_rules>
-**Keep references one level deep**: All reference files should link directly from SKILL.md. Avoid nested references (SKILL.md → advanced.md → details.md) as agents may only partially read deeply nested files.
+**Keep knowledge files one level deep**: All knowledge files should link directly from SKILL.md. Avoid nested knowledge files (SKILL.md → advanced.md → details.md) as agents may only partially read deeply nested files.
 
-**Add table of contents to long files**: For reference files over 100 lines, include a table of contents at the top.
+**Add table of contents to long files**: For knowledge files over 100 lines, include a table of contents at the top.
 
-**Use pure XML in reference files**: Reference files should also use pure XML structure (no markdown headings in body).
+**Use pure XML in knowledge files**: Knowledge files should also use pure XML structure (no markdown headings in body).
+
+**Follow LLM Wiki discipline**: Knowledge files should synthesize source material into durable guidance, remain traversable through index entry points, workflow required reading, or links from related pages, and be linted for stale or contradictory claims over time.
 </critical_rules>
 </progressive_disclosure>
 
@@ -415,9 +418,9 @@ The agent reads redlining.md or ooxml.md only when the user needs those features
 <filesystem_navigation>
 Agents navigate your skill directory using bash commands:
 
-- Use forward slashes: `reference/guide.md` (not `reference\guide.md`)
+- Use forward slashes: `knowledge/guide.md` (not `reference\guide.md`)
 - Name files descriptively: `form_validation_rules.md` (not `doc2.md`)
-- Organize by domain: `reference/finance.md`, `reference/sales.md`
+- Organize by domain: `knowledge/finance.md`, `knowledge/sales.md`
 </filesystem_navigation>
 
 <directory_structure>
@@ -426,7 +429,7 @@ Typical skill structure:
 ```
 skill-name/
 ├── SKILL.md (main entry point, pure XML structure)
-├── references/ (optional, for progressive disclosure)
+├── knowledge/ (optional, for progressive disclosure)
 │   ├── guide-1.md (pure XML structure)
 │   ├── guide-2.md (pure XML structure)
 │   └── examples.md (pure XML structure)
@@ -486,8 +489,8 @@ Form filling...
 - ✅ Directory: `setting-up-stripe-payments`, Name: `setting-up-stripe-payments`
 </pitfall>
 
-<pitfall name="deeply_nested_references">
-Keep references one level deep from SKILL.md. Claude may only partially read nested files (SKILL.md → advanced.md → details.md).
+<pitfall name="deeply_nested_knowledge">
+Keep knowledge files one level deep from SKILL.md. Claude may only partially read nested files (SKILL.md → advanced.md → details.md).
 </pitfall>
 
 <pitfall name="windows_paths">
@@ -508,7 +511,7 @@ Before finalizing a skill, verify:
 - ✅ Conditional tags appropriate for complexity level
 - ✅ All XML tags properly closed
 - ✅ Progressive disclosure applied (SKILL.md < 500 lines)
-- ✅ Reference files use pure XML structure
+- ✅ Knowledge files use pure XML structure
 - ✅ File paths use forward slashes
 - ✅ Descriptive file names
 </validation_checklist>

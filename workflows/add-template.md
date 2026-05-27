@@ -1,8 +1,8 @@
 # Workflow: Add a Template to a Skill
 
 <required_reading>
-**Read these reference files NOW:**
-1. references/using-templates.md
+**Read these knowledge files NOW:**
+1. knowledge/using-templates.md
 </required_reading>
 
 <process>

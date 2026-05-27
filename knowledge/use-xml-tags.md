@@ -1,5 +1,5 @@
 <overview>
-Skills use pure XML structure for consistent parsing, efficient token usage, and improved Claude performance. This reference defines the required and conditional XML tags for skill authoring, along with intelligence rules for tag selection.
+Skills use pure XML structure for consistent parsing, efficient token usage, and improved Claude performance. This knowledge file defines the required and conditional XML tags for skill authoring, along with intelligence rules for tag selection.
 </overview>
 
 <critical_rule>
@@ -56,7 +56,7 @@ A well-structured skill has:
 - Valid YAML frontmatter with descriptive name and description
 - Pure XML structure with no markdown headings in body
 - Required tags: objective, quick_start, success_criteria
-- Progressive disclosure (SKILL.md < 500 lines, details in reference files)
+- Progressive disclosure (SKILL.md < 500 lines, details in knowledge files)
 - Real-world testing and iteration based on observed behavior
 </success_criteria>
 ```
@@ -214,18 +214,18 @@ except Exception as e:
 </tag>
 
 <tag name="reference_guides">
-**When to use**: Links to detailed reference files (progressive disclosure).
+**When to use**: Links to detailed knowledge files (progressive disclosure).
 
 **Alternative name**: `<detailed_references>`
 
 **Example**:
 ```xml
 <reference_guides>
-For deeper topics, see reference files:
+For deeper topics, see knowledge files:
 
-**API operations**: [references/api-operations.md](references/api-operations.md)
-**Security patterns**: [references/security.md](references/security.md)
-**Troubleshooting**: [references/troubleshooting.md](references/troubleshooting.md)
+**API operations**: [knowledge/api-operations.md](knowledge/api-operations.md)
+**Security patterns**: [knowledge/security.md](knowledge/security.md)
+**Troubleshooting**: [knowledge/troubleshooting.md](knowledge/troubleshooting.md)
 </reference_guides>
 ```
 </tag>
@@ -255,14 +255,14 @@ Ask these questions:
 
 - **Context needed?** → Add `<context>`
 - **Multi-step process?** → Add `<workflow>` or `<process>`
-- **Advanced topics to hide?** → Add `<advanced_features>` + reference files
+- **Advanced topics to hide?** → Add `<advanced_features>` + knowledge files
 - **Validation required?** → Add `<validation>`
 - **Pattern demonstration?** → Add `<examples>`
 - **Common mistakes?** → Add `<anti_patterns>`
 - **Security concerns?** → Add `<security_checklist>`
 - **Testing guidance?** → Add `<testing>`
 - **Code recipes?** → Add `<common_patterns>`
-- **Deep references?** → Add `<reference_guides>`
+- **Deep extra material?** → Add `<reference_guides>`
 </when_to_add_conditional>
 </intelligence_rules>
 

@@ -1,9 +1,10 @@
 # Workflow: Upgrade Skill to Router Pattern
 
 <required_reading>
-**Read these reference files NOW:**
-1. references/recommended-structure.md
-2. references/skill-structure.md
+**Read these knowledge files NOW:**
+1. knowledge/recommended-structure.md
+2. knowledge/skill-structure.md
+3. knowledge/llm-wiki-principles.md
 </required_reading>
 
 <process>
@@ -55,9 +56,9 @@ Present findings:
 - [Workflow A]: [description]
 - [Workflow B]: [description]
 
-**Knowledge that could be references:**
-- [Reference topic 1]
-- [Reference topic 2]
+**Knowledge that could become files:**
+- [Knowledge topic 1]
+- [Knowledge topic 2]
 ```
 
 Ask: "Does this breakdown look right? Any adjustments?"
@@ -66,7 +67,7 @@ Ask: "Does this breakdown look right? Any adjustments?"
 
 ```bash
 mkdir -p {skills-directory}/{skill-name}/workflows
-mkdir -p {skills-directory}/{skill-name}/references
+mkdir -p {skills-directory}/{skill-name}/knowledge
 ```
 
 ## Step 5: Extract Workflows
@@ -74,17 +75,18 @@ mkdir -p {skills-directory}/{skill-name}/references
 For each identified workflow:
 
 1. Create `workflows/{workflow-name}.md`
-2. Add required_reading section (references it needs)
+2. Add required_reading section (knowledge files it needs)
 3. Add process section (steps from original skill)
 4. Add success_criteria section
 
-## Step 6: Extract References
+## Step 6: Extract Knowledge Files
 
-For each identified reference topic:
+For each identified knowledge topic:
 
-1. Create `references/{reference-name}.md`
+1. Create `knowledge/{topic-name}.md`
 2. Move relevant content from original skill
 3. Structure with semantic XML tags
+4. Preserve LLM Wiki discipline: compile reusable guidance, connect it to the corpus, and avoid raw dumps
 
 ## Step 7: Rewrite SKILL.md as Router
 
@@ -118,9 +120,9 @@ What would you like to do?
 | 2, "keywords" | `workflows/workflow-b.md` |
 </routing>
 
-<reference_index>
-[List all references by category]
-</reference_index>
+<knowledge_index>
+[List all knowledge files by category]
+</knowledge_index>
 
 <workflows_index>
 | Workflow | Purpose |
@@ -135,7 +137,8 @@ What would you like to do?
 Compare original skill content against new structure:
 - [ ] All principles preserved (now inline)
 - [ ] All procedures preserved (now in workflows)
-- [ ] All knowledge preserved (now in references)
+- [ ] All knowledge preserved (now in knowledge/)
+- [ ] Knowledge corpus has top-level entry points and traversable links
 - [ ] No orphaned content
 
 ## Step 9: Test
@@ -143,7 +146,7 @@ Compare original skill content against new structure:
 Invoke the upgraded skill:
 - Does intake question appear?
 - Does each routing option work?
-- Do workflows load correct references?
+- Do workflows load correct knowledge files?
 - Does behavior match original skill?
 
 Report any issues.
@@ -152,7 +155,7 @@ Report any issues.
 <success_criteria>
 Upgrade is complete when:
 - [ ] workflows/ directory created with workflow files
-- [ ] references/ directory created (if needed)
+- [ ] knowledge/ directory created (if needed)
 - [ ] SKILL.md rewritten as router
 - [ ] Essential principles inline in SKILL.md
 - [ ] All original content preserved

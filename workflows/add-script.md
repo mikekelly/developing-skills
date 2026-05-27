@@ -1,8 +1,8 @@
 # Workflow: Add a Script to a Skill
 
 <required_reading>
-**Read these reference files NOW:**
-1. references/using-scripts.md
+**Read these knowledge files NOW:**
+1. knowledge/using-scripts.md
 </required_reading>
 
 <process>

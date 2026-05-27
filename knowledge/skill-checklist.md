@@ -8,10 +8,10 @@ Use this checklist before sharing or publishing a skill.
 - [ ] **Valid YAML frontmatter** - name and description fields present
 - [ ] **Name matches directory** - lowercase-with-hyphens, gerund form preferred
 - [ ] **Description is specific** - Says what it does AND when to use it (addresses agent as you)
-- [ ] **SKILL.md under 500 lines** - Split into references if longer
+- [ ] **SKILL.md under 500 lines** - Split into knowledge files if longer
 - [ ] **Pure XML structure** - No markdown headings (#) in body
 - [ ] **Required tags present** - objective, quick_start/intake, success_criteria
-- [ ] **All file references exist** - No broken links to workflows/references
+- [ ] **All referenced knowledge files exist** - No broken links to workflows/knowledge
 - [ ] **XML tags properly closed** - Valid structure
 </core_quality>
 
@@ -21,7 +21,8 @@ Use this checklist before sharing or publishing a skill.
 - [ ] **No time-sensitive information** - Or isolated in "old patterns" section
 - [ ] **Consistent terminology** - One term per concept throughout
 - [ ] **Examples are concrete** - Not abstract descriptions
-- [ ] **File references one level deep** - No chains of references
+- [ ] **Knowledge files one level deep** - No chains of knowledge files
+- [ ] **LLM Wiki discipline followed** - `knowledge/` contains synthesized, traversable, maintained guidance rather than raw source dumps
 - [ ] **Progressive disclosure used** - Details in separate files when appropriate
 - [ ] **Workflows have clear steps** - Sequential, actionable
 - [ ] **Concise** - Every token justifies its cost
