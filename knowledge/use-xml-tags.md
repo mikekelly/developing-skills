@@ -1,9 +1,9 @@
 <overview>
-Skills use pure XML structure for consistent parsing, efficient token usage, and improved agent performance. This knowledge file defines the required and conditional XML tags for skill authoring, along with intelligence rules for tag selection.
+Skills use XML-first semantic structure for consistent parsing, efficient token usage, and improved agent performance. This knowledge file defines the required and conditional XML tags for skill authoring, along with intelligence rules for tag selection.
 </overview>
 
 <critical_rule>
-**Remove ALL markdown headings (#, ##, ###) from skill body content.** Replace with semantic XML tags. Keep markdown formatting WITHIN content (bold, italic, lists, code blocks, links).
+Use XML tags for the primary semantic structure of generated `SKILL.md` bodies. Do not use Markdown headings as top-level body sections in `SKILL.md`; replace those sections with semantic XML tags. Markdown formatting, Markdown headings inside fenced examples, and a single title heading in workflow or knowledge files are acceptable when XML tags still define the major sections.
 </critical_rule>
 
 <required_tags>
@@ -54,7 +54,7 @@ with pdfplumber.open("file.pdf") as pdf:
 A well-structured skill has:
 
 - Valid YAML frontmatter with descriptive name and description
-- Pure XML structure with no markdown headings in body
+- XML-first structure with no Markdown headings as top-level `SKILL.md` body sections
 - Required tags: objective, quick_start, success_criteria
 - Progressive disclosure (target SKILL.md under 500 lines, details in knowledge files)
 - Real-world testing and iteration based on observed behavior
@@ -296,7 +296,7 @@ XML provides unambiguous boundaries and semantic meaning. The agent can reliably
 - Skip irrelevant sections
 - Parse programmatically
 
-Markdown headings are just visual formatting. The agent must infer meaning from heading text.
+Markdown headings alone are visual formatting. The agent must infer meaning from heading text, which is less reliable than explicit XML section boundaries.
 </parsing_accuracy>
 
 <consistency>
@@ -354,7 +354,7 @@ Be consistent within your skill. If you use `<workflow>`, don't also use `<proce
 </nesting_guidelines>
 
 <anti_pattern>
-**DO NOT use markdown headings in skill body content.**
+Do not use markdown headings as the primary structure of a `SKILL.md` body.
 
 ❌ Bad (hybrid approach):
 ```markdown
@@ -369,7 +369,7 @@ Extract text with pdfplumber...
 Form filling...
 ```
 
-✅ Good (pure XML):
+Good XML-first structure:
 ```markdown
 <objective>
 PDF processing with text extraction, form filling, and merging.

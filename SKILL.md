@@ -1,6 +1,6 @@
 ---
 name: developing-skills
-description: "MUST be loaded before working with any Skill. Covers creating, building, reviewing, assessing, checking, auditing, evaluating, updating, modifying, and improving skills. Invoke PROACTIVELY before writing or changing any SKILL.md file. Provides structure, workflows, and validation for skill development. Supports both personal skills and standalone distributable skills (GitHub repos). (user)"
+description: "MUST be loaded before working with any Skill. Covers creating, building, reviewing, assessing, checking, auditing, evaluating, updating, modifying, and improving skills. Use PROACTIVELY before writing or changing SKILL.md, workflow files, knowledge files, templates, or skill evals. Supports personal and standalone distributable skills."
 ---
 
 <essential_principles>
@@ -42,23 +42,24 @@ What would you like to do?
 
 1. Create new skill
 2. Audit/modify existing skill
-3. Add component (workflow/knowledge/template/script)
+3. Add component (workflow, knowledge, template, or script)
 4. Evaluate/benchmark skill behavior
 5. Optimize skill description/triggers
 6. Get guidance
 
-**Ensure this is clear before proceeding.**
+If the user's intent is already clear, route directly instead of asking this menu. Ask only for missing information that materially affects the result.
 </intake>
 
 <routing>
 
 | Option | Keywords | Next Action | Workflow |
 |--------|----------|-------------|----------|
-| 1 | create / new / build / develop | Ask: "Task-execution skill or domain expertise skill?" | Route to appropriate develop workflow |
-| 2 | audit / modify / existing | Ask: "Path to skill?" | Route to appropriate workflow |
-| 3 | add / component | Ask: "Add what? (workflow/knowledge/template/script)" | workflows/add-{type}.md |
-| 4 | evaluate / benchmark / test / eval | Ask: "Path to skill and desired rigor?" | workflows/evaluate-skill.md |
-| 5 | description / trigger / optimize | Ask: "Path to skill?" | workflows/optimize-description.md |
+| 1 | create / new / build / develop | If type is unclear, ask: "Task-execution skill or domain expertise skill?" | Route to appropriate develop workflow |
+| 2 | audit / review / assess / check | Use provided/current skill path if clear; otherwise ask for path | workflows/audit-skill.md |
+| 2 | modify / update / improve / fix | Use provided/current skill path if clear; otherwise ask what to change | Route to matching add/upgrade/optimize workflow |
+| 3 | add workflow / add knowledge / add template / add script | Route directly when component type is named; otherwise ask component type | workflows/add-{type}.md |
+| 4 | evaluate / benchmark / test / eval | Use provided/current skill path if clear; ask only for desired rigor if it matters | workflows/evaluate-skill.md |
+| 5 | description / trigger / optimize | Use provided/current skill path if clear | workflows/optimize-description.md |
 | 6 | guidance / help | General guidance | workflows/get-guidance.md |
 
 **Progressive disclosure for option 1 (develop):**
@@ -71,7 +72,7 @@ What would you like to do?
 - If user specifies template → workflows/add-template.md
 - If user specifies script → workflows/add-script.md
 
-**Intent-based routing (if user provides clear intent without selecting menu):**
+**Intent-based routing (route immediately when the user provides clear intent):**
 - "audit this skill", "check skill", "review" → workflows/audit-skill.md
 - "verify content", "check if current" → workflows/verify-skill.md
 - "develop domain expertise", "exhaustive knowledge base" → workflows/develop-domain-expertise-skill.md
@@ -132,6 +133,12 @@ scripts/:
 ```
 </quick_reference>
 
+<formatting_standard>
+Use XML tags for semantic structure in generated `SKILL.md` bodies. Do not use Markdown headings as the primary section structure of a skill body.
+
+Workflow and knowledge files may use a single title heading and Markdown subheadings inside XML sections when they improve scanning, but every major section still needs XML boundaries such as `<required_reading>`, `<process>`, and `<success_criteria>`. Markdown headings inside fenced examples are always allowed.
+</formatting_standard>
+
 <knowledge_index>
 All in `knowledge/`:
 
@@ -142,6 +149,10 @@ All in `knowledge/`:
 **Quality:** skill-checklist.md, evaluation-driven-development.md, iteration-and-testing.md
 **Advanced:** executable-code.md, api-security.md
 </knowledge_index>
+
+<validation>
+Run `ruby scripts/validate-repo.rb` after structural, workflow, template, eval, or reference changes to catch frontmatter, JSON, workflow-section, stale-pattern, and broken-reference regressions.
+</validation>
 
 <workflows_index>
 All in `workflows/`:
@@ -162,6 +173,15 @@ All in `workflows/`:
 | get-guidance.md | Help decide what kind of skill to build |
 
 </workflows_index>
+
+<evaluation_index>
+Skill-specific evals in `evals/`:
+
+- `behavior.json` - realistic workflow behavior checks for this skill
+- `triggers.json` - should-trigger and should-not-trigger prompts for discovery testing
+
+Generic reusable templates remain in `templates/`.
+</evaluation_index>
 
 <yaml_requirements>
 **⚠️ THE MOST IMPORTANT PART OF ANY SKILL ⚠️**
@@ -199,7 +219,7 @@ description: "..."        # What it does AND when to use it (address agent as yo
 <success_criteria>
 A well-structured skill:
 - Has valid YAML frontmatter
-- Uses pure XML structure (no markdown headings in body)
+- Uses XML-first structure (`SKILL.md` body sections are semantic XML)
 - Has essential principles inline in SKILL.md
 - Routes directly to appropriate workflows based on user intent
 - Targets SKILL.md under 500 lines

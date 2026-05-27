@@ -1,5 +1,5 @@
 <overview>
-This knowledge file covers patterns for complex workflows, validation loops, and feedback cycles in skill authoring. All patterns use pure XML structure.
+This knowledge file covers patterns for complex workflows, validation loops, and feedback cycles in skill authoring. Patterns use XML section boundaries for semantic structure.
 </overview>
 
 <complex_workflows>

@@ -183,7 +183,7 @@ If these examples are hard to classify, the skill scope or description is not cl
 - YAML frontmatter (name, description) — **from Step 6**
 - `<objective>`
 - `<quick_start>`
-- Content sections with pure XML
+- Content sections with XML-first semantic structure
 - `<success_criteria>`
 
 **Complex skill:** Use `templates/router-skill.md` as starting point. Write router with:
@@ -224,7 +224,7 @@ Check:
 - [ ] YAML frontmatter valid
 - [ ] Name matches directory (lowercase-with-hyphens)
 - [ ] Description says what it does AND when to use it (addresses agent as you)
-- [ ] No markdown headings (#) in body - use XML tags
+- [ ] No markdown headings as top-level `SKILL.md` body sections - use XML tags
 - [ ] Required tags present: objective, quick_start, success_criteria
 - [ ] All referenced files exist
 - [ ] SKILL.md targets under 500 lines; longer files have clear progressive disclosure

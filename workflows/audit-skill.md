@@ -12,18 +12,20 @@
 
 <escalation_triggers>
 Stop and ask when:
-- Skill has more than 20 files (scope too large for single audit)
+- Skill has more than 60 files and the user has not provided a scope
 - YAML frontmatter cannot be parsed (may be intentional format)
 - Unsure if something is an issue vs. intentional style choice
 - Skill uses patterns not covered in knowledge materials
 </escalation_triggers>
 
 <process>
-## Step 1: List Available Skills
+## Step 1: Resolve Target Skill
 
-Ask directly in chat instead of using a constrained-choice UI; there may be many skills.
+If the user already named a skill, provided a path, or the current working directory is clearly a skill repo, use it. Do not list every available skill when the target is already clear.
 
-Enumerate skills in chat as numbered list:
+Only when the target is unclear, ask directly in chat instead of using a constrained-choice UI; there may be many skills.
+
+Enumerate candidate skills as a numbered list:
 ```bash
 ls {skills-directory}/
 ```
@@ -41,16 +43,19 @@ Ask: "Which skill would you like to audit? (enter number or name)"
 
 ## Step 2: Read the Skill
 
-After user selects, read the full skill structure:
+Read enough structure to audit without wasting context. For small and medium skills, read the full skill. For larger skills, read `SKILL.md` plus indexes and run targeted searches before deep-reading likely problem files.
 ```bash
-# Read main file
 cat {skills-directory}/{skill-name}/SKILL.md
-
-# Check for workflows and knowledge
 ls {skills-directory}/{skill-name}/
 ls {skills-directory}/{skill-name}/workflows/ 2>/dev/null
 ls {skills-directory}/{skill-name}/knowledge/ 2>/dev/null
+ls {skills-directory}/{skill-name}/templates/ 2>/dev/null
+find {skills-directory}/{skill-name} -maxdepth 2 -type f | sort
 ```
+
+When the skill has more than 20 files, report that this is a large-skill audit and use a two-pass approach:
+1. **Structure pass:** frontmatter, router, indexes, workflow section coverage, references, eval assets.
+2. **Content pass:** deep-read files implicated by the structure pass or by the user's request.
 
 ## Step 3: Run Audit Checklist
 
@@ -70,7 +75,7 @@ Evaluate against each criterion:
 
 ### Structure
 - [ ] SKILL.md targets under 500 lines
-- [ ] Pure XML structure (no markdown headings # in body)
+- [ ] `SKILL.md` uses XML as primary semantic structure (no markdown headings as top-level body sections)
 - [ ] All XML tags properly closed
 - [ ] Has required tags: objective (or essential_principles for router), quick_start (or intake for router), success_criteria
 - [ ] Knowledge files are one level deep (no chains: SKILL.md → ref.md → detail.md)
@@ -88,6 +93,7 @@ Evaluate against each criterion:
 - [ ] Each has process section
 - [ ] Each has success_criteria section
 - [ ] Required reading knowledge files exist
+- [ ] Workflow titles and markdown subheadings, if used, sit inside a file that still has XML section boundaries
 
 ### Content Quality
 - [ ] Principles are actionable (not vague platitudes like "be careful" or "handle appropriately")
@@ -119,17 +125,17 @@ Present findings as:
 ```
 ## Audit Report: {skill-name}
 
-### ✅ Passing
+### Passing
 - [list passing items]
 
-### ⚠️ Issues Found
+### Issues Found
 1. **[Issue name]**: [Description]
    → Fix: [Specific action]
 
 2. **[Issue name]**: [Description]
    → Fix: [Specific action]
 
-### 📊 Score: X/Y criteria passing
+### Score: X/Y criteria passing
 ```
 
 ## Step 5: Offer Fixes
@@ -156,7 +162,7 @@ If fixing:
 **Mixed concerns**: Procedures and knowledge in same file
 **Vague steps**: "Handle the error appropriately"
 **Untestable criteria**: "User is satisfied"
-**Markdown headings in body**: Using # instead of XML tags
+**Markdown headings as structure**: Using # headings as primary `SKILL.md` body structure instead of XML tags
 **Missing routing**: Complex skill without intake/routing
 **Broken links**: Files mentioned but don't exist
 **Redundant content**: Same information in multiple places

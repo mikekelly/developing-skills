@@ -48,7 +48,7 @@ Keep raw source material outside `knowledge/` unless it has been reduced into re
 </llm_wiki_mapping>
 
 <skill_md_template>
-## SKILL.md Template
+SKILL.md template:
 
 ```markdown
 ---
@@ -57,15 +57,17 @@ description: "What it does and when to use it."
 ---
 
 <essential_principles>
-## How This Skill Works
+<core_concept>
+[Brief concept that anchors the skill]
+</core_concept>
 
-[Inline principles that apply to ALL workflows. Cannot be skipped.]
-
-### Principle 1: [Name]
+<principle name="[name]">
 [Brief explanation]
+</principle>
 
-### Principle 2: [Name]
+<principle name="[name]">
 [Brief explanation]
+</principle>
 </essential_principles>
 
 <intake>
@@ -112,7 +114,7 @@ All domain knowledge in `knowledge/`:
 </skill_md_template>
 
 <workflow_template>
-## Workflow Template
+Workflow template:
 
 ```markdown
 # Workflow: [Name]

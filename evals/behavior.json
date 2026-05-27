@@ -1,0 +1,63 @@
+{
+  "skill_name": "developing-skills",
+  "evals": [
+    {
+      "id": "audit-current-repo",
+      "prompt": "Use the developing-skills skill to audit this skill.",
+      "files": ["SKILL.md", "workflows/audit-skill.md", "knowledge/skill-checklist.md"],
+      "expected_behavior": [
+        "Loads SKILL.md and routes to workflows/audit-skill.md.",
+        "Uses the current working directory as the target skill when it is clearly a skill repo.",
+        "Reports concrete findings with file and line references.",
+        "Does not modify files unless the user asks for fixes."
+      ],
+      "review_mode": "assertion"
+    },
+    {
+      "id": "create-new-skill",
+      "prompt": "Create a new skill for extracting renewal-risk signals from customer success notes.",
+      "files": [],
+      "expected_behavior": [
+        "Routes to workflows/develop-new-skill.md.",
+        "Asks only for missing scope, trigger, output, or success criteria details.",
+        "Drafts frontmatter with a gerund-form name and a quoted description that states capabilities and trigger conditions.",
+        "Creates XML-first skill structure and includes lightweight eval prompts before declaring the skill done."
+      ],
+      "review_mode": "qualitative"
+    },
+    {
+      "id": "optimize-description",
+      "prompt": "This skill is not loading when I ask agents to review a SKILL.md. Tighten the description.",
+      "files": ["SKILL.md"],
+      "expected_behavior": [
+        "Routes to workflows/optimize-description.md.",
+        "Builds should-trigger and should-not-trigger prompts with near misses.",
+        "Scores candidate descriptions against the trigger eval set.",
+        "Changes only the description unless trigger failures reveal a real scope problem."
+      ],
+      "review_mode": "assertion"
+    },
+    {
+      "id": "add-workflow-current-skill",
+      "prompt": "Add a workflow to this skill for archiving obsolete knowledge pages.",
+      "files": ["SKILL.md", "workflows/add-workflow.md"],
+      "expected_behavior": [
+        "Uses the current skill repo without listing all installed skills.",
+        "Routes to workflows/add-workflow.md.",
+        "Updates intake, routing, and workflows_index if a workflow is created.",
+        "Connects any new knowledge file through required_reading, knowledge_index, or related-page links."
+      ],
+      "review_mode": "assertion"
+    },
+    {
+      "id": "near-miss-human-skills",
+      "prompt": "Make a matrix of the engineering team's skills and seniority.",
+      "files": [],
+      "expected_behavior": [
+        "Does not load developing-skills.",
+        "Treats 'skills' as human capabilities, not agent skill artifacts."
+      ],
+      "review_mode": "assertion"
+    }
+  ]
+}

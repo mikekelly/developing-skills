@@ -4,18 +4,21 @@ description: "{{What it does}} Use when {{trigger conditions}}."
 ---
 
 <essential_principles>
-## {{Core Concept}}
+<core_concept>
+{{Brief concept that anchors the skill}}
+</core_concept>
 
-{{Principles that ALWAYS apply, regardless of which workflow runs}}
-
-### 1. {{First principle}}
+<principle name="{{first-principle}}">
 {{Explanation}}
+</principle>
 
-### 2. {{Second principle}}
+<principle name="{{second-principle}}">
 {{Explanation}}
+</principle>
 
-### 3. {{Third principle}}
+<principle name="{{third-principle}}">
 {{Explanation}}
+</principle>
 </essential_principles>
 
 <intake>
@@ -49,22 +52,16 @@ Stop and ask the user when:
 </escalation_triggers>
 
 <quick_reference>
-## {{Skill Name}} Quick Reference
-
 {{Brief information always useful to have visible}}
 </quick_reference>
 
 <knowledge_index>
-## Compiled Knowledge
-
 All in `knowledge/`:
 - {{topic-1.md}} - {{purpose}}
 - {{topic-2.md}} - {{purpose}}
 </knowledge_index>
 
 <workflows_index>
-## Workflows
-
 All in `workflows/`:
 
 | Workflow | Purpose |

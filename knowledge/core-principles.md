@@ -4,7 +4,7 @@ Core principles guide skill authoring decisions. These principles ensure skills 
 
 <xml_structure_principle>
 <description>
-Skills use pure XML structure for consistent parsing, efficient token usage, and improved agent performance.
+Skills use XML-first semantic structure for consistent parsing, efficient token usage, and improved agent performance.
 </description>
 
 <why_xml>
@@ -24,7 +24,7 @@ XML provides unambiguous boundaries and semantic meaning. The agent can reliably
 - Skip irrelevant sections (progressive disclosure)
 - Parse programmatically (validation tools can check structure)
 
-Markdown headings are just visual formatting. The agent must infer meaning from heading text, which is less reliable.
+Markdown headings alone are visual formatting. The agent must infer meaning from heading text, which is less reliable than explicit XML section boundaries.
 </parseability>
 
 <token_efficiency>
@@ -52,19 +52,19 @@ Savings compound across all skills in the ecosystem.
 </token_efficiency>
 
 <agent_performance>
-Agents perform better with pure XML because:
+Agents perform better with XML-first structure because:
 - Unambiguous section boundaries reduce parsing errors
 - Semantic tags convey intent directly (no inference needed)
 - Nested tags create clear hierarchies
 - Consistent structure across skills reduces cognitive load
 - Progressive disclosure works more reliably
 
-Pure XML structure is not just a style preference—it's a performance optimization.
+XML-first structure is not just a style preference—it's a performance optimization.
 </agent_performance>
 </why_xml>
 
 <critical_rule>
-**Remove ALL markdown headings (#, ##, ###) from skill body content.** Replace with semantic XML tags. Keep markdown formatting WITHIN content (bold, italic, lists, code blocks, links).
+Use XML tags for the primary semantic structure of generated `SKILL.md` bodies. Do not use Markdown headings as top-level body sections in `SKILL.md`; replace those sections with semantic XML tags. Markdown formatting, Markdown headings inside fenced examples, and a single title heading in workflow or knowledge files are acceptable when XML tags still define the major sections.
 </critical_rule>
 
 <required_tags>
@@ -533,7 +533,7 @@ A holistic view beats "prompting harder."
 
 <principle_summary>
 <xml_structure>
-Use pure XML structure for consistency, parseability, and agent performance. Required tags: objective, quick_start, success_criteria.
+Use XML-first structure for consistency, parseability, and agent performance. Required tags: objective, quick_start, success_criteria.
 </xml_structure>
 
 <conciseness>

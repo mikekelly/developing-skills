@@ -1,5 +1,5 @@
 <overview>
-Skills have three structural components: YAML frontmatter (metadata), pure XML body structure (content organization), and progressive disclosure (file organization). This knowledge file defines requirements and best practices for each component.
+Skills have three structural components: YAML frontmatter (metadata), XML-first semantic structure (content organization), and progressive disclosure (file organization). This knowledge file defines requirements and best practices for each component.
 </overview>
 
 <critical_warning>
@@ -20,7 +20,7 @@ The name and description are how agents discover skills. When a user asks for he
 
 <xml_structure_requirements>
 <critical_rule>
-**Remove ALL markdown headings (#, ##, ###) from skill body content.** Replace with semantic XML tags. Keep markdown formatting WITHIN content (bold, italic, lists, code blocks, links).
+Use XML tags for the primary semantic structure of generated `SKILL.md` bodies. Do not use Markdown headings as top-level body sections in `SKILL.md`; replace those sections with semantic XML tags. Markdown formatting, Markdown headings inside fenced examples, and a single title heading in workflow or knowledge files are acceptable when XML tags still define the major sections.
 </critical_rule>
 
 <required_tags>
@@ -199,7 +199,7 @@ Descriptions control when an agent invokes a skill. Match your description to in
 description: "Expert guidance for X. Use when working with X files."
 ```
 - Agent waits for user to mention skill or already be working on X
-- Appropriate for knowledge/consultation skills
+- Appropriate for knowledge or consultation skills
 
 **Proactive (invoke before starting work):**
 ```yaml
@@ -408,7 +408,7 @@ The agent reads redlining.md or ooxml.md only when the user needs those features
 
 **Add table of contents to long files**: For knowledge files over 100 lines, include a table of contents at the top.
 
-**Use pure XML in knowledge files**: Knowledge files should also use pure XML structure (no markdown headings in body).
+**Use XML boundaries in knowledge files**: Knowledge files should use XML tags for major sections. A single title heading and Markdown subheadings inside XML sections are acceptable when they improve scanability.
 
 **Follow LLM Wiki discipline**: Knowledge files should synthesize source material into durable guidance, remain traversable through index entry points, workflow required reading, or links from related pages, and be linted for stale or contradictory claims over time.
 </critical_rules>
@@ -428,11 +428,11 @@ Typical skill structure:
 
 ```
 skill-name/
-├── SKILL.md (main entry point, pure XML structure)
+├── SKILL.md (main entry point, XML-first semantic structure)
 ├── knowledge/ (optional, for progressive disclosure)
-│   ├── guide-1.md (pure XML structure)
-│   ├── guide-2.md (pure XML structure)
-│   └── examples.md (pure XML structure)
+│   ├── guide-1.md (XML section boundaries)
+│   ├── guide-2.md (XML section boundaries)
+│   └── examples.md (XML section boundaries)
 └── scripts/ (optional, for utility scripts)
     ├── validate.py
     └── process.py
@@ -441,8 +441,8 @@ skill-name/
 </file_organization>
 
 <anti_patterns>
-<pitfall name="markdown_headings_in_body">
-❌ Do NOT use markdown headings in skill body:
+<pitfall name="markdown_headings_as_skill_structure">
+Do not use markdown headings as the primary structure of a `SKILL.md` body:
 
 ```markdown
 # PDF Processing
@@ -454,7 +454,7 @@ Extract text...
 Form filling...
 ```
 
-✅ Use pure XML structure:
+Use XML semantic structure instead:
 
 ```xml
 <objective>
@@ -506,12 +506,12 @@ Every skill must have: `<objective>`, `<quick_start>`, and `<success_criteria>` 
 Before finalizing a skill, verify:
 
 - ✅ YAML frontmatter valid (name matches directory, description addresses agent as you)
-- ✅ No markdown headings in body (pure XML structure)
+- ✅ No markdown headings as top-level `SKILL.md` body sections
 - ✅ Required tags present: objective, quick_start, success_criteria
 - ✅ Conditional tags appropriate for complexity level
 - ✅ All XML tags properly closed
 - ✅ Progressive disclosure applied (SKILL.md near the 500-line target)
-- ✅ Knowledge files use pure XML structure
+- ✅ Knowledge and workflow files use XML section boundaries for major sections
 - ✅ File paths use forward slashes
 - ✅ Descriptive file names
 </validation_checklist>

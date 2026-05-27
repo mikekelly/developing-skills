@@ -202,8 +202,8 @@ After updating a skill, verify:
 </required_tags_present>
 
 <no_markdown_headings>
-- ✅ No `#`, `##`, or `###` headings in skill body
-- ✅ All sections use XML tags instead
+- ✅ No `#`, `##`, or `###` headings as top-level `SKILL.md` body sections
+- ✅ All major sections use XML tags
 - ✅ Markdown formatting within tags is preserved (bold, italic, lists, code blocks)
 </no_markdown_headings>
 
@@ -221,7 +221,7 @@ After updating a skill, verify:
 </conditional_tags_appropriate>
 
 <knowledge_files_check>
-- ✅ Knowledge files also use pure XML structure
+- ✅ Knowledge files use XML section boundaries for major sections
 - ✅ Links to knowledge files are correct
 - ✅ Knowledge files are one level deep from SKILL.md
 </knowledge_files_check>

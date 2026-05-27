@@ -1,0 +1,82 @@
+[
+  {
+    "query": "Use the developing-skills skill to audit this skill.",
+    "should_trigger": true,
+    "reason": "Explicitly names the skill and asks to audit a skill."
+  },
+  {
+    "query": "Please review this SKILL.md and tell me what is weak.",
+    "should_trigger": true,
+    "reason": "Reviewing SKILL.md is a covered skill-development activity."
+  },
+  {
+    "query": "Create a new Codex skill for turning messy CSV exports into finance reports.",
+    "should_trigger": true,
+    "reason": "Creating a new skill should load skill-development guidance before writing files."
+  },
+  {
+    "query": "This skill is not triggering when users ask for help. Improve the description.",
+    "should_trigger": true,
+    "reason": "Optimizing skill description and triggering is a core workflow."
+  },
+  {
+    "query": "Add a workflow to the skill in the current repo for verifying API docs.",
+    "should_trigger": true,
+    "reason": "Adding a workflow to an existing skill is covered."
+  },
+  {
+    "query": "Can you update the knowledge files in this skill so they are easier for agents to use?",
+    "should_trigger": true,
+    "reason": "Updating skill knowledge files is a skill-maintenance task."
+  },
+  {
+    "query": "Benchmark whether this skill improves agent behavior over the previous version.",
+    "should_trigger": true,
+    "reason": "Evaluating skill behavior and comparing with a baseline is covered."
+  },
+  {
+    "query": "Convert this single-file skill into a router with workflows and knowledge.",
+    "should_trigger": true,
+    "reason": "Upgrading to router pattern is a covered workflow."
+  },
+  {
+    "query": "Write a normal Python script that converts CSV to JSON.",
+    "should_trigger": false,
+    "reason": "This is ordinary coding, not skill development."
+  },
+  {
+    "query": "Review this pull request for bugs and missing tests.",
+    "should_trigger": false,
+    "reason": "A general code review should not load this skill unless the PR is about skills."
+  },
+  {
+    "query": "Make a spreadsheet listing our team's skills and seniority levels.",
+    "should_trigger": false,
+    "reason": "This uses the word skills in the human-capability sense, not agent skill files."
+  },
+  {
+    "query": "Teach me how to get better at prompt engineering.",
+    "should_trigger": false,
+    "reason": "Adjacent topic, but not creating or maintaining a skill artifact."
+  },
+  {
+    "query": "Summarize this README for a GitHub repository.",
+    "should_trigger": false,
+    "reason": "Repository documentation alone is not a skill task."
+  },
+  {
+    "query": "Build a browser automation for this web app.",
+    "should_trigger": false,
+    "reason": "This should use browser or coding workflows unless the requested artifact is a skill."
+  },
+  {
+    "query": "Install a skill from a GitHub repo.",
+    "should_trigger": false,
+    "reason": "Installing skills belongs to a skill-installer workflow, not developing-skills."
+  },
+  {
+    "query": "Audit this knowledge base for stale source citations.",
+    "should_trigger": false,
+    "reason": "A generic knowledge-base audit is not necessarily an agent skill audit."
+  }
+]

@@ -6,10 +6,10 @@
 </required_reading>
 
 <process>
-## Step 1: Identify the Skill
+## Step 1: Resolve Target Skill
 
-Ask (if not already provided):
-- Which skill needs a script?
+If the user already named a skill, provided a path, or the current working directory is clearly a skill repo, use it. Ask only for missing details:
+- Which skill needs a script? (only if unclear)
 - What operation should the script perform?
 
 ## Step 2: Analyze Script Need

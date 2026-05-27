@@ -9,9 +9,9 @@ Use this checklist before sharing or publishing a skill.
 - [ ] **Name matches directory** - lowercase-with-hyphens, gerund form preferred
 - [ ] **Description is specific** - Says what it does AND when to use it (addresses agent as you)
 - [ ] **SKILL.md targets under 500 lines** - Split into knowledge files if longer
-- [ ] **Pure XML structure** - No markdown headings (#) in body
+- [ ] **XML-first structure** - `SKILL.md` uses XML tags as primary section boundaries, not markdown headings
 - [ ] **Required tags present** - objective, quick_start/intake, success_criteria
-- [ ] **All referenced knowledge files exist** - No broken links to workflows/knowledge
+- [ ] **All referenced files exist** - No broken links to workflow, knowledge, template, or eval files
 - [ ] **XML tags properly closed** - Valid structure
 </core_quality>
 

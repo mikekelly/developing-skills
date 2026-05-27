@@ -12,15 +12,15 @@ description: "{{What it does}} Use when {{trigger conditions}}."
 </quick_start>
 
 <process>
-## Step 1: {{First action}}
+1. **{{First action}}**
 
 {{Instructions for step 1}}
 
-## Step 2: {{Second action}}
+2. **{{Second action}}**
 
 {{Instructions for step 2}}
 
-## Step 3: {{Third action}}
+3. **{{Third action}}**
 
 {{Instructions for step 3}}
 </process>

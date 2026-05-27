@@ -8,9 +8,11 @@
 </required_reading>
 
 <process>
-## Step 1: Select the Skill
+## Step 1: Resolve Target Skill
 
-Ask directly in chat instead of using a constrained-choice UI; there may be many skills.
+If the user already named a skill, provided a path, or the current working directory is clearly a skill repo, use it. Do not list every available skill when the target is already clear.
+
+Only when the target is unclear, ask directly in chat instead of using a constrained-choice UI; there may be many skills.
 
 ```bash
 ls {skills-directory}/

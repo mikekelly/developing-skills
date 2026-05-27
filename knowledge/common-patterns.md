@@ -1,5 +1,5 @@
 <overview>
-This knowledge file documents common patterns for skill authoring, including templates, examples, terminology consistency, and anti-patterns. All patterns use pure XML structure.
+This knowledge file documents common patterns for skill authoring, including templates, examples, terminology consistency, and anti-patterns. Patterns use XML section boundaries for semantic structure.
 </overview>
 
 <template_pattern>
@@ -232,7 +232,7 @@ Extract text with pdfplumber...
 Form filling requires additional setup...
 ```
 
-✅ **GOOD**: Using pure XML structure:
+Good: using XML semantic structure:
 
 ```xml
 <objective>
@@ -422,7 +422,7 @@ Extract text with pdfplumber...
 Form filling...
 ```
 
-✅ **GOOD**: Pure XML throughout:
+Good: XML structure throughout:
 ```xml
 <objective>
 PDF processing capabilities
@@ -437,7 +437,7 @@ Form filling...
 </advanced_features>
 ```
 
-**Why it matters**: Consistency in structure. Either use pure XML or pure markdown (prefer XML).
+**Why it matters**: Consistency in structure. Use XML tags for semantic sections; reserve Markdown for readable content inside those sections.
 </pitfall>
 
 <pitfall name="unclosed_xml_tags">

@@ -9,10 +9,10 @@ Build a comprehensive execution skill that does real work in a specific domain. 
 **Domain expertise skill:** "Do EVERYTHING in this domain, with complete practitioner knowledge"
 
 Examples:
-- `expertise/macos-apps` - Build macOS apps from scratch through shipping
-- `expertise/python-games` - Build complete Python games with full game dev lifecycle
-- `expertise/rust-systems` - Build Rust systems programs with exhaustive systems knowledge
-- `expertise/web-scraping` - Build scrapers, handle all edge cases, deploy at scale
+- `expertise/developing-macos-apps` - Build macOS apps from scratch through shipping
+- `expertise/developing-python-games` - Build complete Python games with full game dev lifecycle
+- `expertise/developing-rust-systems` - Build Rust systems programs with exhaustive systems knowledge
+- `expertise/developing-web-scrapers` - Build scrapers, handle all edge cases, deploy at scale
 
 Domain expertise skills:
 - ✅ Execute tasks (build, debug, optimize, ship)
@@ -62,7 +62,9 @@ Get specific: "Python games" or "Python games with Pygame specifically"?
 
 Explain:
 ```
-Domain expertise skills go in: {skills-directory}/expertise/{domain-name}/
+Domain expertise skills go in: {skills-directory}/expertise/{suggested-name}/
+
+The final directory basename and frontmatter `name` must match exactly.
 
 These are comprehensive BUILD skills that:
 - Execute tasks (build, debug, optimize, ship)
@@ -70,7 +72,7 @@ These are comprehensive BUILD skills that:
 - Can be invoked directly by users
 - Can be loaded by other skills for domain knowledge
 
-Name suggestion: {suggested-name}
+Name suggestion: {suggested-name} (use gerund form, e.g., developing-macos-apps)
 Location: {skills-directory}/expertise/{suggested-name}/
 ```
 
@@ -104,7 +106,7 @@ Each workflow = one complete task type that users actually do.
 Run multiple web searches to ensure coverage:
 
 **Search 1: Current ecosystem**
-- "best {domain} libraries 2024 2025"
+- "best {domain} libraries {current-year} {previous-year}"
 - "popular {domain} frameworks comparison"
 - "{domain} tech stack recommendations"
 
@@ -137,7 +139,7 @@ For EACH major library/tool/pattern found:
 - **Check deprecation:** Is anything being replaced?
 
 **Red flags for outdated content:**
-- Articles from before 2023 (unless fundamental concepts)
+- Articles more than three years old (unless fundamental concepts)
 - Abandoned libraries (no commits in 12+ months)
 - Deprecated APIs or patterns
 - "This used to be popular but..."
@@ -191,7 +193,7 @@ knowledge/
 ```
 
 **For each knowledge file:**
-- Pure XML structure
+- XML section boundaries for major sections
 - LLM Wiki discipline: compiled synthesis, not raw source dumps
 - Decision trees: "If X, use Y. If Z, use A instead."
 - Comparison tables: Library vs Library (speed, features, learning curve)
@@ -206,23 +208,28 @@ Domain expertise skills use router pattern with essential principles:
 
 ```yaml
 ---
-name: build-{domain-name}
-description: "Build {domain things} from scratch through shipping. Full lifecycle - build, debug, test, optimize, ship. {Any specific constraints like 'CLI-only, no IDE'}."
+name: developing-{domain-things}
+description: "MUST be loaded before building, debugging, testing, optimizing, or shipping {domain things}. Covers the full {domain} development lifecycle. {Any specific constraints like 'CLI-only, no IDE'}."
 ---
 
 <essential_principles>
-## How {This Domain} Works
+<core_concept>
+How {this domain} works
+</core_concept>
 
 {Domain-specific principles that ALWAYS apply}
 
-### 1. {First Principle}
+<principle name="{first-principle}">
 {Critical practice that can't be skipped}
+</principle>
 
-### 2. {Second Principle}
+<principle name="{second-principle}">
 {Another fundamental practice}
+</principle>
 
-### 3. {Third Principle}
+<principle name="{third-principle}">
 {Core workflow pattern}
+</principle>
 </essential_principles>
 
 <intake>
@@ -508,16 +515,16 @@ Test both use cases:
 
 ```bash
 # Create structure
-mkdir -p {skills-directory}/expertise/{domain-name}
-mkdir -p {skills-directory}/expertise/{domain-name}/workflows
-mkdir -p {skills-directory}/expertise/{domain-name}/knowledge
+mkdir -p {skills-directory}/expertise/{suggested-name}
+mkdir -p {skills-directory}/expertise/{suggested-name}/workflows
+mkdir -p {skills-directory}/expertise/{suggested-name}/knowledge
 
 # Write SKILL.md
 # Write all workflow files
 # Write all knowledge files
 
 # Verify structure
-ls -R {skills-directory}/expertise/{domain-name}
+ls -R {skills-directory}/expertise/{suggested-name}
 ```
 
 ## Step 11: Document in develop-plan (if applicable)
@@ -526,7 +533,7 @@ Update the develop-plan skill to reference this new domain (if you have one):
 
 Add to the domain inference table:
 ```markdown
-| "{keyword}", "{domain term}" | expertise/{domain-name} |
+| "{keyword}", "{domain term}" | expertise/{suggested-name} |
 ```
 
 So develop-plan can auto-detect and offer to load it.
@@ -536,7 +543,7 @@ So develop-plan can auto-detect and offer to load it.
 Review entire skill:
 
 **SKILL.md:**
-- [ ] Name matches directory (build-{domain-name})
+- [ ] Name matches directory (`developing-{domain-things}`)
 - [ ] Description explains it builds things from scratch through shipping
 - [ ] Essential principles inline (always loaded)
 - [ ] Intake asks what user wants to do
@@ -552,7 +559,7 @@ Review entire skill:
 - [ ] Workflows cover full lifecycle (build, debug, test, optimize, ship)
 
 **Knowledge files:**
-- [ ] Pure XML structure (no markdown headings)
+- [ ] XML section boundaries for major sections
 - [ ] Decision guidance in every file
 - [ ] Current versions verified
 - [ ] Code examples work
@@ -583,7 +590,7 @@ Domain expertise skill is complete when:
 - [ ] Anti-patterns documented throughout
 - [ ] Full lifecycle covered (build → debug → test → optimize → ship)
 - [ ] Platform-specific considerations included
-- [ ] Located in {skills-directory}/expertise/{domain-name}/
+- [ ] Located in {skills-directory}/expertise/{suggested-name}/ with basename matching frontmatter `name`
 - [ ] Referenced in develop-plan domain inference table
 - [ ] Passes dual-purpose test: Can be invoked directly AND loaded for knowledge
 - [ ] User can build something professional from scratch through shipping

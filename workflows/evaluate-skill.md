@@ -46,6 +46,7 @@ cat {skill-path}/SKILL.md
 ls {skill-path}/
 ls {skill-path}/workflows/ 2>/dev/null
 ls {skill-path}/knowledge/ 2>/dev/null
+ls {skill-path}/evals/ 2>/dev/null
 ```
 
 Extract:
@@ -55,6 +56,8 @@ Extract:
 - Reusable scripts/templates the skill should cause the agent to use
 
 ## Step 3: Draft Realistic Evaluation Prompts
+
+If the skill already has `evals/`, read those first and reuse or extend them instead of starting from a blank template.
 
 Create 2-5 prompts that look like real user requests. Include:
 - Typical successful path
