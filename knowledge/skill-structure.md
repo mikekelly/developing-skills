@@ -134,7 +134,7 @@ description: "What it does and when to use it (address the agent as 'you')"
 - Maximum 64 characters
 - Lowercase letters, numbers, hyphens only
 - No XML tags
-- No reserved words: "anthropic", "claude"
+- No provider names unless the skill is truly provider-specific
 - Must match directory name exactly
 
 **Examples**:
@@ -143,7 +143,7 @@ description: "What it does and when to use it (address the agent as 'you')"
 - ✅ `setting-up-stripe-payments`
 - ❌ `PDF_Processor` (uppercase)
 - ❌ `helper` (vague)
-- ❌ `claude-helper` (reserved word)
+- ❌ `ai-helper` (vague/provider-flavored)
 </name_field>
 
 <description_field>
@@ -275,7 +275,7 @@ Examples: `processing-pdf`, `processing-images`, `processing-csv`
 <avoid_patterns>
 - Vague: `helper`, `utils`, `tools`
 - Generic: `documents`, `data`, `files`
-- Reserved words: `anthropic-helper`, `claude-tools`
+- Provider names: `anthropic-helper`, `openai-tools` unless provider-specific
 - Inconsistent: Directory `facebook-ads` but name `managing-facebook-ads`
 </avoid_patterns>
 
@@ -323,7 +323,7 @@ SKILL.md serves as an overview that points to detailed materials as needed. This
 </principle>
 
 <practical_guidance>
-- Keep SKILL.md body under 500 lines
+- Target SKILL.md body under 500 lines
 - Split content into separate files when approaching this limit
 - Keep knowledge files one level deep from SKILL.md
 - Add table of contents to knowledge files over 100 lines
@@ -490,7 +490,7 @@ Form filling...
 </pitfall>
 
 <pitfall name="deeply_nested_knowledge">
-Keep knowledge files one level deep from SKILL.md. Claude may only partially read nested files (SKILL.md → advanced.md → details.md).
+Keep knowledge files one level deep from SKILL.md. The agent may only partially read nested files (SKILL.md → advanced.md → details.md).
 </pitfall>
 
 <pitfall name="windows_paths">
@@ -510,7 +510,7 @@ Before finalizing a skill, verify:
 - ✅ Required tags present: objective, quick_start, success_criteria
 - ✅ Conditional tags appropriate for complexity level
 - ✅ All XML tags properly closed
-- ✅ Progressive disclosure applied (SKILL.md < 500 lines)
+- ✅ Progressive disclosure applied (SKILL.md near the 500-line target)
 - ✅ Knowledge files use pure XML structure
 - ✅ File paths use forward slashes
 - ✅ Descriptive file names

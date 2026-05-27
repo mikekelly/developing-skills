@@ -144,13 +144,7 @@ For EACH major library/tool/pattern found:
 
 ### Documentation Sources
 
-Use Context7 MCP when available:
-```
-mcp__context7__resolve-library-id: {library-name}
-mcp__context7__get-library-docs: {library-id}
-```
-
-Focus on official docs, not tutorials.
+Use available documentation, browsing, MCP, or local tools to inspect current official docs, SDK references, changelogs, and repository examples. Focus on source-of-truth materials, not tutorials.
 
 ## Step 5: Organize Knowledge Into Domain Areas
 
@@ -247,15 +241,17 @@ What would you like to do?
 </intake>
 
 <routing>
-| Response | Workflow |
-|----------|----------|
-| 1, "new", "create", "build", "start" | `workflows/build-new-{thing}.md` |
-| 2, "broken", "fix", "debug", "crash", "bug" | `workflows/debug-{thing}.md` |
-| 3, "add", "feature", "implement", "change" | `workflows/add-feature.md` |
-| 4, "test", "tests", "TDD", "coverage" | `workflows/write-tests.md` |
-| 5, "slow", "optimize", "performance", "fast" | `workflows/optimize-performance.md` |
-| 6, "ship", "release", "deploy", "publish" | `workflows/ship-{thing}.md` |
-| 7, other | Clarify, then select workflow or knowledge files |
+
+| Option | Keywords | Workflow |
+|--------|----------|----------|
+| 1 | new / create / build / start | `workflows/build-new-{thing}.md` |
+| 2 | broken / fix / debug / crash / bug | `workflows/debug-{thing}.md` |
+| 3 | add / feature / implement / change | `workflows/add-feature.md` |
+| 4 | test / tests / TDD / coverage | `workflows/write-tests.md` |
+| 5 | slow / optimize / performance / fast | `workflows/optimize-performance.md` |
+| 6 | ship / release / deploy / publish | `workflows/ship-{thing}.md` |
+| 7 | other | Clarify, then select workflow or knowledge files |
+
 </routing>
 
 <verification_loop>
@@ -306,6 +302,7 @@ All in `workflows/`:
 | write-tests.md | Write and run tests |
 | optimize-performance.md | Profile and speed up |
 | ship-{thing}.md | Deploy/distribute |
+
 </workflows_index>
 ```
 
@@ -478,7 +475,7 @@ Ask: "Could a user build a professional {domain thing} from scratch through ship
 - [ ] Platform-specific considerations included?
 - [ ] "When to use X vs Y" guidance provided?
 - [ ] Common pitfalls documented?
-- [ ] Current as of 2024-2025?
+- [ ] Current as of the verification date?
 - [ ] Workflows actually execute tasks (not just knowledge files)?
 - [ ] Each workflow specifies which knowledge files to read?
 
@@ -576,7 +573,7 @@ Review entire skill:
 Domain expertise skill is complete when:
 
 - [ ] Comprehensive research completed (5+ web searches)
-- [ ] All sources verified for currency (2024-2025)
+- [ ] All sources verified for currency as of the verification date
 - [ ] Knowledge organized by domain areas (not arbitrary)
 - [ ] Essential principles in SKILL.md (always loaded)
 - [ ] Intake routes to appropriate workflows

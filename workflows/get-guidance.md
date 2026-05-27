@@ -109,6 +109,7 @@ If no → clarify and iterate
 | Complex domain, many patterns | Router + workflows + knowledge |
 | User-triggered, fresh context | Slash command, not skill |
 | One-off task | No skill needed |
+
 </decision_framework>
 
 <success_criteria>

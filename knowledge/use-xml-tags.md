@@ -1,5 +1,5 @@
 <overview>
-Skills use pure XML structure for consistent parsing, efficient token usage, and improved Claude performance. This knowledge file defines the required and conditional XML tags for skill authoring, along with intelligence rules for tag selection.
+Skills use pure XML structure for consistent parsing, efficient token usage, and improved agent performance. This knowledge file defines the required and conditional XML tags for skill authoring, along with intelligence rules for tag selection.
 </overview>
 
 <critical_rule>
@@ -23,7 +23,7 @@ Extract text and tables from PDF files, fill forms, and merge documents using Py
 </tag>
 
 <tag name="quick_start">
-**Purpose**: Immediate, actionable guidance. Gets Claude started quickly without reading advanced sections.
+**Purpose**: Immediate, actionable guidance. Gets the agent started quickly without reading advanced sections.
 
 **Content**: Minimal working example, essential commands, or basic usage pattern.
 
@@ -56,7 +56,7 @@ A well-structured skill has:
 - Valid YAML frontmatter with descriptive name and description
 - Pure XML structure with no markdown headings in body
 - Required tags: objective, quick_start, success_criteria
-- Progressive disclosure (SKILL.md < 500 lines, details in knowledge files)
+- Progressive disclosure (target SKILL.md under 500 lines, details in knowledge files)
 - Real-world testing and iteration based on observed behavior
 </success_criteria>
 ```
@@ -67,7 +67,7 @@ A well-structured skill has:
 Add these tags based on skill complexity and domain requirements:
 
 <tag name="context">
-**When to use**: Background or situational information that Claude needs before starting.
+**When to use**: Background or situational information that the agent needs before starting.
 
 **Example**:
 ```xml
@@ -144,7 +144,7 @@ Only proceed when validation passes. If errors occur, review and fix before cont
 </tag>
 
 <tag name="anti_patterns">
-**When to use**: Common mistakes that Claude should avoid.
+**When to use**: Common mistakes that the agent should avoid.
 
 **Example**:
 ```xml
@@ -183,10 +183,10 @@ Only proceed when validation passes. If errors occur, review and fix before cont
 **Example**:
 ```xml
 <testing>
-Test with all target models (Haiku, Sonnet, Opus):
+Test with all target models:
 
 1. Run skill on representative tasks
-2. Observe where Claude struggles or succeeds
+2. Observe where the agent struggles or succeeds
 3. Iterate based on actual behavior
 4. Validate XML structure after changes
 </testing>
@@ -277,7 +277,7 @@ XML tags are more efficient than markdown headings:
 ## Advanced features
 ## Success criteria
 ```
-Total: ~20 tokens, no semantic meaning to Claude
+Total: ~20 tokens, no semantic meaning to the agent
 
 **XML tags**:
 ```xml
@@ -290,13 +290,13 @@ Total: ~15 tokens, semantic meaning built-in
 </token_efficiency>
 
 <parsing_accuracy>
-XML provides unambiguous boundaries and semantic meaning. Claude can reliably:
+XML provides unambiguous boundaries and semantic meaning. The agent can reliably:
 - Identify section boundaries
 - Understand content purpose
 - Skip irrelevant sections
 - Parse programmatically
 
-Markdown headings are just visual formatting. Claude must infer meaning from heading text.
+Markdown headings are just visual formatting. The agent must infer meaning from heading text.
 </parsing_accuracy>
 
 <consistency>
@@ -391,7 +391,7 @@ Clearly separate different sections with unambiguous boundaries
 </benefit>
 
 <benefit type="accuracy">
-Reduce parsing errors. Claude knows exactly where sections begin and end.
+Reduce parsing errors. The agent knows exactly where sections begin and end.
 </benefit>
 
 <benefit type="flexibility">

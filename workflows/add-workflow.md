@@ -10,7 +10,7 @@
 <process>
 ## Step 1: Select the Skill
 
-**DO NOT use AskUserQuestion** - there may be many skills.
+Ask directly in chat instead of using a constrained-choice UI; there may be many skills.
 
 ```bash
 ls {skills-directory}/
@@ -35,7 +35,7 @@ Report current structure to user.
 
 ## Step 3: Gather Workflow Requirements
 
-Ask using AskUserQuestion or direct question:
+Ask directly:
 - What should this workflow do?
 - When would someone use it vs existing workflows?
 - What knowledge files would it need?

@@ -1,0 +1,15 @@
+{
+  "skill_name": "{{skill-name}}",
+  "evals": [
+    {
+      "id": "descriptive-name",
+      "prompt": "Realistic user request",
+      "files": [],
+      "expected_behavior": [
+        "Specific observable behavior",
+        "Specific constraint the skill should enforce"
+      ],
+      "review_mode": "qualitative"
+    }
+  ]
+}

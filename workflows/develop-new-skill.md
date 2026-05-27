@@ -7,6 +7,7 @@
 3. knowledge/core-principles.md
 4. knowledge/use-xml-tags.md
 5. knowledge/llm-wiki-principles.md
+6. knowledge/evaluation-driven-development.md
 </required_reading>
 
 <escalation_triggers>
@@ -21,6 +22,14 @@ Stop and ask when:
 <process>
 ## Step 1: Adaptive Requirements Gathering
 
+**First, mine the current conversation.** If the user wants to capture an existing workflow, extract what is already present before asking questions:
+- Tools or commands used
+- Sequence of steps that worked
+- Corrections or preferences the user gave
+- Input and output formats observed
+- Success criteria implied by accepted outputs
+- Repeated context the user had to provide
+
 **If user provided context** (e.g., "build a skill for X"):
 → Analyze what's stated, what can be inferred, what's unclear
 → Skip to asking about genuine gaps only
@@ -28,31 +37,21 @@ Stop and ask when:
 **If user just invoked skill without context:**
 → Ask what they want to build
 
-### Using AskUserQuestion
-
-Ask 2-4 domain-specific questions based on actual gaps. Each question should:
-- Have specific options with descriptions
+Ask 2-4 domain-specific questions only when genuine gaps remain. Each question should:
 - Focus on scope, complexity, outputs, boundaries
 - NOT ask things obvious from context
+- Use concrete options when that helps the user decide
 
 Example questions:
 - "What specific operations should this skill handle?" (with options based on domain)
 - "Should this also handle [related thing] or stay focused on [core thing]?"
 - "What should the user see when successful?"
 
-### Decision Gate
-
-After initial questions, ask:
-"Ready to proceed with building, or would you like me to ask more questions?"
-
-Options:
-1. **Proceed to building** - I have enough context
-2. **Ask more questions** - There are more details to clarify
-3. **Let me add details** - I want to provide additional context
+Proceed once the core scope, trigger conditions, output shape, and success criteria are clear. Ask for confirmation only when a choice would materially change the skill.
 
 ## Step 2: Research Trigger (If External API)
 
-**When external service detected**, ask using AskUserQuestion:
+**When an external service is involved**, ask:
 "This involves [service name] API. Would you like me to research current endpoints and patterns before building?"
 
 Options:
@@ -60,9 +59,9 @@ Options:
 2. **No, proceed with general patterns** - Use common patterns without specific API research
 
 If research requested:
-- Use Context7 MCP to fetch current library documentation
-- Or use WebSearch for recent API documentation
-- Focus on 2024-2025 sources
+- Prefer current official documentation, changelogs, SDK docs, or repository examples
+- Use whatever browsing, documentation, MCP, or local tools are available in the current harness
+- Note source dates and version constraints when they matter
 - Store findings for use in content generation
 
 ## Step 3: Decide Structure
@@ -107,7 +106,7 @@ Signs of standalone repo intent:
 - User is NOT already in a personal skills directory
 - User mentioned "distributable", "shareable", "GitHub", or "standalone"
 
-If standalone repo detected, ask using AskUserQuestion:
+If standalone repo detected, ask:
 "I notice you're in an empty repository. Are you creating:"
 
 Options:
@@ -169,6 +168,13 @@ description: "{description}"
 
 **Test the description:** Ask "If a user said [typical request], would an agent choose this skill based on the description?" If not, revise.
 
+Draft three quick trigger examples:
+- One obvious should-trigger request
+- One casual or indirect should-trigger request
+- One near-miss should-not-trigger request
+
+If these examples are hard to classify, the skill scope or description is not clear enough yet. Refine before writing the body.
+
 **Read knowledge/skill-structure.md for comprehensive guidance.**
 
 ## Step 7: Write SKILL.md
@@ -212,7 +218,7 @@ Domain knowledge that:
 - Contains patterns, examples, technical details
 - Follows LLM Wiki principles: synthesized, traversable, maintained, and source-first
 
-## Step 10: Validate Structure
+## Step 10: Validate Structure and Safety
 
 Check:
 - [ ] YAML frontmatter valid
@@ -221,20 +227,42 @@ Check:
 - [ ] No markdown headings (#) in body - use XML tags
 - [ ] Required tags present: objective, quick_start, success_criteria
 - [ ] All referenced files exist
-- [ ] SKILL.md under 500 lines
+- [ ] SKILL.md targets under 500 lines; longer files have clear progressive disclosure
 - [ ] XML tags properly closed
+- [ ] Behavior matches the name and description; no surprising capabilities
+- [ ] Skill does not enable unauthorized access, credential exposure, data exfiltration, or other harmful behavior
 
 ## Step 11: Create Command Shortcut (if supported by agent harness)
 
 Create a command shortcut if your agent harness supports them. The shortcut should invoke the skill with appropriate arguments.
 
-## Step 12: Test
+## Step 12: Test and Evaluate
+
+Use the lightest evaluation that fits the skill:
+
+**Lightweight default:** For personal or subjective skills, create 2-3 realistic prompts and run a qualitative sanity check.
+
+**Rigorous path:** For standalone, reusable, risky, or benchmarked skills, route to `workflows/evaluate-skill.md` and compare against a baseline.
+
+Create eval prompts before declaring the skill done:
+```json
+{
+  "id": "descriptive-name",
+  "prompt": "Realistic user request",
+  "files": [],
+  "expected_behavior": [
+    "Specific observable behavior",
+    "Specific constraint the skill should enforce"
+  ]
+}
+```
 
 Invoke the skill and observe:
 - Does it ask the right intake question?
 - Does it load the right workflow?
 - Does the workflow load the right knowledge files?
 - Does output match expectations?
+- Does the description trigger on intended prompts and avoid near misses?
 
 Iterate based on real usage, not assumptions.
 </process>
@@ -253,5 +281,6 @@ Skill is complete when:
 - [ ] Knowledge files contain reusable domain knowledge
 - [ ] Knowledge corpus has top-level entry points and traversable links
 - [ ] Command shortcut exists and works (if supported)
-- [ ] Tested with real invocation — agent invokes skill for intended use cases
+- [ ] Tested with realistic eval prompts — agent invokes skill for intended use cases and avoids obvious near misses
+- [ ] User-facing or subjective outputs reviewed by the user before major revision
 </success_criteria>

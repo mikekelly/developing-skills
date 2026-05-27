@@ -21,7 +21,7 @@ skill-name/
 ## Problems This Solves
 
 **Problem 1: Context gets skipped**
-When important principles are in a separate file, Claude may not read them.
+When important principles are in a separate file, the agent may not read them.
 **Solution:** Put essential principles directly in SKILL.md. They load automatically.
 
 **Problem 2: Wrong context loaded**
@@ -81,12 +81,13 @@ What would you like to do?
 </intake>
 
 <routing>
-| Response | Workflow |
-|----------|----------|
-| 1, "keyword", "keyword" | `workflows/option-a.md` |
-| 2, "keyword", "keyword" | `workflows/option-b.md` |
-| 3, "keyword", "keyword" | `workflows/option-c.md` |
-| 4, other | Clarify, then select |
+
+| Option | Keywords | Workflow |
+|--------|----------|----------|
+| 1 | keyword / keyword | `workflows/option-a.md` |
+| 2 | keyword / keyword | `workflows/option-b.md` |
+| 3 | keyword / keyword | `workflows/option-c.md` |
+| 4 | other | Clarify, then select |
 
 **After reading the workflow, follow it exactly.**
 </routing>
@@ -99,11 +100,13 @@ All domain knowledge in `knowledge/`:
 </knowledge_index>
 
 <workflows_index>
+
 | Workflow | Purpose |
 |----------|---------|
 | option-a.md | [What it does] |
 | option-b.md | [What it does] |
 | option-c.md | [What it does] |
+
 </workflows_index>
 ```
 </skill_md_template>

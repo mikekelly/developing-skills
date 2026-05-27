@@ -1,0 +1,12 @@
+{
+  "eval_id": "descriptive-name",
+  "configuration": "with_skill",
+  "expectations": [
+    {
+      "text": "Expected behavior",
+      "passed": true,
+      "evidence": "Short evidence from output, file, or transcript"
+    }
+  ],
+  "notes": "Optional reviewer notes"
+}

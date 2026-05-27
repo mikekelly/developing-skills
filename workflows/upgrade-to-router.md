@@ -114,10 +114,12 @@ What would you like to do?
 </intake>
 
 <routing>
-| Response | Workflow |
-|----------|----------|
-| 1, "keywords" | `workflows/workflow-a.md` |
-| 2, "keywords" | `workflows/workflow-b.md` |
+
+| Option | Keywords | Workflow |
+|--------|----------|----------|
+| 1 | keywords | `workflows/workflow-a.md` |
+| 2 | keywords | `workflows/workflow-b.md` |
+
 </routing>
 
 <knowledge_index>
@@ -125,10 +127,12 @@ What would you like to do?
 </knowledge_index>
 
 <workflows_index>
+
 | Workflow | Purpose |
 |----------|---------|
 | workflow-a.md | [What it does] |
 | workflow-b.md | [What it does] |
+
 </workflows_index>
 ```
 

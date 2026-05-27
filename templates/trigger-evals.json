@@ -1,0 +1,12 @@
+[
+  {
+    "query": "Realistic user prompt that should trigger the skill",
+    "should_trigger": true,
+    "reason": "Why this should load the skill"
+  },
+  {
+    "query": "Realistic near-miss prompt that should not trigger the skill",
+    "should_trigger": false,
+    "reason": "Why this should not load the skill"
+  }
+]

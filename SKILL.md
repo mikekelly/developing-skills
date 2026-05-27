@@ -8,7 +8,7 @@ Skills are modular, filesystem-based capabilities that provide domain expertise 
 
 **1. Name and Description Are CRITICAL** — The name and description are the ONLY way agents discover and decide to use a skill. If these are wrong, the skill will never be invoked. Treat them as the most important lines in the entire skill. See knowledge/skill-structure.md for detailed guidance.
 
-**2. Skills Are Prompts** — All prompting best practices apply. Be clear, be direct, use XML structure. Assume Claude is smart - only add context Claude doesn't have.
+**2. Skills Are Prompts** — All prompting best practices apply. Be clear, be direct, use XML structure. Assume the agent is capable - only add context it does not already have.
 
 **3. SKILL.md Is Always Loaded** — When invoked, the agent reads SKILL.md. Use this guarantee:
 - Essential principles go in SKILL.md (can't be skipped)
@@ -28,11 +28,13 @@ SKILL.md routes to workflow → workflow specifies which knowledge files to read
 
 **5. Knowledge Follows LLM Wiki Principles** — Treat `knowledge/` as a persistent, compiled Markdown knowledge layer, not a dump of raw sources. Preserve source-of-truth materials outside the skill when needed; synthesize the durable guidance into focused, interlinked knowledge files. Maintain `knowledge_index` as a top-level map of entry points, not an exhaustive manifest; let the corpus be traversed through links and workflow-required reading.
 
-**6. Progressive Disclosure** — SKILL.md under 500 lines. Split detailed content into knowledge files. Load only what's essential to make common activities fast and detailed aspects of the skill discoverable.
+**6. Progressive Disclosure** — Target SKILL.md under 500 lines. Split detailed content into knowledge files. Load only what's essential to make common activities fast and detailed aspects of the skill discoverable.
 
 **7. Challenge Every Token** — Context window is shared. Before adding content, ask: "Does the agent already know this?" If in doubt, leave it out.
 
 **8. Skills Can Be Standalone Repos** — Skills can live in personal skills directories or as standalone GitHub repos (distributable). Detect context and confirm intent.
+
+**9. Lack of Surprise** — A skill's behavior and contents should not surprise the user given its name and description. Do not create misleading skills or skills that enable unauthorized access, credential exposure, data exfiltration, or other harmful behavior.
 </essential_principles>
 
 <intake>
@@ -41,18 +43,23 @@ What would you like to do?
 1. Create new skill
 2. Audit/modify existing skill
 3. Add component (workflow/knowledge/template/script)
-4. Get guidance
+4. Evaluate/benchmark skill behavior
+5. Optimize skill description/triggers
+6. Get guidance
 
 **Ensure this is clear before proceeding.**
 </intake>
 
 <routing>
-| Response | Next Action | Workflow |
-|----------|-------------|----------|
-| 1, "create", "new", "build", "develop" | Ask: "Task-execution skill or domain expertise skill?" | Route to appropriate develop workflow |
-| 2, "audit", "modify", "existing" | Ask: "Path to skill?" | Route to appropriate workflow |
-| 3, "add", "component" | Ask: "Add what? (workflow/knowledge/template/script)" | workflows/add-{type}.md |
-| 4, "guidance", "help" | General guidance | workflows/get-guidance.md |
+
+| Option | Keywords | Next Action | Workflow |
+|--------|----------|-------------|----------|
+| 1 | create / new / build / develop | Ask: "Task-execution skill or domain expertise skill?" | Route to appropriate develop workflow |
+| 2 | audit / modify / existing | Ask: "Path to skill?" | Route to appropriate workflow |
+| 3 | add / component | Ask: "Add what? (workflow/knowledge/template/script)" | workflows/add-{type}.md |
+| 4 | evaluate / benchmark / test / eval | Ask: "Path to skill and desired rigor?" | workflows/evaluate-skill.md |
+| 5 | description / trigger / optimize | Ask: "Path to skill?" | workflows/optimize-description.md |
+| 6 | guidance / help | General guidance | workflows/get-guidance.md |
 
 **Progressive disclosure for option 1 (develop):**
 - If user selects "Task-execution skill" → workflows/develop-new-skill.md
@@ -69,6 +76,8 @@ What would you like to do?
 - "verify content", "check if current" → workflows/verify-skill.md
 - "develop domain expertise", "exhaustive knowledge base" → workflows/develop-domain-expertise-skill.md
 - "develop skill for X", "build new skill", "create skill" → workflows/develop-new-skill.md
+- "run evals", "benchmark this skill", "test this skill", "measure performance" → workflows/evaluate-skill.md
+- "optimize description", "improve triggering", "does this trigger correctly" → workflows/optimize-description.md
 - "add workflow", "add knowledge", etc. → workflows/add-{type}.md
 - "upgrade to router" → workflows/upgrade-to-router.md
 
@@ -114,11 +123,11 @@ knowledge/:
   Compiled domain knowledge, patterns, examples
 
 templates/:
-  Output structures Claude copies and fills
+  Output structures the agent copies and fills
   (plans, specs, configs, documents)
 
 scripts/:
-  Executable code Claude runs as-is
+  Executable code the agent runs as-is
   (deploy, setup, API calls, data processing)
 ```
 </quick_reference>
@@ -129,9 +138,9 @@ All in `knowledge/`:
 **Structure:** recommended-structure.md, skill-structure.md
 **Principles:** core-principles.md, llm-wiki-principles.md, be-clear-and-direct.md, use-xml-tags.md
 **Patterns:** common-patterns.md, workflows-and-validation.md
-**Assets:** using-templates.md, using-scripts.md
-**Quality:** skill-checklist.md, evaluation-driven-development.md
-**Advanced:** executable-code.md, api-security.md, iteration-and-testing.md
+**Assets:** using-templates.md, using-scripts.md; templates/ contains eval and report templates
+**Quality:** skill-checklist.md, evaluation-driven-development.md, iteration-and-testing.md
+**Advanced:** executable-code.md, api-security.md
 </knowledge_index>
 
 <workflows_index>
@@ -143,12 +152,15 @@ All in `workflows/`:
 | develop-domain-expertise-skill.md | Build exhaustive domain knowledge base for build/ |
 | audit-skill.md | Analyze skill against best practices |
 | verify-skill.md | Check if content is still accurate |
+| evaluate-skill.md | Run behavioral evals and compare against a baseline |
+| optimize-description.md | Improve trigger accuracy for the skill description |
 | add-workflow.md | Add a workflow to existing skill |
 | add-knowledge.md | Add a knowledge file to existing skill |
 | add-template.md | Add a template to existing skill |
 | add-script.md | Add a script to existing skill |
 | upgrade-to-router.md | Convert simple skill to router pattern |
 | get-guidance.md | Help decide what kind of skill to build |
+
 </workflows_index>
 
 <yaml_requirements>
@@ -181,7 +193,7 @@ description: "..."        # What it does AND when to use it (address agent as yo
 **Naming conventions (gerund form required):**
 - Use gerund (verb ending in -ing): `developing-*`, `processing-*`, `managing-*`, `setting-up-*`
 - Use plural nouns: `developing-skills`, `processing-images`, `managing-ads`
-- Avoid: vague names (`helper`, `utils`), reserved words (`anthropic-*`, `claude-*`)
+- Avoid: vague names (`helper`, `utils`) and provider names unless the skill is truly provider-specific
 </yaml_requirements>
 
 <success_criteria>
@@ -190,7 +202,8 @@ A well-structured skill:
 - Uses pure XML structure (no markdown headings in body)
 - Has essential principles inline in SKILL.md
 - Routes directly to appropriate workflows based on user intent
-- Keeps SKILL.md under 500 lines
+- Targets SKILL.md under 500 lines
 - Uses knowledge/ as an LLM Wiki-style compiled knowledge layer
+- Treats behavior evaluation and description-trigger testing as first-class quality checks
 - Asks minimal clarifying questions only when truly needed
 </success_criteria>

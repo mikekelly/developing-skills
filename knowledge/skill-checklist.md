@@ -8,7 +8,7 @@ Use this checklist before sharing or publishing a skill.
 - [ ] **Valid YAML frontmatter** - name and description fields present
 - [ ] **Name matches directory** - lowercase-with-hyphens, gerund form preferred
 - [ ] **Description is specific** - Says what it does AND when to use it (addresses agent as you)
-- [ ] **SKILL.md under 500 lines** - Split into knowledge files if longer
+- [ ] **SKILL.md targets under 500 lines** - Split into knowledge files if longer
 - [ ] **Pure XML structure** - No markdown headings (#) in body
 - [ ] **Required tags present** - objective, quick_start/intake, success_criteria
 - [ ] **All referenced knowledge files exist** - No broken links to workflows/knowledge
@@ -27,12 +27,14 @@ Use this checklist before sharing or publishing a skill.
 - [ ] **Workflows have clear steps** - Sequential, actionable
 - [ ] **Concise** - Every token justifies its cost
 - [ ] **No accumulated emphasis** - Holistic review done, duplicates removed, intent balanced
+- [ ] **Lack of surprise** - Behavior matches the name and description
+- [ ] **No harmful capability drift** - Does not enable unauthorized access, credential exposure, or data exfiltration
 </content_quality>
 
 <code_and_scripts>
 ## Code and Scripts (if applicable)
 
-- [ ] **Scripts solve problems** - Don't punt errors to Claude
+- [ ] **Scripts solve problems** - Don't punt errors to the agent
 - [ ] **Error handling is explicit** - Helpful error messages
 - [ ] **No magic constants** - All values documented/justified
 - [ ] **Required packages listed** - Dependencies stated clearly
@@ -46,10 +48,13 @@ Use this checklist before sharing or publishing a skill.
 ## Testing
 
 - [ ] **At least three evaluation scenarios** - Real use cases
-- [ ] **Tested with target models** - Haiku, Sonnet, and/or Opus as appropriate
+- [ ] **Trigger evals include near misses** - Should-trigger and should-not-trigger prompts are tested when discovery matters
+- [ ] **Baseline selected when useful** - No skill, old skill, or previous iteration comparison for rigorous evals
+- [ ] **Tested with target models** - Smaller, balanced, and/or frontier models as appropriate
 - [ ] **Tested with real usage** - Not just imagined scenarios
 - [ ] **Team feedback incorporated** - If applicable
-- [ ] **Observed Claude's navigation** - Checked how it actually uses the skill
+- [ ] **Observed agent navigation** - Checked how it actually uses the skill
+- [ ] **User-facing outputs reviewed** - Subjective outputs reviewed before major revision
 </testing>
 
 <agent_prompting>

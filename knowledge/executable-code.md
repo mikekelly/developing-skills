@@ -1,12 +1,12 @@
 <when_to_use_scripts>
-Even if Claude could write a script, pre-made scripts offer advantages:
+Even if the agent could write a script, pre-made scripts offer advantages:
 - More reliable than generated code
 - Save tokens (no need to include code in context)
 - Save time (no code generation required)
 - Ensure consistency across uses
 
 <execution_vs_reference>
-Make clear whether Claude should:
+Make clear whether the agent should:
 - **Execute the script** (most common): "Run `analyze_form.py` to extract fields"
 - **Read it as reference** (for complex logic): "See `analyze_form.py` for the extraction algorithm"
 
@@ -14,10 +14,10 @@ For most utility scripts, execution is preferred.
 </execution_vs_reference>
 
 <how_scripts_work>
-When Claude executes a script via bash:
+When the agent executes a script via bash:
 1. Script code never enters context window
 2. Only script output consumes tokens
-3. Far more efficient than having Claude generate equivalent code
+3. Far more efficient than having the agent generate equivalent code
 </how_scripts_work>
 </when_to_use_scripts>
 
@@ -84,7 +84,7 @@ python scripts/fill_form.py input.pdf fields.json output.pdf
 </utility_scripts_pattern>
 
 <solve_dont_punt>
-Handle error conditions rather than punting to Claude.
+Handle error conditions rather than punting to the agent.
 
 <example type="good">
 ```python
@@ -107,7 +107,7 @@ def process_file(path):
 <example type="bad">
 ```python
 def process_file(path):
-    # Just fail and let Claude figure it out
+    # Just fail and let the agent figure it out
     return open(path).read()
 ```
 </example>
@@ -171,5 +171,5 @@ If your Skill uses MCP (Model Context Protocol) tools, always use fully qualifie
 - Use the GitHub:create_issue tool to create issues.
 </examples>
 
-Without the server prefix, Claude may fail to locate the tool, especially when multiple MCP servers are available.
+Without the server prefix, the agent may fail to locate the tool, especially when multiple MCP servers are available.
 </mcp_tool_references>

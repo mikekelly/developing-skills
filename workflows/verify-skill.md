@@ -34,10 +34,10 @@ Categorize by primary dependency type:
 
 | Type | Examples | Verification Method |
 |------|----------|---------------------|
-| **API/Service** | managing-stripe, managing-gohighlevel | Context7 + WebSearch |
+| **API/Service** | managing-stripe, managing-gohighlevel | Official docs, SDK docs, changelog, status page |
 | **CLI Tools** | building-macos-apps (xcodebuild, swift) | Run commands |
-| **Framework** | building-iphone-apps (SwiftUI, UIKit) | Context7 for docs |
-| **Integration** | setting-up-stripe-payments | WebFetch + Context7 |
+| **Framework** | building-iphone-apps (SwiftUI, UIKit) | Official docs, release notes, repository examples |
+| **Integration** | setting-up-stripe-payments | Official integration guides and changelogs |
 | **Pure Process** | developing-agent-skills | No external deps |
 
 Report: "This skill is primarily [type]-based. I'll verify using [method]."
@@ -89,11 +89,7 @@ which {tool-name}
 ```
 
 ### For API/Service Skills
-Use Context7 to fetch current documentation:
-```
-mcp__context7__resolve-library-id: {service-name}
-mcp__context7__get-library-docs: {library-id}, topic: {relevant-topic}
-```
+Use available documentation or browsing tools to fetch current official documentation, SDK references, changelogs, and status pages.
 
 Compare skill's documented patterns against current docs:
 - Are endpoints still valid?
@@ -101,11 +97,7 @@ Compare skill's documented patterns against current docs:
 - Are there deprecated methods being used?
 
 ### For Framework Skills
-Use Context7:
-```
-mcp__context7__resolve-library-id: {framework-name}
-mcp__context7__get-library-docs: {library-id}, topic: {specific-api}
-```
+Use available documentation or browsing tools to check current official docs, release notes, and repository examples.
 
 Check:
 - Are documented APIs still current?
@@ -113,17 +105,10 @@ Check:
 - Are there newer recommended approaches?
 
 ### For Integration Skills
-WebSearch for recent changes:
-```
-"[service name] API changes 2025"
-"[service name] breaking changes"
-"[service name] deprecated endpoints"
-```
-
-Then Context7 for current SDK patterns.
+Check official integration guides, SDK docs, changelogs, migration guides, and deprecation notices. Search current docs for breaking changes and recommended patterns.
 
 ### For Services with Status Pages
-WebFetch official docs/changelog if available.
+Check official docs, changelogs, and status pages if available.
 
 ## Step 5: Generate Freshness Report
 
@@ -189,16 +174,11 @@ Based on skill type, recommend:
 which {tool} && {tool} --version
 ```
 
-**Context7 pattern for any library:**
-```
-1. resolve-library-id: "{library-name}"
-2. get-library-docs: "{id}", topic: "{specific-feature}"
-```
-
-**WebSearch patterns:**
-- Breaking changes: "{service} breaking changes 2025"
-- Deprecations: "{service} deprecated API"
-- Current best practices: "{framework} best practices 2025"
+**Documentation lookup patterns:**
+- Official docs: "{service or framework} official docs {feature}"
+- Breaking changes: "{service or framework} breaking changes"
+- Deprecations: "{service or framework} deprecated API"
+- Migration guides: "{service or framework} migration guide"
 </verification_shortcuts>
 
 <success_criteria>

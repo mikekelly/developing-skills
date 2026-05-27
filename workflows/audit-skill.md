@@ -7,6 +7,7 @@
 3. knowledge/use-xml-tags.md
 4. knowledge/be-clear-and-direct.md
 5. knowledge/llm-wiki-principles.md
+6. knowledge/skill-checklist.md
 </required_reading>
 
 <escalation_triggers>
@@ -20,7 +21,7 @@ Stop and ask when:
 <process>
 ## Step 1: List Available Skills
 
-**DO NOT use AskUserQuestion** - there may be many skills.
+Ask directly in chat instead of using a constrained-choice UI; there may be many skills.
 
 Enumerate skills in chat as numbered list:
 ```bash
@@ -68,7 +69,7 @@ Evaluate against each criterion:
 - [ ] Description includes synonyms users might use for the same request
 
 ### Structure
-- [ ] SKILL.md under 500 lines
+- [ ] SKILL.md targets under 500 lines
 - [ ] Pure XML structure (no markdown headings # in body)
 - [ ] All XML tags properly closed
 - [ ] Has required tags: objective (or essential_principles for router), quick_start (or intake for router), success_criteria
@@ -97,8 +98,19 @@ Evaluate against each criterion:
 - [ ] Edge cases defined (what happens when input is empty, malformed, missing?)
 - [ ] Ambiguous language avoided (no "try to", "should probably", "generally" without explicit exceptions)
 - [ ] Examples shown, not just described (especially for output formats)
-- [ ] Decision criteria provided when Claude must make choices
+- [ ] Decision criteria provided when the agent must make choices
 - [ ] No accumulated emphasis (multiple IMPORTANT/CRITICAL/MUST markers suggest iterative "prompting harder" instead of holistic design)
+- [ ] Skill behavior does not surprise the user given its name and description
+- [ ] Skill does not enable unauthorized access, credential exposure, data exfiltration, or other harmful behavior
+
+### Evaluation and Trigger Testing
+- [ ] At least 2-3 realistic evaluation prompts exist for important or reusable skills
+- [ ] Expected behavior is observable, not just "quality is good"
+- [ ] Should-trigger and should-not-trigger examples exist when discovery matters
+- [ ] Near-miss trigger prompts cover adjacent tasks that should not load the skill
+- [ ] Baseline comparison is defined when the user asks whether the skill improved behavior
+- [ ] Evaluation findings led to generalized skill changes, not prompt-specific overfitting
+- [ ] Subjective or user-facing eval outputs are reviewed with the user before major revision
 
 ## Step 4: Generate Report
 
@@ -140,7 +152,7 @@ If fixing:
 ## Common Anti-Patterns to Flag
 
 **Skippable principles**: Essential principles in separate file instead of inline
-**Monolithic skill**: Single file over 500 lines
+**Monolithic skill**: Single file far over 500 lines without progressive disclosure
 **Mixed concerns**: Procedures and knowledge in same file
 **Vague steps**: "Handle the error appropriately"
 **Untestable criteria**: "User is satisfied"

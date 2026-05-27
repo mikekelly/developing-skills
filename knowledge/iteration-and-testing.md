@@ -1,5 +1,5 @@
 <overview>
-Skills improve through iteration and testing. This knowledge file covers evaluation-driven development, Claude A/B testing patterns, and XML structure validation during testing.
+Skills improve through iteration and testing. This knowledge file covers evaluation-driven development, fresh-agent testing patterns, and XML structure validation during testing.
 </overview>
 
 <evaluation_driven_development>
@@ -9,7 +9,7 @@ Create evaluations BEFORE writing extensive documentation. This ensures your ski
 
 <workflow>
 <step_1>
-**Identify gaps**: Run Claude on representative tasks without a skill. Document specific failures or missing context.
+**Identify gaps**: Run a representative task without the skill. Document specific failures or missing context.
 </step_1>
 
 <step_2>
@@ -17,7 +17,7 @@ Create evaluations BEFORE writing extensive documentation. This ensures your ski
 </step_2>
 
 <step_3>
-**Establish baseline**: Measure Claude's performance without the skill.
+**Establish baseline**: Measure performance without the skill.
 </step_3>
 
 <step_4>
@@ -53,19 +53,19 @@ Create evaluations BEFORE writing extensive documentation. This ensures your ski
 </why_evaluations_first>
 </evaluation_driven_development>
 
-<iterative_development_with_claude>
+<iterative_development_with_agents>
 <principle>
-The most effective skill development uses Claude itself. Work with "Claude A" (expert who helps refine) to create skills used by "Claude B" (agent executing tasks).
+The most effective skill development uses fresh agent contexts. Work with one agent context to design and refine the skill, then test with a separate context that lacks the design conversation.
 </principle>
 
 <creating_skills>
 <workflow>
 <step_1>
-**Complete task without skill**: Work through problem with Claude A, noting what context you repeatedly provide.
+**Complete task without skill**: Work through the problem, noting what context you repeatedly provide.
 </step_1>
 
 <step_2>
-**Ask Claude A to create skill**: "Create a skill that captures this pattern we just used"
+**Draft skill from pattern**: Create a skill that captures the repeated context, workflow, decisions, and output expectations.
 </step_2>
 
 <step_3>
@@ -77,23 +77,23 @@ The most effective skill development uses Claude itself. Work with "Claude A" (e
 </step_4>
 
 <step_5>
-**Test with Claude B**: Use fresh instance to test on real tasks.
+**Test with fresh context**: Use a fresh agent context to test on real tasks.
 </step_5>
 
 <step_6>
-**Iterate based on observation**: Return to Claude A with specific issues observed.
+**Iterate based on observation**: Revise from specific issues observed in the fresh context.
 </step_6>
 </workflow>
 
 <insight>
-Claude models understand skill format natively. Simply ask Claude to create a skill and it will generate properly structured SKILL.md content.
+Fresh-context testing reveals which instructions are actually carried by the skill, rather than by hidden conversation history.
 </insight>
 </creating_skills>
 
 <improving_skills>
 <workflow>
 <step_1>
-**Use skill in real workflows**: Give Claude B actual tasks.
+**Use skill in real workflows**: Give a fresh context actual tasks.
 </step_1>
 
 <step_2>
@@ -101,11 +101,11 @@ Claude models understand skill format natively. Simply ask Claude to create a sk
 </step_2>
 
 <step_3>
-**Return to Claude A**: Share observations and current SKILL.md.
+**Revise from evidence**: Share observations and current SKILL.md with the designing context.
 </step_3>
 
 <step_4>
-**Review suggestions**: Claude A might suggest reorganization, stronger language, or workflow restructuring.
+**Review suggestions**: Consider reorganization, stronger language, or workflow restructuring.
 </step_4>
 
 <step_5>
@@ -125,31 +125,31 @@ Claude models understand skill format natively. Simply ask Claude to create a sk
 - **Critical metadata**: The name and description in your skill's metadata are critical for discovery
 </what_to_watch_for>
 </improving_skills>
-</iterative_development_with_claude>
+</iterative_development_with_agents>
 
 <model_testing>
 <principle>
 Test with all models you plan to use. Different models have different strengths and need different levels of detail.
 </principle>
 
-<haiku_testing>
-**Claude Haiku** (fast, economical)
+<small_model_testing>
+**Smaller/faster models**
 
 Questions to ask:
 - Does the skill provide enough guidance?
 - Are examples clear and complete?
 - Do implicit assumptions become explicit?
-- Does Haiku need more structure?
+- Does the model need more structure?
 
-Haiku benefits from:
+Smaller models benefit from:
 - More explicit instructions
 - Complete examples (no partial code)
 - Clear success criteria
 - Step-by-step workflows
-</haiku_testing>
+</small_model_testing>
 
-<sonnet_testing>
-**Claude Sonnet** (balanced)
+<balanced_model_testing>
+**Balanced models**
 
 Questions to ask:
 - Is the skill clear and efficient?
@@ -157,31 +157,31 @@ Questions to ask:
 - Are workflows well-structured?
 - Does progressive disclosure work?
 
-Sonnet benefits from:
+Balanced models benefit from:
 - Balanced detail level
 - XML structure for clarity
 - Progressive disclosure
 - Concise but complete guidance
-</sonnet_testing>
+</balanced_model_testing>
 
-<opus_testing>
-**Claude Opus** (powerful reasoning)
+<frontier_model_testing>
+**Frontier/reasoning-heavy models**
 
 Questions to ask:
 - Does the skill avoid over-explaining?
-- Can Opus infer obvious steps?
+- Can the model infer obvious steps?
 - Are constraints clear?
 - Is context minimal but sufficient?
 
-Opus benefits from:
+Frontier models benefit from:
 - Concise instructions
 - Principles over procedures
 - High degrees of freedom
 - Trust in reasoning capabilities
-</opus_testing>
+</frontier_model_testing>
 
 <balancing_across_models>
-What works for Opus might need more detail for Haiku. Aim for instructions that work well across all target models. Find the balance that serves your target audience.
+What works for a frontier model might need more detail for a smaller model. Aim for instructions that work well across all target models. Find the balance that serves your target audience.
 
 See [core-principles.md](core-principles.md) for model testing examples.
 </balancing_across_models>
@@ -232,8 +232,8 @@ When iterating on a skill:
 
 1. Make changes to XML structure
 2. **Validate XML structure** (check tags, nesting, completeness)
-3. Test with Claude on representative tasks
-4. Observe if XML structure aids or hinders Claude's understanding
+3. Test with the agent on representative tasks
+4. Observe if XML structure aids or hinders the agent's understanding
 5. Iterate structure based on actual performance
 </testing_xml_during_iteration>
 </xml_structure_validation>
@@ -244,31 +244,31 @@ Iterate based on what you observe, not what you assume. Real usage reveals issue
 </principle>
 
 <observation_categories>
-<what_claude_reads>
-Which sections does Claude actually read? Which are ignored? This reveals:
+<what_agent_reads>
+Which sections does the agent actually read? Which are ignored? This reveals:
 - Relevance of content
 - Effectiveness of progressive disclosure
 - Whether section names are clear
-</what_claude_reads>
+</what_agent_reads>
 
-<where_claude_struggles>
+<where_agent_struggles>
 Which tasks cause confusion or errors? This reveals:
 - Missing context
 - Unclear instructions
 - Insufficient examples
 - Ambiguous requirements
-</where_claude_struggles>
+</where_agent_struggles>
 
-<where_claude_succeeds>
+<where_agent_succeeds>
 Which tasks go smoothly? This reveals:
 - Effective patterns
 - Good examples
 - Clear instructions
 - Appropriate detail level
-</where_claude_succeeds>
+</where_agent_succeeds>
 
 <unexpected_behaviors>
-What does Claude do that surprises you? This reveals:
+What does the agent do that surprises you? This reveals:
 - Unstated assumptions
 - Ambiguous phrasing
 - Missing constraints
@@ -277,7 +277,7 @@ What does Claude do that surprises you? This reveals:
 </observation_categories>
 
 <iteration_pattern>
-1. **Observe**: Run Claude on real tasks with current skill
+1. **Observe**: Run the agent on real tasks with current skill
 2. **Document**: Note specific issues, not general feelings
 3. **Hypothesize**: Why did this issue occur?
 4. **Fix**: Make targeted changes to address specific issues
@@ -285,6 +285,18 @@ What does Claude do that surprises you? This reveals:
 6. **Validate**: Ensure fix doesn't break other scenarios
 7. **Repeat**: Continue with next observed issue
 </iteration_pattern>
+
+<improvement_heuristics>
+When evaluation output is available, inspect transcripts or detailed notes, not just final artifacts. Look for places where the skill caused useful behavior, wasted effort, or failed to change anything.
+
+Improve by generalizing from evidence:
+- Avoid changes that only satisfy one test prompt's wording
+- Explain why a behavior matters instead of adding rigid all-caps rules
+- Remove instructions that do not change behavior or only add token cost
+- Move frequently repeated instructions into SKILL.md when every run needs them
+- Move rare or detailed knowledge out to `knowledge/` when it is only needed for specific workflows
+- Bundle repeated helper code in `scripts/` instead of letting each run recreate it
+</improvement_heuristics>
 </observation_based_iteration>
 
 <progressive_refinement>
@@ -311,7 +323,7 @@ Add through iteration:
 - Examples when patterns aren't clear from description
 - Edge cases when observed in real usage
 - Advanced features when users need them
-- Knowledge files when SKILL.md approaches 500 lines
+- Knowledge files when SKILL.md approaches the 500-line target
 - Validation scripts when errors are common
 </iteration_additions>
 
@@ -326,14 +338,14 @@ Add through iteration:
 
 <testing_discovery>
 <principle>
-Test that Claude can discover and use your skill when appropriate.
+Test that the agent can discover and use your skill when appropriate.
 </principle>
 
 <discovery_testing>
 <test_description>
-Test if Claude loads your skill when it should:
+Test if the agent loads your skill when it should:
 
-1. Start fresh conversation (Claude B)
+1. Start fresh conversation or execution context
 2. Ask question that should trigger skill
 3. Check if skill was loaded
 4. Verify skill was used appropriately
@@ -346,9 +358,19 @@ If skill isn't discovered:
 - Ensure description explains when to use skill
 - Test with different phrasings of the same request
 
-The description is Claude's primary discovery mechanism.
+The description is the primary discovery mechanism.
 </description_quality>
 </discovery_testing>
+
+<trigger_eval_set>
+For important skills, build a trigger eval set with both positives and near-miss negatives:
+- 8-10 prompts that should trigger
+- 8-10 prompts that should not trigger
+- Realistic user phrasing, filenames, casual language, and partial context
+- Adjacent-domain prompts that share keywords but need a different skill or no skill
+
+Use `workflows/optimize-description.md` when trigger accuracy is the main problem.
+</trigger_eval_set>
 </testing_discovery>
 
 <common_iteration_patterns>
@@ -357,13 +379,13 @@ The description is Claude's primary discovery mechanism.
 
 **Fix**:
 - Remove obvious explanations
-- Assume Claude knows common concepts
+- Assume the agent knows common concepts
 - Use examples instead of lengthy descriptions
 - Move advanced content to knowledge files
 </pattern>
 
 <pattern name="too_minimal">
-**Observation**: Claude makes incorrect assumptions or misses steps
+**Observation**: The agent makes incorrect assumptions or misses steps
 
 **Fix**:
 - Add explicit instructions where assumptions fail
@@ -373,7 +395,7 @@ The description is Claude's primary discovery mechanism.
 </pattern>
 
 <pattern name="poor_discovery">
-**Observation**: Skill exists but Claude doesn't load it when needed
+**Observation**: Skill exists but the agent doesn't load it when needed
 
 **Fix**:
 - Improve description with specific triggers
@@ -383,7 +405,7 @@ The description is Claude's primary discovery mechanism.
 </pattern>
 
 <pattern name="unclear_structure">
-**Observation**: Claude reads wrong sections or misses relevant content
+**Observation**: The agent reads wrong sections or misses relevant content
 
 **Fix**:
 - Use clearer XML tag names
@@ -393,7 +415,7 @@ The description is Claude's primary discovery mechanism.
 </pattern>
 
 <pattern name="incomplete_examples">
-**Observation**: Claude produces outputs that don't match expected pattern
+**Observation**: The agent produces outputs that don't match expected pattern
 
 **Fix**:
 - Add more examples showing pattern
@@ -459,7 +481,7 @@ Define how you'll measure if the skill is working. Quantify success.
 <subjective_metrics>
 - **Output quality**: Does output meet requirements?
 - **Appropriate detail**: Too verbose or too minimal?
-- **Claude confidence**: Does Claude seem uncertain?
+- **Agent confidence**: Does the agent seem uncertain?
 - **User satisfaction**: Does skill solve the actual problem?
 </subjective_metrics>
 
